@@ -6,7 +6,7 @@
 #define COLLABORATION_CAR_H
 
 #include <string>
-#include "Customer.h"
+
 
 using std::string;
 
