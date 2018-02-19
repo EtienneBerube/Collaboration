@@ -6,7 +6,7 @@
 #define COLLABORATION_CAR_H
 
 #include <string>
-
+#include "../Customer_Objects/Customer.h"
 
 using std::string;
 
@@ -43,6 +43,9 @@ public:
 
     virtual //The destructor
     ~Car();
+
+    //An object of customer in the class car to be able to better keep track of info
+    Customer * aCustomer;
 
     //making the class Car Abstract
     virtual void f()=0;

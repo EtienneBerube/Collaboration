@@ -2,12 +2,12 @@
 // Created by Etienne on 19/02/2018.
 //
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 #include "luxuryCar.h"
 #include "regularCar.h"
 #include "Customer_Objects/CorporateCustomer.h"
 #include "Customer_Objects/RegularCustomer.h"
-=======
+//=======
 
 #include "Customer_Objects/Customer.h"
 #include "Cars_objects/luxuryCar.h"
@@ -26,5 +26,7 @@ int main(){
     VIPCustomer c4;
     CorporateCustomer c6;
 
+
+    return 69;
 }
->>>>>>> eca15cbf88296b91885459dcba6ce951b17f3a37
+//>>>>>>> eca15cbf88296b91885459dcba6ce951b17f3a37
