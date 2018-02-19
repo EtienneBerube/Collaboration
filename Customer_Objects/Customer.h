@@ -13,12 +13,15 @@ using std::string;
 class Customer {
 
 public :
+    static const int REGULAR = 0;
+    static const int CORPORATE = 1;
+    static const int VIP = 2;
 
     Customer(const Customer &customer);
 
     Customer();
 
-    Customer(int _id, string _name, string _address, string _telephoneNumber);
+    Customer(int _id, string _name, string _address, string _telephoneNumber, int _type);
 
     ~Customer();
 
@@ -40,12 +43,19 @@ public :
 
     Car *getRental() const;
 
-    virtual void setRental(Car *rental);
+    virtual void addRental(Car *rental);
+
+    void removeRental();
+
+    virtual int getType() const = 0;
+
+    void setType(int type);
 
     virtual int getMaxDaysRental() = 0;
 
 private:
     int id;
+    int type;
     Car *rental = nullptr;
     string name;
     string address;

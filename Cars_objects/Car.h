@@ -29,7 +29,7 @@ public:
 
     void setIdNum(int idNum);
 
-    const string &getType() const;
+    virtual const string &getType() const = 0;
 
     void setType(const string &type);
 

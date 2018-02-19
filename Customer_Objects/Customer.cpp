@@ -7,7 +7,12 @@
 Customer::Customer() = default;
 
 
-Customer::Customer(int _id, string _name, string _address, string _telephoneNumber) {
+Customer::Customer(int _id, string _name, string _address, string _telephoneNumber, int _type) {
+    id = _id;
+    name = _name;
+    address = _address;
+    telephoneNumber = _telephoneNumber;
+    type = _type;
 
 }
 
@@ -17,6 +22,7 @@ Customer::Customer(const Customer &customer){
     address = customer.getAddress();
     telephoneNumber = customer.getTelephoneNumber();
     rental = customer.getRental();
+    type = customer.getType();
 }
 
 Customer::~Customer() = default;
@@ -57,8 +63,19 @@ Car *Customer::getRental() const {
     return rental;
 }
 
-virtual void Customer::setRental(Car *rental) {
+virtual void Customer::addRental(Car *rental) {
     Customer::rental = rental;
+    rental -> setAvailability(false);
+}
+
+
+void Customer::setType(int type) {
+    Customer::type = type;
+}
+
+void Customer::removeRental() {
+    rental->setAvailability(true);
+    rental = nullptr;
 }
 
 

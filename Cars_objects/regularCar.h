@@ -12,6 +12,9 @@ class regularCar : public  Car{
 public:
     regularCar();
     regularCar(int, int, bool);
+
+    regularCar(int theID, bool theAvailability);
+
     ~regularCar();
 
 };
