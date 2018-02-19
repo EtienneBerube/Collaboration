@@ -8,11 +8,12 @@
 
 #include "Customer.h"
 
+//TODO finish class
 class VIPCustomer: public Customer {
 public:
     VIPCustomer() {}
 
-    int getMaxDaysRental() override;
+
 
 };
 

@@ -4,6 +4,4 @@
 
 #include "VIPCustomer.h"
 
-int VIPCustomer::getMaxDaysRental() {
-    return 45;
-}
+

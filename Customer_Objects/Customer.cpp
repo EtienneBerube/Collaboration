@@ -7,12 +7,13 @@
 Customer::Customer() = default;
 
 
-Customer::Customer(int _id, string _name, string _address, string _telephoneNumber, int _type) {
+Customer::Customer(int _id, string _name, string _address, string _telephoneNumber, int _type, int _maxDays) {
     id = _id;
     name = _name;
     address = _address;
     telephoneNumber = _telephoneNumber;
     type = _type;
+    maxDays = _maxDays;
 
 }
 
@@ -69,13 +70,17 @@ virtual void Customer::addRental(Car *rental) {
 }
 
 
-void Customer::setType(int type) {
-    Customer::type = type;
-}
-
 void Customer::removeRental() {
     rental->setAvailability(true);
     rental = nullptr;
+}
+
+int Customer::getMaxDaysRental() {
+    return maxDays;
+}
+
+void Customer::setMaxDays(int num){
+    maxDays = num;
 }
 
 

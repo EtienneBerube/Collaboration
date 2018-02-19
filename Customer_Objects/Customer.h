@@ -21,7 +21,7 @@ public :
 
     Customer();
 
-    Customer(int _id, string _name, string _address, string _telephoneNumber, int _type);
+    Customer(int _id, string _name, string _address, string _telephoneNumber, int _type, int _maxDays);
 
     ~Customer();
 
@@ -49,18 +49,21 @@ public :
 
     virtual int getType() const = 0;
 
-    void setType(int type);
+    virtual string getTypeString() = 0;
 
-    virtual int getMaxDaysRental() = 0;
+
+    int getMaxDaysRental();
+
+    void setMaxDays(int num);
 
 private:
     int id;
     int type;
+    int maxDays;
     Car *rental = nullptr;
     string name;
     string address;
     string telephoneNumber;
-
 };
 
 
