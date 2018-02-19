@@ -17,7 +17,11 @@ void Car::setType(const string &type) {
     Car::type = type;
 }
 
-bool Car::isAvailability() const {
+const string &Car::getType() const {
+    return type;
+}
+
+bool Car::isAvailable() const {
     return availability;
 }
 
@@ -38,11 +42,23 @@ Car::Car(int theID, int theType, bool theAvailability) {
     idNum = theID;
     availability = theAvailability;
     //Depending on the number, the car might be regular or luxurious
-    switch (theType){
-        case 1: type = "Luxury";
+    switch (theType) {
+        case 1:
+            type = "Luxury";
             break;
-        default: type = "Standard";
+        default:
+            type = "Standard";
             break;
     }
 
 }
+
+//Copy constructor
+Car::Car(const Car &theCar) {
+
+    idNum = theCar.getIdNum();
+    availability = theCar.isAvailable();
+    type = theCar.getType();
+
+}
+
