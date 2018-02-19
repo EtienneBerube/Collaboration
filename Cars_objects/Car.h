@@ -40,7 +40,7 @@ public:
 
     void setAvailability(bool availability);
 
-    //The destructor
+    virtual //The destructor
     ~Car();
 
     //making the class Car Abstract

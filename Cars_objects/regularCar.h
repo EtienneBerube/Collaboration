@@ -16,7 +16,7 @@ public:
 
     regularCar(int theID, bool theAvailability);
 
-    ~regularCar();
+    ~regularCar() = default;
 
 };
 
