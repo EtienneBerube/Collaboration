@@ -9,5 +9,5 @@ regularCar::regularCar() {
 Car();
 }
 
-regularCar::regularCar(int theID, int theType, bool theAvailability) : Car(theID, theType, theAvailability){
+regularCar::regularCar(int theID, bool theAvailability) : Car(theID, Car::Standard, theAvailability){
 }

@@ -22,8 +22,8 @@ public:
     Car(int, int, bool);
 
     //Will be used to denote whether the cars are regular or luxury
-    Car::Luxury = 1;
-    Car::Standard = 0;
+    static const int Luxury = 1;
+    static const int Standard = 0;
 
     int getIdNum() const;
 
