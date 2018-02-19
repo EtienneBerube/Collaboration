@@ -5,8 +5,14 @@
 #ifndef COLLABORATION_LUXURYCAR_H
 #define COLLABORATION_LUXURYCAR_H
 
+#include "Car.h"
 
-class luxuryCar {
+class luxuryCar : public Car {
+
+public:
+    luxuryCar();
+    luxuryCar(int, int, bool);
+    ~luxuryCar();
 
 };
 

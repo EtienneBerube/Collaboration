@@ -5,8 +5,14 @@
 #ifndef COLLABORATION_REGULARCAR_H
 #define COLLABORATION_REGULARCAR_H
 
+#include "Car.h"
 
-class regularCar {
+class regularCar : public  Car{
+
+public:
+    regularCar();
+    regularCar(int, int, bool);
+    ~regularCar();
 
 };
 
