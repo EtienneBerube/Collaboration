@@ -6,7 +6,11 @@
 #define COLLABORATION_VIPCUSTOMER_H
 
 
-class VIPCustomer {
+#include "Customer.h"
+
+class VIPCustomer: public Customer {
+public:
+    int getMaxDaysRental() override;
 
 };
 

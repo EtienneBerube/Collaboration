@@ -3,3 +3,7 @@
 //
 
 #include "CorporateCustomer.h"
+
+int CorporateCustomer::getMaxDaysRental() {
+    return 35;
+}
