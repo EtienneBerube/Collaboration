@@ -13,10 +13,6 @@ void Car::setIdNum(int idNum) {
     Car::idNum = idNum;
 }
 
-const string &Car::getType() const {
-    return type;
-}
-
 void Car::setType(const string &type) {
     Car::type = type;
 }
