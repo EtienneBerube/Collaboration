@@ -3,5 +3,5 @@ project(Collaboration)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Cars_objects/Car.cpp Cars_objects/Car.h Customer_Objects/Customer.cpp Customer_Objects/Customer.h Customer_Objects/VIPCustomer.cpp Customer_Objects/VIPCustomer.h Customer_Objects/CorporateCustomer.cpp Customer_Objects/CorporateCustomer.h Customer_Objects/RegularCustomer.cpp Customer_Objects/RegularCustomer.h)
+set(SOURCE_FILES Cars_objects/Car.cpp Cars_objects/Car.h Customer_Objects/Customer.cpp Customer_Objects/Customer.h Customer_Objects/VIPCustomer.cpp Customer_Objects/VIPCustomer.h Customer_Objects/CorporateCustomer.cpp Customer_Objects/CorporateCustomer.h Customer_Objects/RegularCustomer.cpp Customer_Objects/RegularCustomer.h CarRentalSystem.cpp)
 add_executable(Collaboration ${SOURCE_FILES})
