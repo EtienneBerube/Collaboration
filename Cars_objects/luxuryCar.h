@@ -11,7 +11,7 @@ class luxuryCar : public Car {
 
 public:
     luxuryCar();
-    luxuryCar(int, int, bool);
+    luxuryCar(int, bool);
     ~luxuryCar();
 
 };

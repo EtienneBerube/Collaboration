@@ -9,5 +9,5 @@ luxuryCar::luxuryCar() {
     Car();
 }
 
-luxuryCar::luxuryCar(int theID, int theType, bool theAvailability) : Car( theID,theType,theAvailability ){
+luxuryCar::luxuryCar(int theID, bool theAvailability) : Car( theID, Car::Luxury,theAvailability ){
 }

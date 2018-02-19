@@ -11,7 +11,7 @@ class regularCar : public  Car{
 
 public:
     regularCar();
-    regularCar(int, int, bool);
+    regularCar(int, bool);
     ~regularCar();
 
 };
