@@ -6,13 +6,14 @@
 #define COLLABORATION_CAR_H
 
 #include <string>
-
+#include "../Customer_Objects/Customer.h"
 
 using std::string;
 
 class Car {
 
 protected:
+
     int idNum;
     string type;
     bool availability;
@@ -22,7 +23,7 @@ public:
 
     Car(int, int, bool);
 
-    Car( const Car &);
+    Car(const Car &);
 
     //Will be used to denote whether the cars are regular or luxury
     static const int Luxury = 1;
@@ -42,6 +43,9 @@ public:
 
     virtual //The destructor
     ~Car();
+
+    //An object of customer in the class car to be able to better keep track of info
+    Customer * aCustomer;
 
     //making the class Car Abstract
     virtual void f()=0;
