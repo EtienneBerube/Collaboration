@@ -13,6 +13,7 @@ using std::string;
 class Car {
 
 protected:
+
     int idNum;
     string type;
     bool availability;
@@ -22,7 +23,7 @@ public:
 
     Car(int, int, bool);
 
-    Car( const Car &);
+    Car(const Car &);
 
     //Will be used to denote whether the cars are regular or luxury
     static const int Luxury = 1;
