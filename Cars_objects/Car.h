@@ -6,6 +6,7 @@
 #define COLLABORATION_CAR_H
 
 #include <string>
+#include "Customer.h"
 
 using std::string;
 
@@ -21,6 +22,8 @@ public:
 
     Car(int, int, bool);
 
+    Car( const Car &);
+
     //Will be used to denote whether the cars are regular or luxury
     static const int Luxury = 1;
     static const int Standard = 0;
@@ -33,12 +36,15 @@ public:
 
     void setType(const string &type);
 
-    bool isAvailability() const;
+    bool isAvailable() const;
 
     void setAvailability(bool availability);
 
     //The destructor
     ~Car();
+
+    //making the class Car Abstract
+    virtual void f()=0;
 
 };
 
