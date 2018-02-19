@@ -15,8 +15,21 @@ public:
     CorporateCustomer();
     CorporateCustomer(int _id, string _name, string _address, string _telephoneNumber, string companyName, string companyPhoneNumber);
     CorporateCustomer(const CorporateCustomer&);
+    ~CorporateCustomer() override = default;
 
     int getMaxDaysRental() override;
+
+    const string &getCompanyName() const;
+
+    void setCompanyName(const string &companyName);
+
+    const string &getCompanyPhoneNumber() const;
+
+    void setCompanyPhoneNumber(const string &companyPhoneNumber);
+
+private:
+    string companyName;
+    string companyPhoneNumber;
 };
 
 

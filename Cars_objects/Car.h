@@ -32,7 +32,7 @@ public:
 
     void setIdNum(int idNum);
 
-    const string &getType() const;
+    virtual const string &getType() const = 0;
 
     void setType(const string &type);
 
@@ -40,7 +40,7 @@ public:
 
     void setAvailability(bool availability);
 
-    //The destructor
+    virtual //The destructor
     ~Car();
 
     //making the class Car Abstract

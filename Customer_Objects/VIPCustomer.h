@@ -10,6 +10,8 @@
 
 class VIPCustomer: public Customer {
 public:
+    VIPCustomer() {}
+
     int getMaxDaysRental() override;
 
 };
