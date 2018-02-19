@@ -6,7 +6,17 @@
 #define COLLABORATION_REGULARCUSTOMER_H
 
 
-class RegularCustomer {
+#include "Customer.h"
+
+class RegularCustomer: public Customer {
+public:
+
+    RegularCustomer();
+    RegularCustomer(int _id, string _name, string _address, string _telephoneNumber, string companyName, string companyPhoneNumber);
+    RegularCustomer(const RegularCustomer&);
+    int getMaxDaysRental() override;
+
+    void setRental(Car *rental) override;
 
 };
 
