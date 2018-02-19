@@ -4,9 +4,6 @@
 
 #include "CorporateCustomer.h"
 
-int CorporateCustomer::getMaxDaysRental() {
-    return 35;
-}
 
 CorporateCustomer::CorporateCustomer() = default;
 
@@ -37,3 +34,13 @@ const string &CorporateCustomer::getCompanyPhoneNumber() const {
 void CorporateCustomer::setCompanyPhoneNumber(const string &companyPhoneNumber) {
     CorporateCustomer::companyPhoneNumber = companyPhoneNumber;
 }
+
+int CorporateCustomer::getType() const {
+    return Customer::CORPORATE;
+}
+
+string CorporateCustomer::getTypeString() {
+    return "Corporate";
+}
+
+

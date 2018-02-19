@@ -14,8 +14,11 @@ public:
     RegularCustomer();
     RegularCustomer(int _id, string _name, string _address, string _telephoneNumber, string companyName, string companyPhoneNumber);
     RegularCustomer(const RegularCustomer&);
-    int getMaxDaysRental() override;
     void addRental(Car *rental) override;
+
+    int getType() const override;
+
+    string getTypeString() override;
 
 };
 

@@ -12,9 +12,6 @@ RegularCustomer::RegularCustomer(int _id, string _name, string _address, string 
 
 RegularCustomer::RegularCustomer(const RegularCustomer &regCustomer) {}
 
-int RegularCustomer::getMaxDaysRental() {
-    return 20;
-}
 
 void RegularCustomer::addRental(Car *rental) {
     if(rental->getType() == "Luxury"){//TODO check if ok
@@ -23,4 +20,12 @@ void RegularCustomer::addRental(Car *rental) {
         Customer::addRental(rental);
     }
 
+}
+
+int RegularCustomer::getType() const {
+    return Customer::REGULAR;
+}
+
+string RegularCustomer::getTypeString() {
+    return "Regular";
 }
