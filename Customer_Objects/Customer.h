@@ -51,7 +51,6 @@ public :
 
     virtual string getTypeString() = 0;
 
-
     int getMaxDaysRental();
 
     void setMaxDays(int num);
