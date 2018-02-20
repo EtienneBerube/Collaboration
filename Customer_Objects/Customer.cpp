@@ -64,7 +64,7 @@ Car *Customer::getRental() const {
     return rental;
 }
 
-virtual void Customer::addRental(Car *rental) {
+void Customer::addRental(Car *rental) {
     Customer::rental = rental;
     rental -> setAvailability(false);
 }

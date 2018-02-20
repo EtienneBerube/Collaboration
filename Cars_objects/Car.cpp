@@ -62,3 +62,5 @@ Car::Car(const Car &theCar) {
 
 }
 
+Car::~Car() = default;
+

@@ -8,7 +8,7 @@
 RegularCustomer::RegularCustomer() = default;
 
 RegularCustomer::RegularCustomer(int _id, string _name, string _address, string _telephoneNumber, string _companyName,
-                                 string _companyPhoneNumber): Customer(_id, _name, _address, _telephoneNumber, Customer::REGULAR) {}
+                                 string _companyPhoneNumber): Customer(_id, _name, _address, _telephoneNumber, Customer::REGULAR, 20) {}
 
 RegularCustomer::RegularCustomer(const RegularCustomer &regCustomer) {}
 

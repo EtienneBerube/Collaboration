@@ -62,11 +62,12 @@ int main(){
     menu();
 
 
-    return 69;
+    return 0;
 }
 
 void menu() {
-
+    cout<<"in"<<endl; //Debugging
+    exit(0);
 }
 
 void addCustomer() {

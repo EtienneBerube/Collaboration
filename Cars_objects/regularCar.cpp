@@ -3,11 +3,16 @@
 //
 
 
+
 #include "regularCar.h"
 
-regularCar::regularCar() {
-Car();
-}
+regularCar::regularCar() = default;
 
 regularCar::regularCar(int theID, bool theAvailability) : Car(theID, Car::Standard, theAvailability){
 }
+
+regularCar::regularCar(int _id, int _type, bool _isAvailable) : Car(_id, _type, _isAvailable) {
+
+}
+
+

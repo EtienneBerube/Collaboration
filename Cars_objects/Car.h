@@ -10,6 +10,8 @@
 
 using std::string;
 
+class Customer; //Forward delcaration
+
 class Car {
 
 protected:
@@ -17,17 +19,18 @@ protected:
     int idNum;
     string type;
     bool availability;
+    Customer * aCustomer; //An object of customer in the class car to be able to better keep track of info
 
 public:
+    //Will be used to denote whether the cars are regular or luxury
+    static const int Luxury = 1;
+    static const int Standard = 0;
+
     Car();
 
     Car(int, int, bool);
 
     Car(const Car &);
-
-    //Will be used to denote whether the cars are regular or luxury
-    static const int Luxury = 1;
-    static const int Standard = 0;
 
     int getIdNum() const;
 
@@ -41,14 +44,10 @@ public:
 
     void setAvailability(bool availability);
 
-    virtual //The destructor
-    ~Car();
+    virtual ~Car();
 
-    //An object of customer in the class car to be able to better keep track of info
-    Customer * aCustomer;
 
-    //making the class Car Abstract
-    virtual void f()=0;
+
 
 };
 

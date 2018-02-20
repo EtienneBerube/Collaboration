@@ -8,7 +8,7 @@
 CorporateCustomer::CorporateCustomer() = default;
 
 CorporateCustomer::CorporateCustomer(int _id, string _name, string _address, string _telephoneNumber,
-                                     string _companyName, string _companyPhoneNumber): Customer(_id, _name, _address, _telephoneNumber, Customer::CORPORATE),
+                                     string _companyName, string _companyPhoneNumber): Customer(_id, _name, _address, _telephoneNumber, Customer::CORPORATE, 35),
                                                                                        companyName(_companyName), companyPhoneNumber(_companyPhoneNumber) {
 
 }

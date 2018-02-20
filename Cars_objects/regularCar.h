@@ -12,11 +12,11 @@ class regularCar : public  Car{
 public:
     regularCar();
 
-    regularCar(int, int, bool);
+    regularCar(int _id, int _type, bool _isAvailable);
 
     regularCar(int theID, bool theAvailability);
 
-    ~regularCar() = default;
+    ~regularCar() override = default;
 
 };
 

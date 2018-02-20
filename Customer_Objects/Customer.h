@@ -10,6 +10,8 @@
 
 using std::string;
 
+class Car; //forward declaration
+
 class Customer {
 
 public :

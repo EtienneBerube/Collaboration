@@ -6,8 +6,10 @@
 #include "luxuryCar.h"
 
 luxuryCar::luxuryCar() {
-    Car();
+
 }
 
 luxuryCar::luxuryCar(int theID, bool theAvailability) : Car( theID, Car::Luxury,theAvailability ){
 }
+
+luxuryCar::~luxuryCar() = default;
