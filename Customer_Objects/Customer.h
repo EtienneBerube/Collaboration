@@ -51,11 +51,13 @@ public :
 
     virtual int getType() const = 0;
 
-    virtual string getTypeString() = 0;
+    virtual string getTypeString() const= 0;
 
     int getMaxDaysRental();
 
     void setMaxDays(int num);
+
+    virtual void printInfo() const =0 ;
 
 private:
     int id;

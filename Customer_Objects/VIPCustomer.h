@@ -14,6 +14,10 @@ public:
     VIPCustomer();
     VIPCustomer(int _id, string _name, string _address, string _telephoneNumber, int _maxDays);
     VIPCustomer(const VIPCustomer&);
+
+    void printInfo() const override;
+
+    string getTypeString() const override;
 };
 
 

@@ -19,7 +19,7 @@ public:
 
     int getType() const override;
 
-    string getTypeString() override;
+    string getTypeString() const override;
 
     const string &getCompanyName() const;
 
@@ -28,6 +28,8 @@ public:
     const string &getCompanyPhoneNumber() const;
 
     void setCompanyPhoneNumber(const string &companyPhoneNumber);
+
+    void printInfo() const override;
 
 private:
     string companyName;

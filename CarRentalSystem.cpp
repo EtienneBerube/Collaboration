@@ -25,12 +25,12 @@ void addCar();
 void removeCar();
 void removeCustomer();
 int searchCustomer();
-int searchCar();
-void changeDaysLimitRegular();
-void changeDaysLimitVIP();
-void changeDaysLimitCorporate();
-void updateCarInfo();
-void updateUserInfo();
+int searchCar(int id);
+void changeDaysLimitRegular(int newMaxDays);
+void changeDaysLimitVIP(int newMaxDays);
+void changeDaysLimitCorporate(int newMaxDays);
+void updateCarInfo(int id);
+void updateUserInfo(int id);
 void rentCar();
 void returnCar();
 void printCarList();
@@ -151,34 +151,63 @@ void removeCustomer(){
 
 //returns index of Customer in array
 int searchCustomer(int id) {
+    int index = -1;
+    for(unsigned int i = 0; i < listCustomer.size(); ++i){
+        if(listCustomer[i].getId() == id)
+            index = i;
+    }
+    return index;
 
 }
 //returns index of Car in array
-int searchCar() {
-
+int searchCar(int id) {
+    int index = -1;
+    for(unsigned int i = 0; i < listCar.size(); ++i){
+        if(listCar[i].getIdNum() == id)
+            index = i;
+    }
+    return index;
 }
 
-void changeDaysLimitRegular() {
-
+void changeDaysLimitRegular(int newMaxDays) {
+    currentMaxRegular = newMaxDays;
+    for(Customer c : listCustomer){
+        if(c.getType() == Customer::REGULAR){
+            c.setMaxDays(newMaxDays);
+        }
+    }
 }
 
-void changeDaysLimitVIP() {
-
+void changeDaysLimitVIP(int newMaxDays) {
+    currentMaxRegular = newMaxDays;
+    for(Customer c : listCustomer){
+        if(c.getType() == Customer::VIP){
+            c.setMaxDays(newMaxDays);
+        }
+    }
 }
 
-void changeDaysLimitCorporate() {
-
+void changeDaysLimitCorporate(int newMaxDays) {
+    currentMaxRegular = newMaxDays;
+    for(Customer c : listCustomer){
+        if(c.getType() == Customer::CORPORATE){
+            c.setMaxDays(newMaxDays);
+        }
+    }
 }
 
-void updateCarInfo() {}
+void updateCarInfo(int id) {}
 
-void updateUserInfo() {}
+void updateUserInfo(int id) {
+
+}
 
 void rentCar() {
 
 }
 
 void returnCar() {
+
 }
 
 void printCarList() {

@@ -3,6 +3,7 @@
 //
 
 #include "CorporateCustomer.h"
+#include <iostream>
 
 
 CorporateCustomer::CorporateCustomer() = default;
@@ -39,8 +40,16 @@ int CorporateCustomer::getType() const {
     return Customer::CORPORATE;
 }
 
-string CorporateCustomer::getTypeString() {
+string CorporateCustomer::getTypeString() const{
     return "Corporate";
 }
+
+void CorporateCustomer::printInfo() const {
+    std::cout <<"ID: "<< getId() << "\nType: " << getTypeString() <<"\nName: " << getName() <<"\nAddress: " << getAddress() <<"\nPhone number: " << getTelephoneNumber()
+              << "\nCompany Name: " << companyName << "\nCompany address: " << companyAddress <<std::flush;
+}
+
+
+
 
 

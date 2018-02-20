@@ -25,6 +25,10 @@ int RegularCustomer::getType() const {
     return Customer::REGULAR;
 }
 
-string RegularCustomer::getTypeString() {
+string RegularCustomer::getTypeString() const {
     return "Regular";
+}
+
+void RegularCustomer::printInfo() const {
+    std::cout <<"ID: "<< getId() << "\nType: " << getTypeString() <<"\nName: " << getName() <<"\nAddress: " << getAddress() <<"\nPhone number: " << getTelephoneNumber()<<std::flush;
 }

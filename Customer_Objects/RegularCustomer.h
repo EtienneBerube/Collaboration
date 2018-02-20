@@ -18,7 +18,9 @@ public:
 
     int getType() const override;
 
-    string getTypeString() override;
+    void printInfo() const override;
+
+    string getTypeString() const override;
 
 };
 
