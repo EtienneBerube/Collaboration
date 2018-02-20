@@ -199,7 +199,30 @@ void changeDaysLimitCorporate(int newMaxDays) {
 void updateCarInfo(int id) {}
 
 void updateUserInfo(int id) {
+    int result = searchCustomer(id);
+    if(result == -1){
+        cout << "Customer does not exist"<<endl;
+    }else{
+        string name;
+        string address;
+        string phoneNumber;
 
+        cin.ignore();
+        cout<< "Enter the new full name: ";
+        getline(cin, name);
+
+        cin.ignore();
+        cout<< "Enter the new address: ";
+        getline(cin, address);
+
+        cin.ignore();
+        cout<< "Enter the new phone number: ";
+        getline(cin, phoneNumber);
+
+        listCustomer[result].setName(name);
+        listCustomer[result].setAddress(address);
+        listCustomer[result].setTelephoneNumber(phoneNumber);
+    }
 }
 
 void rentCar() {
