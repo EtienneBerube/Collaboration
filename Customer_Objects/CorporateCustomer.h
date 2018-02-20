@@ -13,7 +13,8 @@ using std::string;
 class CorporateCustomer: public Customer {
 public:
     CorporateCustomer();
-    CorporateCustomer(int _id, string _name, string _address, string _telephoneNumber, string companyName, string companyPhoneNumber);
+    CorporateCustomer(int _id, string _name, string _address, string _telephoneNumber,int _maxDays, string companyName,
+                      string companyAddress);
     CorporateCustomer(const CorporateCustomer&);
 
     int getType() const override;
@@ -30,7 +31,7 @@ public:
 
 private:
     string companyName;
-    string companyPhoneNumber;
+    string companyAddress;
 };
 
 

@@ -6,8 +6,8 @@
 
 VIPCustomer::VIPCustomer() = default;
 
-VIPCustomer::VIPCustomer(int _id, string _name, string _address, string _telephoneNumber, int _type, int _maxDays)
-        : Customer(_id, _name, _address, _telephoneNumber, _type, _maxDays) {
+VIPCustomer::VIPCustomer(int _id, string _name, string _address, string _telephoneNumber, int _maxDays)
+        : Customer(_id, _name, _address, _telephoneNumber, Customer::VIP, _maxDays) {
 
 }
 
