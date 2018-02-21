@@ -15,6 +15,10 @@
 
 using namespace std;
 
+/*
+ * Assumptions: A Customer can only rent ONE car at the time
+ */
+
 
 //********************************Function Declarations******************************
 
@@ -304,6 +308,7 @@ void changeDaysLimitVIP(int newMaxDays) {
 //Function which changes the limit for Corporate customers
 void changeDaysLimitCorporate(int newMaxDays) {
     currentMaxRegular = newMaxDays;
+<<<<<<< HEAD
     //Goes through the list of customers, and looks
     for (Customer c : listCustomer) {
         if (c.getType() == Customer::CORPORATE) {
@@ -342,6 +347,11 @@ void updateCarInfo(int id) {
         if (yesOrNo == "n" || yesOrNo == "N") {
             isItAvailable = false;
             int type;
+=======
+    for (Customer* c : listCustomer) {
+        if (c->getType() == Customer::CORPORATE) {
+            c->setMaxDays(newMaxDays);
+>>>>>>> ea7044dd28d4e6c79eb535c22837d7e963d49917
 
         }
     }
@@ -409,7 +419,11 @@ void printCarListForCompany(const string &name) {
     //TODO double loop into customer then car O(n^2)
 }
 
+<<<<<<< HEAD
 // so as to get the latest ID for a car
+=======
+//Find the current maximum ID for Car
+>>>>>>> ea7044dd28d4e6c79eb535c22837d7e963d49917
 int findMaxIDCar() {
     int max = 0;
     for (unsigned int i = 0; i < listCustomer.size(); ++ i) {
@@ -419,7 +433,11 @@ int findMaxIDCar() {
     return max;
 }
 
+<<<<<<< HEAD
 //Finding the latest, bigggest ID for a customer
+=======
+//Find the current maximum ID for Customer
+>>>>>>> ea7044dd28d4e6c79eb535c22837d7e963d49917
 int findMaxIDCustomer() {
     int max = 0;
     for (unsigned int i = 0; i < listCar.size(); ++ i) {
@@ -428,6 +446,22 @@ int findMaxIDCustomer() {
     }
     return max;
 }
+
+//Used to end the program
+void endProgram(){
+    for(Customer * c : listCustomer){
+        delete(c);
+    }
+    listCustomer.clear();
+
+    for(Car * c: listCar){
+        delete(c);
+    }
+    listCar.clear();
+
+    exit(0);
+}
+
 
 
 
