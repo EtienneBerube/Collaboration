@@ -15,4 +15,8 @@ regularCar::regularCar(int _id, int _type, bool _isAvailable) : Car(_id, _type, 
 
 }
 
+const string regularCar::getType() const {
+    return "Regular";
+}
+
 

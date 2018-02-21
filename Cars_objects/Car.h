@@ -36,7 +36,7 @@ public:
 
     void setIdNum(int idNum);
 
-    virtual const string &getType() const = 0;
+    virtual const string getType() const = 0;
 
     void setType(const string &type);
 

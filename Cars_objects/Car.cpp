@@ -17,7 +17,7 @@ void Car::setType(const string &type) {
     Car::type = type;
 }
 
-const string &Car::getType() const {
+const string Car::getType() const {
     return type;
 }
 

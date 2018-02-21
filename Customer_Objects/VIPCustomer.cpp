@@ -20,4 +20,8 @@ string VIPCustomer::getTypeString() const {
     return "VIP";
 }
 
+int VIPCustomer::getType() const {
+    return Customer::VIP;
+}
+
 VIPCustomer::VIPCustomer(const VIPCustomer &) = default;

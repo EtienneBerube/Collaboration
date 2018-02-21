@@ -14,6 +14,8 @@ public:
     luxuryCar(int, bool);
     ~luxuryCar();
 
+    const string getType() const override;
+
 };
 
 
