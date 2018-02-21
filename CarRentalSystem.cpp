@@ -308,17 +308,10 @@ void changeDaysLimitVIP(int newMaxDays) {
 //Function which changes the limit for Corporate customers
 void changeDaysLimitCorporate(int newMaxDays) {
     currentMaxRegular = newMaxDays;
-<<<<<<< HEAD
-    //Goes through the list of customers, and 
-    for (Customer c : listCustomer) {
-        if (c.getType() == Customer::CORPORATE) {
-            c.setMaxDays(newMaxDays);
-=======
-    
     for (Customer* c : listCustomer) {
         if (c->getType() == Customer::CORPORATE) {
             c->setMaxDays(newMaxDays);
->>>>>>> c2cd98d33c092aa12752d352b3d83b4bc057af48
+
         }
     }
 }
