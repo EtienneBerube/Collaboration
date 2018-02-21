@@ -15,6 +15,10 @@
 
 using namespace std;
 
+/*
+ * Assumptions: A Customer can only rent ONE car at the time
+ */
+
 
 //********************************Function Declarations******************************
 
