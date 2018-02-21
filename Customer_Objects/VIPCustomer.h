@@ -10,6 +10,7 @@
 
 //TODO finish class
 class VIPCustomer: public Customer {
+
 public:
     VIPCustomer();
     VIPCustomer(int _id, string _name, string _address, string _telephoneNumber, int _maxDays);

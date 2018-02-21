@@ -11,7 +11,6 @@
 #include "Customer_Objects/CorporateCustomer.h"
 #include <vector>
 #include <iostream>
-#include "windows.h"
 #include <iomanip>
 
 using namespace std;
@@ -20,23 +19,41 @@ using namespace std;
 //********************************Function Declarations******************************
 
 void menu();
+
 void addCustomer();
+
 void addCar();
+
 void removeCar();
+
 void removeCustomer();
-int searchCustomer();
+
+int searchCustomer(int);
+
 int searchCar(int id);
+
 void changeDaysLimitRegular(int newMaxDays);
+
 void changeDaysLimitVIP(int newMaxDays);
+
 void changeDaysLimitCorporate(int newMaxDays);
+
 void updateCarInfo(int id);
+
 void updateUserInfo(int id);
+
 void rentCar();
+
 void returnCar();
+
 void printCarList();
+
 void printCustomerList();
+
 void printCarListForCompany();
+
 int findMaxIDCar();
+
 int findMaxIDCustomer();
 
 //********************************Global Variables*********************************
@@ -49,21 +66,19 @@ int currentMaxVIP = 45;
 
 //********************************Functions definition******************************
 
-int main(){
-    cout<<"***********************************************************"<<endl;
-    cout<<"||                                                       ||"<<endl;
-    cout<<"||                                                       ||"<<endl;
-    cout<<"||                  CAR RENTAL SYSTEM                    ||"<<endl;
-    cout<<"||                                                       ||"<<endl;
-    cout<<"||                         BY                            ||"<<endl;
-    cout<<"||                                                       ||"<<endl;
-    cout<<"||                   VROOM VROOM inc.                    ||"<<endl;
-    cout<<"||                                                       ||"<<endl;
-    cout<<"||                                                       ||"<<endl;
-    cout<<"***********************************************************"<<endl;
+int main() {
+    cout << "***********************************************************" << endl;
+    cout << "||                                                       ||" << endl;
+    cout << "||                                                       ||" << endl;
+    cout << "||                  CAR RENTAL SYSTEM                    ||" << endl;
+    cout << "||                                                       ||" << endl;
+    cout << "||                         BY                            ||" << endl;
+    cout << "||                                                       ||" << endl;
+    cout << "||                   VROOM VROOM inc.                    ||" << endl;
+    cout << "||                                                       ||" << endl;
+    cout << "||                                                       ||" << endl;
+    cout << "***********************************************************" << endl;
 
-
-    Sleep(1500);
 
     menu();
 
@@ -72,10 +87,11 @@ int main(){
 }
 
 void menu() {
-    cout<<"in"<<endl; //Debugging
-    exit(0);
+    cout << "in" << endl; //Debugging
+
 }
 
+//Function which adds a new customer
 void addCustomer() {
     int choice;
     string name;
@@ -84,14 +100,16 @@ void addCustomer() {
     string companyAddress;
     string companyName;
 
-    cout<<"Enter customer type:\n1)Regular\n2)Corporate\n3)VIP"<<endl;
+    cout << "Enter customer type:\n1)Regular\n2)Corporate\n3)VIP" << endl;
     cin >> choice;
 
-    while(choice <1 || choice > 3){
-        cout<< "Invalid input, try again: ";
+    //Making sure the user enters a number between 1 and 3 only
+    while (choice < 1 || choice > 3) {
+        cout << "Invalid input, try again: ";
         cin >> choice;
     }
 
+    //Getting the data
     cin.ignore();
     cout << "Enter full name: ";
     getline(cin, name);
@@ -106,7 +124,7 @@ void addCustomer() {
     cout << "Enter telephone number: ";
     getline(cin, telephoneNumber);
 
-    if(choice == 2){
+    if (choice == 2) {
         cin.ignore();
         cout << "Enter the company's name: ";
         getline(cin, companyName);
@@ -116,81 +134,178 @@ void addCustomer() {
         getline(cin, companyAddress);
     }
 
-    switch(choice){
-        case 1: listCustomer.push_back( RegularCustomer(findMaxIDCustomer()+1, name, address, telephoneNumber, currentMaxRegular)); break;
-        case 2: listCustomer.push_back( CorporateCustomer(findMaxIDCustomer()+1, name, address, telephoneNumber, currentMaxCorporate, companyName, companyAddress)); break;
-        case 3: listCustomer.push_back( VIPCustomer(findMaxIDCustomer()+1, name, address, telephoneNumber, currentMaxVIP)); break;
-        default:cout<<"Error occured"<<endl; menu(); break;
+    //Depending on the type of customer, the right constructor will be called
+    switch (choice) {
+        case 1:
+            listCustomer.push_back(RegularCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxRegular));
+            break;
+        case 2:
+            listCustomer.push_back(CorporateCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxCorporate, companyName, companyAddress));
+            break;
+        case 3:
+            listCustomer.push_back(VIPCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxVIP));
+            break;
+        default:
+            cout << "Error occured" << endl;
+            menu();
+            break;
     }
-    cout<<"new customer created"<<endl;
+    cout << "new customer created" << endl;
     menu();
 
 }
 
+//Function to add a new car
 void addCar() {
+    int choice, theID = 0;
+    string isAvailable;
+    bool availability = true;
 
+    //Title of this menu
+    cout << "\nAdding new Car" << endl;
+    cout << "\nSelect the type of car" << endl;
+    cout << "\n1 - Luxury\n2 - Standard" << endl;
+
+    cin.ignore();
+    cin >> choice;
+
+    //Making sure that they enter only 1 or 2
+    while (choice < 1 || choice > 2) {
+        cout << "\nSelect the type of car" << endl;
+        cout << "\n1 - Luxury\n2 - Standard" << endl;
+        cin.ignore();
+        cin >> choice;
+    }
+
+    //Gathering info for the new car
+    cout << "\nEnter the car's ID" << endl;
+    cin.ignore();
+    cin >> theID;
+
+    cout << "\nIs the car readily available:\ny\nn" << endl;
+    cin.ignore();
+    cin >> isAvailable;
+
+    //Making sure that the customer only enters y or Y or n or N to know whether or not a new car is readily available
+    while (isAvailable != "y" || isAvailable != "Y" || isAvailable != "n" || isAvailable != "N") {
+        cout << "\nIs the car readily available:\ny\nn" << endl;
+        cin.ignore();
+        cin >> isAvailable;
+    }
+
+    if (isAvailable == "n" || isAvailable == "N") {
+        availability = false;
+    }
+
+    //Depending on the type of car, the right constructor is called
+    switch (choice) {
+        case 1:
+            listCar.push_back(luxuryCar(theID, availability));
+            break;
+        default:
+            listCar.push_back(regularCar(theID, availability));
+            break;
+    }
+    cout << "\nNew Car Added" << endl;
+    cout << "\nReturning back to menu" << endl;
 }
 
+//function which removes a car
 void removeCar() {
+    int theID, theIndex = 0;
+    //Title of this menu
+    cout << "\nRemoving Car" << endl;
+    //Prints the ID of cars so that the user may quickly find out which ID of the car to delete
+    printCarList();
+
+    cout << "\nEnter the car's ID:" << endl;
+    cin.ignore();
+    cin >> theID;
+
+    //Function which will return the index related to the car's ID
+    theIndex = searchCar( theID);
+    listCar.erase(listCar.begin()+ theIndex);
+    cout << "Deleting . . ." << endl;
+    cout << "Returning back to menu" << endl;
+    menu();
 
 }
 
-void removeCustomer(){
+//function which removes a customer
+void removeCustomer() {
     int delId;
     int delIndex;
     printCustomerList();
-    cout<<"Enter the id of the customer you want to delete: ";
+    cout << "Enter the id of the customer you want to delete: ";
     cin >> delId;
 
     delIndex = searchCustomer(delId);
 
     listCustomer.erase(listCustomer.begin() + delIndex);
-
-
+    cout << "Deleting . . . "<< endl;
+    cout << "Returning back to menu " << endl;
+    menu();
 }
 
 //returns index of Customer in array
 int searchCustomer(int id) {
-    int index = -1;
-    for(unsigned int i = 0; i < listCustomer.size(); ++i){
-        if(listCustomer[i].getId() == id)
+    int index = - 1;
+
+    //For loop to go through the list of customer
+    for (unsigned int i = 0; i < listCustomer.size(); ++ i) {
+        //Checks if the ID are the same and if so,
+        if (listCustomer[i].getId() == id)
+            //takes note of the index
             index = i;
     }
+    //and returns the index
     return index;
 
 }
+
 //returns index of Car in array
 int searchCar(int id) {
-    int index = -1;
-    for(unsigned int i = 0; i < listCar.size(); ++i){
-        if(listCar[i].getIdNum() == id)
+    int index = - 1;
+
+    //Using a for loop to go through the vector of customers and looking for the ID
+    for (unsigned int i = 0; i < listCar.size(); ++ i) {
+        if (listCar[i].getIdNum() == id)
+            //checking if the ID matches
             index = i;
     }
+    //Then returns the index where the ID is located in the vector
     return index;
 }
 
+//Function which changes the limit for regular customers
 void changeDaysLimitRegular(int newMaxDays) {
     currentMaxRegular = newMaxDays;
-    for(Customer c : listCustomer){
-        if(c.getType() == Customer::REGULAR){
+    //Checks through the list of customer, if it is a regular customer then the limit is changed
+    for (Customer c : listCustomer) {
+        if (c.getType() == Customer::REGULAR) {
             c.setMaxDays(newMaxDays);
         }
     }
 }
 
+//Function which changes the limit for VIP
 void changeDaysLimitVIP(int newMaxDays) {
     currentMaxRegular = newMaxDays;
-    for(Customer c : listCustomer){
-        if(c.getType() == Customer::VIP){
+    //Goes through the vector of customers using a for loop
+    for (Customer c : listCustomer) {
+        //Checks if the customer is VIP, if so then changes the limit
+        if (c.getType() == Customer::VIP) {
             c.setMaxDays(newMaxDays);
         }
     }
 }
 
+//Function which changes the limit for Corporate customers
 void changeDaysLimitCorporate(int newMaxDays) {
     currentMaxRegular = newMaxDays;
-    for(Customer c : listCustomer){
-        if(c.getType() == Customer::CORPORATE){
+    
+    for (Customer c : listCustomer) {
+        if (c.getType() == Customer::CORPORATE) {
             c.setMaxDays(newMaxDays);
         }
     }
@@ -200,23 +315,23 @@ void updateCarInfo(int id) {}
 
 void updateUserInfo(int id) {
     int result = searchCustomer(id);
-    if(result == -1){
-        cout << "Customer does not exist"<<endl;
-    }else{
+    if (result == - 1) {
+        cout << "Customer does not exist" << endl;
+    } else {
         string name;
         string address;
         string phoneNumber;
 
         cin.ignore();
-        cout<< "Enter the new full name: ";
+        cout << "Enter the new full name: ";
         getline(cin, name);
 
         cin.ignore();
-        cout<< "Enter the new address: ";
+        cout << "Enter the new address: ";
         getline(cin, address);
 
         cin.ignore();
-        cout<< "Enter the new phone number: ";
+        cout << "Enter the new phone number: ";
         getline(cin, phoneNumber);
 
         listCustomer[result].setName(name);
@@ -234,28 +349,28 @@ void returnCar() {
 }
 
 void printCarList() {
-    cout<<"Type"<<setw(10)<<"id";
-    for(Car c : listCar){
-        cout << c.getType() << " (" << c.getIdNum() <<")"<<endl;
+    cout << "Type" << setw(10) << "id";
+    for (Car c : listCar) {
+        cout << c.getType() << " (" << c.getIdNum() << ")" << endl;
     }
 }
 
-void printCustomerList(){
-    cout<<"Name"<<setw(10)<<"id";
-    for(Customer c : listCustomer){
-        cout << c.getName() << " (" << c.getId() <<")"<<endl;
+void printCustomerList() {
+    cout << "Name" << setw(10) << "id";
+    for (Customer c : listCustomer) {
+        cout << c.getName() << " (" << c.getId() << ")" << endl;
     }
 }
 
-void printCarListForCompany(const string &name){
-    cout<<"Type"<<setw(10)<<"id";
+void printCarListForCompany(const string &name) {
+    cout << "Type" << setw(10) << "id";
     //TODO double loop into customer then car O(n^2)
 }
 
 int findMaxIDCar() {
     int max = 0;
-    for(unsigned int i = 0; i < listCustomer.size(); ++i ){
-        if(max < listCustomer[i].getId())
+    for (unsigned int i = 0; i < listCustomer.size(); ++ i) {
+        if (max < listCustomer[i].getId())
             max = listCustomer[i].getId();
     }
     return max;
@@ -263,8 +378,8 @@ int findMaxIDCar() {
 
 int findMaxIDCustomer() {
     int max = 0;
-    for(unsigned int i = 0; i < listCar.size(); ++i ){
-        if(max < listCar[i].getIdNum())
+    for (unsigned int i = 0; i < listCar.size(); ++ i) {
+        if (max < listCar[i].getIdNum())
             max = listCar[i].getIdNum();
     }
     return max;
