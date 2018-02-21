@@ -64,3 +64,6 @@ Car::Car(const Car &theCar) {
 
 Car::~Car() = default;
 
+void Car::setCustomerRenting(const Customer theCustomer) {
+ Customer* aCustomer = new Customer(theCustomer);
+}

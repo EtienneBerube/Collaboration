@@ -19,7 +19,7 @@ protected:
     int idNum;
     string type;
     bool availability;
-    Customer * aCustomer; //An object of customer in the class car to be able to better keep track of info
+    Customer *aCustomer = nullptr; //An object of customer in the class car to be able to better keep track of info
 
 public:
     //Will be used to denote whether the cars are regular or luxury
@@ -46,7 +46,7 @@ public:
 
     virtual ~Car();
 
-
+    void setCustomerRenting(const Customer);
 
 
 };
