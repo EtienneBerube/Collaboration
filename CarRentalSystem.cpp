@@ -376,6 +376,7 @@ void printCarListForCompany(const string &name) {
     //TODO double loop into customer then car O(n^2)
 }
 
+//Find the current maximum ID for Car
 int findMaxIDCar() {
     int max = 0;
     for (unsigned int i = 0; i < listCustomer.size(); ++ i) {
@@ -385,6 +386,7 @@ int findMaxIDCar() {
     return max;
 }
 
+//Find the current maximum ID for Customer
 int findMaxIDCustomer() {
     int max = 0;
     for (unsigned int i = 0; i < listCar.size(); ++ i) {
@@ -393,6 +395,22 @@ int findMaxIDCustomer() {
     }
     return max;
 }
+
+//Used to end the program
+void endProgram(){
+    for(Customer * c : listCustomer){
+        delete(c);
+    }
+    listCustomer.clear();
+
+    for(Car * c: listCar){
+        delete(c);
+    }
+    listCar.clear();
+
+    exit(0);
+}
+
 
 
 
