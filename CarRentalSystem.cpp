@@ -67,6 +67,9 @@ int currentMaxVIP = 45;
 //********************************Functions definition******************************
 
 int main() {
+
+    //Need to fill vectors with already existing accounts
+
     cout << "***********************************************************" << endl;
     cout << "||                                                       ||" << endl;
     cout << "||                                                       ||" << endl;
@@ -88,6 +91,7 @@ int main() {
 
 void menu() {
     cout << "in" << endl; //Debugging
+    //Need exit option options with a way to delete pointers in vector.
 
 }
 
