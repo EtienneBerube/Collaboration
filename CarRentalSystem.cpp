@@ -58,8 +58,8 @@ int findMaxIDCustomer();
 
 //********************************Global Variables*********************************
 
-vector<Car> listCar;
-vector<Customer> listCustomer;
+vector<Car*> listCar;
+vector<Customer*> listCustomer;
 int currentMaxRegular = 20;
 int currentMaxCorporate = 35;
 int currentMaxVIP = 45;
@@ -137,13 +137,13 @@ void addCustomer() {
     //Depending on the type of customer, the right constructor will be called
     switch (choice) {
         case 1:
-            listCustomer.push_back(RegularCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxRegular));
+            listCustomer.push_back(new RegularCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxRegular));
             break;
         case 2:
-            listCustomer.push_back(CorporateCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxCorporate, companyName, companyAddress));
+            listCustomer.push_back(new CorporateCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxCorporate, companyName, companyAddress));
             break;
         case 3:
-            listCustomer.push_back(VIPCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxVIP));
+            listCustomer.push_back( new VIPCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxVIP));
             break;
         default:
             cout << "Error occured" << endl;
@@ -200,10 +200,10 @@ void addCar() {
     //Depending on the type of car, the right constructor is called
     switch (choice) {
         case 1:
-            listCar.push_back(luxuryCar(theID, availability));
+            listCar.push_back( new luxuryCar(theID, availability));
             break;
         default:
-            listCar.push_back(regularCar(theID, availability));
+            listCar.push_back( new regularCar(theID, availability));
             break;
     }
     cout << "\nNew Car Added" << endl;
@@ -223,7 +223,8 @@ void removeCar() {
     cin >> theID;
 
     //Function which will return the index related to the car's ID
-    theIndex = searchCar( theID);
+    theIndex = searchCar(theID);
+    delete(listCar[theIndex]);
     listCar.erase(listCar.begin()+ theIndex);
     cout << "Deleting . . ." << endl;
     cout << "Returning back to menu" << endl;
@@ -240,7 +241,7 @@ void removeCustomer() {
     cin >> delId;
 
     delIndex = searchCustomer(delId);
-
+    delete(listCar[delId]);
     listCustomer.erase(listCustomer.begin() + delIndex);
     cout << "Deleting . . . "<< endl;
     cout << "Returning back to menu " << endl;
@@ -254,7 +255,7 @@ int searchCustomer(int id) {
     //For loop to go through the list of customer
     for (unsigned int i = 0; i < listCustomer.size(); ++ i) {
         //Checks if the ID are the same and if so,
-        if (listCustomer[i].getId() == id)
+        if (listCustomer[i]->getId() == id)
             //takes note of the index
             index = i;
     }
@@ -269,7 +270,7 @@ int searchCar(int id) {
 
     //Using a for loop to go through the vector of customers and looking for the ID
     for (unsigned int i = 0; i < listCar.size(); ++ i) {
-        if (listCar[i].getIdNum() == id)
+        if (listCar[i]->getIdNum() == id)
             //checking if the ID matches
             index = i;
     }
@@ -281,9 +282,9 @@ int searchCar(int id) {
 void changeDaysLimitRegular(int newMaxDays) {
     currentMaxRegular = newMaxDays;
     //Checks through the list of customer, if it is a regular customer then the limit is changed
-    for (Customer c : listCustomer) {
-        if (c.getType() == Customer::REGULAR) {
-            c.setMaxDays(newMaxDays);
+    for (Customer *c : listCustomer) {
+        if (c->getType() == Customer::REGULAR) {
+            c->setMaxDays(newMaxDays);
         }
     }
 }
@@ -292,10 +293,10 @@ void changeDaysLimitRegular(int newMaxDays) {
 void changeDaysLimitVIP(int newMaxDays) {
     currentMaxRegular = newMaxDays;
     //Goes through the vector of customers using a for loop
-    for (Customer c : listCustomer) {
+    for (Customer* c : listCustomer) {
         //Checks if the customer is VIP, if so then changes the limit
-        if (c.getType() == Customer::VIP) {
-            c.setMaxDays(newMaxDays);
+        if (c->getType() == Customer::VIP) {
+            c->setMaxDays(newMaxDays);
         }
     }
 }
@@ -303,10 +304,17 @@ void changeDaysLimitVIP(int newMaxDays) {
 //Function which changes the limit for Corporate customers
 void changeDaysLimitCorporate(int newMaxDays) {
     currentMaxRegular = newMaxDays;
+<<<<<<< HEAD
     //Goes through the list of customers, and 
     for (Customer c : listCustomer) {
         if (c.getType() == Customer::CORPORATE) {
             c.setMaxDays(newMaxDays);
+=======
+    
+    for (Customer* c : listCustomer) {
+        if (c->getType() == Customer::CORPORATE) {
+            c->setMaxDays(newMaxDays);
+>>>>>>> c2cd98d33c092aa12752d352b3d83b4bc057af48
         }
     }
 }
@@ -334,9 +342,9 @@ void updateUserInfo(int id) {
         cout << "Enter the new phone number: ";
         getline(cin, phoneNumber);
 
-        listCustomer[result].setName(name);
-        listCustomer[result].setAddress(address);
-        listCustomer[result].setTelephoneNumber(phoneNumber);
+        listCustomer[result]->setName(name);
+        listCustomer[result]->setAddress(address);
+        listCustomer[result]->setTelephoneNumber(phoneNumber);
     }
 }
 
@@ -350,15 +358,15 @@ void returnCar() {
 
 void printCarList() {
     cout << "Type" << setw(10) << "id";
-    for (Car c : listCar) {
-        cout << c.getType() << " (" << c.getIdNum() << ")" << endl;
+    for (Car* c : listCar) {
+        cout << c->getType() << " (" << c->getIdNum() << ")" << endl;
     }
 }
 
 void printCustomerList() {
     cout << "Name" << setw(10) << "id";
-    for (Customer c : listCustomer) {
-        cout << c.getName() << " (" << c.getId() << ")" << endl;
+    for (Customer* c : listCustomer) {
+        cout << c->getName() << " (" << c->getId() << ")" << endl;
     }
 }
 
@@ -370,8 +378,8 @@ void printCarListForCompany(const string &name) {
 int findMaxIDCar() {
     int max = 0;
     for (unsigned int i = 0; i < listCustomer.size(); ++ i) {
-        if (max < listCustomer[i].getId())
-            max = listCustomer[i].getId();
+        if (max < listCustomer[i]->getId())
+            max = listCustomer[i]->getId();
     }
     return max;
 }
@@ -379,8 +387,8 @@ int findMaxIDCar() {
 int findMaxIDCustomer() {
     int max = 0;
     for (unsigned int i = 0; i < listCar.size(); ++ i) {
-        if (max < listCar[i].getIdNum())
-            max = listCar[i].getIdNum();
+        if (max < listCar[i]->getIdNum())
+            max = listCar[i]->getIdNum();
     }
     return max;
 }

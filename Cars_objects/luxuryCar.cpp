@@ -12,4 +12,8 @@ luxuryCar::luxuryCar() {
 luxuryCar::luxuryCar(int theID, bool theAvailability) : Car( theID, Car::Luxury,theAvailability ){
 }
 
+const string luxuryCar::getType() const {
+    return "Luxury";
+}
+
 luxuryCar::~luxuryCar() = default;

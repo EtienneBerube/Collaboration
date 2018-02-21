@@ -18,6 +18,8 @@ public:
 
     void printInfo() const override;
 
+    int getType() const override;
+
     string getTypeString() const override;
 };
 

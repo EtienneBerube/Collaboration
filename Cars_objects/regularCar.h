@@ -18,6 +18,8 @@ public:
 
     ~regularCar() override = default;
 
+    const string getType() const override;
+
 };
 
 
