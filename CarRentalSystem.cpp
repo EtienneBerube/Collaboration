@@ -20,57 +20,42 @@ using namespace std;
  */
 
 
-//********************************Function Declarations******************************
+class CarRentalSystem{
+public:
+    void start();
+private:
+    vector<Car*> listCar;
+    vector<Customer*> listCustomer;
+    int currentMaxRegular = 20;
+    int currentMaxCorporate = 35;
+    int currentMaxVIP = 45;
 
-void menu();
+    //**********************************Function declaration***********************************
+    void endProgram();
+    void menu();
+    void addCustomer();
+    void addCar();
+    void removeCar();
+    void removeCustomer();
+    int searchCustomer(int);
+    int searchCar(int id);
+    void changeDaysLimitRegular(int newMaxDays);
+    void changeDaysLimitVIP(int newMaxDays);
+    void changeDaysLimitCorporate(int newMaxDays);
+    void updateCarInfo(int id);
+    void updateUserInfo(int id);
+    void rentCar();
+    void returnCar();
+    void printCarList();
+    void printCustomerList();
+    void printCarListForCompany(const string &name);
+    int findMaxIDCar();
+    int findMaxIDCustomer();
+};
 
-void addCustomer();
 
-void addCar();
 
-void removeCar();
-
-void removeCustomer();
-
-int searchCustomer(int);
-
-int searchCar(int id);
-
-void changeDaysLimitRegular(int newMaxDays);
-
-void changeDaysLimitVIP(int newMaxDays);
-
-void changeDaysLimitCorporate(int newMaxDays);
-
-void updateCarInfo(int id);
-
-void updateUserInfo(int id);
-
-void rentCar();
-
-void returnCar();
-
-void printCarList();
-
-void printCustomerList();
-
-void printCarListForCompany();
-
-int findMaxIDCar();
-
-int findMaxIDCustomer();
-
-//********************************Global Variables*********************************
-
-vector<Car*> listCar;
-vector<Customer*> listCustomer;
-int currentMaxRegular = 20;
-int currentMaxCorporate = 35;
-int currentMaxVIP = 45;
-
-//********************************Functions definition******************************
-
-int main() {
+void CarRentalSystem::start() {
 
     //Need to fill vectors with already existing accounts
 
@@ -90,17 +75,17 @@ int main() {
     menu();
 
 
-    return 0;
+
 }
 
-void menu() {
+void CarRentalSystem::menu() {
     cout << "in" << endl; //Debugging
     //Need exit option options with a way to delete pointers in vector.
 
 }
 
 //Function which adds a new customer
-void addCustomer() {
+void CarRentalSystem::addCustomer() {
     int choice;
     string name;
     string telephoneNumber;
@@ -164,7 +149,7 @@ void addCustomer() {
 }
 
 //Function to add a new car
-void addCar() {
+void CarRentalSystem::addCar() {
     int choice = 0;
     string isAvailable;
     bool availability = true;
@@ -215,7 +200,7 @@ void addCar() {
 }
 
 //function which removes a car
-void removeCar() {
+void CarRentalSystem::removeCar() {
     int theID, theIndex = 0;
     //Title of this menu
     cout << "\nRemoving Car" << endl;
@@ -237,7 +222,7 @@ void removeCar() {
 }
 
 //function which removes a customer
-void removeCustomer() {
+void CarRentalSystem::removeCustomer() {
     int delId;
     int delIndex;
     printCustomerList();
@@ -253,7 +238,7 @@ void removeCustomer() {
 }
 
 //returns index of Customer in array
-int searchCustomer(int id) {
+int CarRentalSystem::searchCustomer(int id) {
     int index = - 1;
 
     //For loop to go through the list of customer
@@ -269,7 +254,7 @@ int searchCustomer(int id) {
 }
 
 //returns index of Car in array
-int searchCar(int id) {
+int CarRentalSystem::searchCar(int id) {
     int index = - 1;
 
     //Using a for loop to go through the vector of customers and looking for the ID
@@ -283,7 +268,7 @@ int searchCar(int id) {
 }
 
 //Function which changes the limit for regular customers
-void changeDaysLimitRegular(int newMaxDays) {
+void CarRentalSystem::changeDaysLimitRegular(int newMaxDays) {
     currentMaxRegular = newMaxDays;
     //Checks through the list of customer, if it is a regular customer then the limit is changed
     for (Customer *c : listCustomer) {
@@ -294,7 +279,7 @@ void changeDaysLimitRegular(int newMaxDays) {
 }
 
 //Function which changes the limit for VIP
-void changeDaysLimitVIP(int newMaxDays) {
+void CarRentalSystem::changeDaysLimitVIP(int newMaxDays) {
     currentMaxRegular = newMaxDays;
     //Goes through the vector of customers using a for loop
     for (Customer* c : listCustomer) {
@@ -306,13 +291,12 @@ void changeDaysLimitVIP(int newMaxDays) {
 }
 
 //Function which changes the limit for Corporate customers
-void changeDaysLimitCorporate(int newMaxDays) {
+void CarRentalSystem::changeDaysLimitCorporate(int newMaxDays) {
     currentMaxRegular = newMaxDays;
-<<<<<<< HEAD
     //Goes through the list of customers, and looks
-    for (Customer c : listCustomer) {
-        if (c.getType() == Customer::CORPORATE) {
-            c.setMaxDays(newMaxDays);
+    for (Customer* c : listCustomer) {
+        if (c->getType() == Customer::CORPORATE) {
+            c->setMaxDays(newMaxDays);
 
             for (Customer *c : listCustomer) {
                 if (c->getType() == Customer::CORPORATE) {
@@ -324,7 +308,7 @@ void changeDaysLimitCorporate(int newMaxDays) {
 }
 
 //Function which will update info about a car
-void updateCarInfo(int id) {
+void CarRentalSystem::updateCarInfo(int id) {
     cout << "\nUpdating Car Info" << endl;
     int index = searchCar(id);
     if (index == - 1) {
@@ -347,19 +331,13 @@ void updateCarInfo(int id) {
         if (yesOrNo == "n" || yesOrNo == "N") {
             isItAvailable = false;
             int type;
-=======
-    for (Customer* c : listCustomer) {
-        if (c->getType() == Customer::CORPORATE) {
-            c->setMaxDays(newMaxDays);
->>>>>>> ea7044dd28d4e6c79eb535c22837d7e963d49917
-
         }
     }
 }
 
 
 //Function which updates the info of a customer
-void updateUserInfo(int id) {
+void CarRentalSystem::updateUserInfo(int id) {
     int result = searchCustomer(id);
     if (result == - 1) {
         cout << "\nCustomer does not exist" << endl;
@@ -388,16 +366,16 @@ void updateUserInfo(int id) {
     }
 }
 
-void rentCar() {
+void CarRentalSystem::rentCar() {
 
 }
 
-void returnCar() {
+void CarRentalSystem::returnCar() {
 
 }
 
 //Function which prints all the cars
-void printCarList() {
+void CarRentalSystem::printCarList() {
     cout << "Type" << setw(10) << "id";
     //Use a for loop to print the car types and their ID
     for (Car* c : listCar) {
@@ -406,7 +384,7 @@ void printCarList() {
 }
 
 //Function which prints the name of all customers
-void printCustomerList() {
+void CarRentalSystem::printCustomerList() {
     cout << "Name" << setw(10) << "id";
     //Uses a for loop to go through the vector of customers and prints them
     for (Customer* c : listCustomer) {
@@ -414,17 +392,14 @@ void printCustomerList() {
     }
 }
 
-void printCarListForCompany(const string &name) {
+void CarRentalSystem::printCarListForCompany(const string &name) {
     cout << "Type" << setw(10) << "id";
     //TODO double loop into customer then car O(n^2)
 }
 
-<<<<<<< HEAD
-// so as to get the latest ID for a car
-=======
+
 //Find the current maximum ID for Car
->>>>>>> ea7044dd28d4e6c79eb535c22837d7e963d49917
-int findMaxIDCar() {
+int CarRentalSystem::findMaxIDCar() {
     int max = 0;
     for (unsigned int i = 0; i < listCustomer.size(); ++ i) {
         if (max < listCustomer[i]->getId())
@@ -433,12 +408,9 @@ int findMaxIDCar() {
     return max;
 }
 
-<<<<<<< HEAD
+
 //Finding the latest, bigggest ID for a customer
-=======
-//Find the current maximum ID for Customer
->>>>>>> ea7044dd28d4e6c79eb535c22837d7e963d49917
-int findMaxIDCustomer() {
+int CarRentalSystem::findMaxIDCustomer() {
     int max = 0;
     for (unsigned int i = 0; i < listCar.size(); ++ i) {
         if (max < listCar[i]->getIdNum())
@@ -448,7 +420,7 @@ int findMaxIDCustomer() {
 }
 
 //Used to end the program
-void endProgram(){
+void CarRentalSystem::endProgram(){
     for(Customer * c : listCustomer){
         delete(c);
     }
