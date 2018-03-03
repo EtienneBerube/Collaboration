@@ -7,6 +7,10 @@
 
 #include <string>
 #include "../Customer_Objects/Customer.h"
+#include "../Customer_Objects/CorporateCustomer.h"
+#include "../Customer_Objects/VIPCustomer.h"
+#include "../Customer_Objects/RegularCustomer.h"
+
 
 using std::string;
 
@@ -19,7 +23,9 @@ protected:
     int idNum;
     string type;
     bool availability;
-    Customer *aCustomer = nullptr; //An object of customer in the class car to be able to better keep track of info
+    CorporateCustomer *aCorporateCustomer = nullptr; //An object of customer in the class car to be able to better keep track of info
+    VIPCustomer * aVIPCustomer = nullptr ;
+    RegularCustomer *aregularCustomer;
 
 public:
     //Will be used to denote whether the cars are regular or luxury
@@ -46,7 +52,13 @@ public:
 
     virtual ~Car();
 
-    void setCustomerRenting(const Customer);
+    void setCustomerRenting( VIPCustomer*);
+
+    void setCustomerRenting( CorporateCustomer*);
+
+    void setCustomerRenting( RegularCustomer*);
+
+
 
 
 };

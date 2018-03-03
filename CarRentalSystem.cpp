@@ -16,7 +16,11 @@
 using namespace std;
 
 /*
- * Assumptions: A Customer can only rent ONE car at the time
+ * Assumptions:
+ * - A Customer can only rent ONE car at the time
+ * - To compare customers of the same company, the user will enter the name of a com
+ * pany first
+ *
  */
 
 
@@ -48,9 +52,11 @@ private:
     void returnCar();
     void printCarList();
     void printCustomerList();
-    void printCarListForCompany(const string &name);
+    void printCarListForCompany();
     int findMaxIDCar();
     int findMaxIDCustomer();
+    void determineGivenCarRented();
+
 };
 
 
@@ -281,8 +287,10 @@ void CarRentalSystem::changeDaysLimitRegular(int newMaxDays) {
 //Function which changes the limit for VIP
 void CarRentalSystem::changeDaysLimitVIP(int newMaxDays) {
     currentMaxRegular = newMaxDays;
+
     //Goes through the vector of customers using a for loop
     for (Customer* c : listCustomer) {
+
         //Checks if the customer is VIP, if so then changes the limit
         if (c->getType() == Customer::VIP) {
             c->setMaxDays(newMaxDays);
@@ -293,8 +301,10 @@ void CarRentalSystem::changeDaysLimitVIP(int newMaxDays) {
 //Function which changes the limit for Corporate customers
 void CarRentalSystem::changeDaysLimitCorporate(int newMaxDays) {
     currentMaxRegular = newMaxDays;
+
     //Goes through the list of customers, and looks
     for (Customer* c : listCustomer) {
+
         if (c->getType() == Customer::CORPORATE) {
             c->setMaxDays(newMaxDays);
 
@@ -335,7 +345,6 @@ void CarRentalSystem::updateCarInfo(int id) {
     }
 }
 
-
 //Function which updates the info of a customer
 void CarRentalSystem::updateUserInfo(int id) {
     int result = searchCustomer(id);
@@ -366,6 +375,7 @@ void CarRentalSystem::updateUserInfo(int id) {
     }
 }
 
+//Function which will enable one to rent a car
 void CarRentalSystem::rentCar() {
 
 }
@@ -392,7 +402,8 @@ void CarRentalSystem::printCustomerList() {
     }
 }
 
-void CarRentalSystem::printCarListForCompany(const string &name) {
+void CarRentalSystem::printCarListForCompany() {
+
     cout << "Type" << setw(10) << "id";
     //TODO double loop into customer then car O(n^2)
 }
@@ -409,7 +420,7 @@ int CarRentalSystem::findMaxIDCar() {
 }
 
 
-//Finding the latest, bigggest ID for a customer
+//Finding the latest, bigest ID for a customer
 int CarRentalSystem::findMaxIDCustomer() {
     int max = 0;
     for (unsigned int i = 0; i < listCar.size(); ++ i) {
@@ -436,6 +447,13 @@ void CarRentalSystem::endProgram(){
 
 
 
+void CarRentalSystem::determineGivenCarRented() {
+
+    cout << "\nEnter the ID of the car:" << endl;
+    cin.ignore();
+    cin
+
+}
 
 
 
