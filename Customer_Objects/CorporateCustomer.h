@@ -25,17 +25,29 @@ public:
     //Copy constructor
     CorporateCustomer(const CorporateCustomer&);
 
+<<<<<<< HEAD
+    //Getter
+    int getType() const override;
+
+    //Getter
+    string getTypeString() const override;
+=======
     //Setters and Getters
     virtual int getType() const;
 
     virtual string getTypeString() const;
+>>>>>>> 2ac025a2e5222a72dba6041ea2eb32ece05160f3
 
+    //Getter
     const string &getCompanyName() const;
 
+    //Setter
     void setCompanyName(const string &companyName);
 
+    //Getter
     const string &getCompanyPhoneNumber() const;
 
+    //Setter
     void setCompanyPhoneNumber(const string &companyPhoneNumber);
 
     //Function which is overriden from base class

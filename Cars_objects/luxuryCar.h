@@ -12,8 +12,10 @@ class luxuryCar : public Car {
 
 public:
 
-    //constructors
+    //Default constructor
     luxuryCar();
+
+    //Regular constructor
     luxuryCar(int, bool);
 
     //Destructors

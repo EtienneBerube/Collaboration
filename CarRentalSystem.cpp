@@ -6,7 +6,6 @@
 
 
 
-
 void CarRentalSystem::start() {
 
     //Need to fill vectors with already existing accounts
@@ -62,26 +61,34 @@ void CarRentalSystem::menu() {
             cout << "Enter the index number of the customer (not the ID): ";
             int customerIndex;
             cin >> customerIndex;
-            customerIndex++;
+            customerIndex--;
 
             cout << "\nEnter the index number of the car (not the ID): ";
             int carIndex;
             cin >> carIndex;
-            carIndex++;
+            carIndex--;
 
             rentCar(listCustomer[customerIndex], listCar[carIndex]);
             break;
-        case 6:
+        case 6: ;
             break;
         case 7:
             break;
         case 8:
             break;
         case 9:
+            cout << "Enter the id to validate: ";
+            int id;
+            cin >> id;
+            int result = searchCar(id);
+            cout <<"The car with id: "<<id<<" does" << ((result != -1)?"not":"") << "exist";
+            if(result != -1){
+                cout<<". It's index is" << result;
+            }
             break;
-        case 10:
+        case 10: ;
             break;
-        case 11:
+        case 11:printCarListForCompany();
             break;
         case 12:
         default: endProgram();

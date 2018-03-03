@@ -9,22 +9,27 @@ int Car::getIdNum() const {
     return idNum;
 }
 
+//Setter
 void Car::setIdNum(int idNum) {
     Car::idNum = idNum;
 }
 
+//Setter
 void Car::setType(const string &type) {
     Car::type = type;
 }
 
+//Getter
 const string Car::getType() const {
     return type;
 }
 
+//Getter
 bool Car::isAvailable() const {
     return availability;
 }
 
+//Setter
 void Car::setAvailability(bool availability) {
     Car::availability = availability;
 }
