@@ -51,6 +51,7 @@ private:
     void printCarListForCompany(const string &name);
     int findMaxIDCar();
     int findMaxIDCustomer();
+    void printPriviledges();
 };
 
 
@@ -73,14 +74,54 @@ void CarRentalSystem::start() {
 
 
     menu();
-
-
-
 }
 
 void CarRentalSystem::menu() {
-    cout << "in" << endl; //Debugging
-    //Need exit option options with a way to delete pointers in vector.
+    cout << "*************************Menu******************************"<<endl;
+    cout << "1)Print Customer list"<<endl;
+    cout << "2)Print Car list"<<endl;
+    cout << "3)Add Customer"<<endl;
+    cout << "4)Add Car"<<endl;
+    cout << "5)Rent car"<<endl;
+    cout << "6)Return car"<<endl;
+    cout << "7)Print permissions per customer type"<<endl;
+    cout << "8)Change maximum days a customer can rent" <<endl;
+    cout << "9)Search Car"<<endl;
+    cout << "10)Search Customer"<<endl;
+    cout << "11)Print cars per company"<<endl;
+    int choice = 0;
+    cin >> choice;
+
+    while(choice < 1 || choice > 11){
+        cout<<"Invalid input, try again!"<<endl;
+        cin >> choice;
+    }
+    switch (choice){
+        case 1: printCustomerList();
+            break;
+        case 2: printCarList();
+            break;
+        case 3: addCustomer();
+            break;
+        case 4: addCar();
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 8:
+            break;
+        case 9:
+            break;
+        case 10:
+            break;
+        case 11:
+            break;
+        default: endProgram();
+    }
+
 
 }
 
@@ -392,19 +433,23 @@ void CarRentalSystem::returnCar(Customer *customer) {
 
 //Function which prints all the cars
 void CarRentalSystem::printCarList() {
-    cout << "Type" << setw(10) << "id";
+    cout << "Type" << setw(10) << "id" << "availability"<<endl;
     //Use a for loop to print the car types and their ID
+    int i=0;
     for (Car* c : listCar) {
-        cout << c->getType() << " (" << c->getIdNum() << ")" << endl;
+        cout <<i<<")"<< c->getType() << " (" << c->getIdNum() << ")"<<": "<<((c->isAvailable())?" ":" not ")<<"available"<< endl;
+        i++;
     }
 }
 
 //Function which prints the name of all customers
 void CarRentalSystem::printCustomerList() {
-    cout << "Name" << setw(10) << "id";
+    cout << "Name" << setw(10) << "id" <<"Type";
     //Uses a for loop to go through the vector of customers and prints them
+    int i = 0;
     for (Customer* c : listCustomer) {
-        cout << c->getName() << " (" << c->getId() << ")" << endl;
+        cout << i << ")" << c->getName() << " (" << c->getId() << ")" <<": " <<c->getTypeString() <<endl;
+        i++;
     }
 }
 
@@ -456,6 +501,13 @@ void CarRentalSystem::endProgram(){
     listCar.clear();
 
     exit(0);
+}
+
+void CarRentalSystem::printPriviledges() {
+    cout<<"Types of customers:"
+            "\n1)Regular: "<<currentMaxRegular<<" days. Restrictions: Only regular cars"
+            "\2)Corporate: "<<currentMaxCorporate<<" days. Restrictions: No"
+            "\n3)VIP: "<<currentMaxVIP<<" days. Restrictions: NO";
 }
 
 
