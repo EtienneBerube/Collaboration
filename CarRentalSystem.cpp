@@ -431,7 +431,7 @@ void CarRentalSystem::returnCar(Customer *customer) {
 void CarRentalSystem::printCarList() {
     cout << "Type" << setw(10) << "id" << "availability"<<endl;
     //Use a for loop to print the car types and their ID
-    int i=0;
+    int i=1;
     for (Car* c : listCar) {
         cout << i << ")" << c->getType() << " (" << c->getIdNum() << ")" << ": " << ((c->isAvailable()) ? " " : " not ")
              << "available" << endl;
@@ -443,7 +443,7 @@ void CarRentalSystem::printCarList() {
 void CarRentalSystem::printCustomerList() {
     cout << "Name" << setw(10) << "id" <<"Type";
     //Uses a for loop to go through the vector of customers and prints them
-    int i = 0;
+    int i = 1;
     for (Customer* c : listCustomer) {
         cout << i << ")" << c->getName() << " (" << c->getId() << ")" <<": " <<c->getTypeString() <<endl;
         i++;
@@ -505,6 +505,22 @@ void CarRentalSystem::printPriviledges() {
             "\n1)Regular: "<<currentMaxRegular<<" days. Restrictions: Only regular cars"
                 "\2)Corporate: "<<currentMaxCorporate<<" days. Restrictions: No"
                 "\n3)VIP: "<<currentMaxVIP<<" days. Restrictions: NO";
+}
+
+CarRentalSystem::CarRentalSystem() {
+    initialize();
+}
+
+void CarRentalSystem::initialize() {
+    listCustomer.push_back(new RegularCustomer(1,"Etienne", "123 test", "7327626832", currentMaxRegular));
+    listCustomer.push_back(new RegularCustomer(2,"Dean", "124 test", "188888", currentMaxRegular));
+    listCustomer.push_back(new VIPCustomer(3, "BigBenji", "999 im rich road", "99999999", currentMaxVIP));
+    listCustomer.push_back(new CorporateCustomer(4, "Mr Ron", "127 kk lol", "1234567",currentMaxCorporate,"Bell", "1800 service de marde"));
+    listCustomer.push_back(new CorporateCustomer(5, "Dr miller", "39 MDR", "19090",currentMaxCorporate,"Bell", "1800 service de marde"));
+
+    listCar.push_back(new regularCar(1,true));
+    listCar.push_back(new regularCar(2,true));
+    listCar.push_back(new luxuryCar(3,true));
 }
 
 

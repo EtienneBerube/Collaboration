@@ -31,6 +31,7 @@ using namespace std;
 class CarRentalSystem {
 public:
     void start();
+    CarRentalSystem();
 
 private:
     vector<Car *> listCar;
@@ -82,8 +83,7 @@ private:
 
     void printPriviledges();
 
-
-
+    void initialize();
 };
 
 #endif //COLLABORATION_CARRENTALSYSTEM_H
