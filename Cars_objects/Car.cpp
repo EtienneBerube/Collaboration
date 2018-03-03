@@ -62,8 +62,25 @@ Car::Car(const Car &theCar) {
 
 }
 
+void Car::setCustomerRenting( VIPCustomer* theVIPCustomer) {
+
+    aVIPCustomer = theVIPCustomer;
+}
+
+void Car::setCustomerRenting( CorporateCustomer* theCorporateCustomer) {
+
+    aCorporateCustomer = theCorporateCustomer;
+}
+
+void Car::setCustomerRenting( RegularCustomer* theRegCustomer) {
+
+    aregularCustomer = theRegCustomer;
+}
+
 Car::~Car() = default;
+
 //TODO bug
 void Car::setCustomerRenting(const Customer theCustomer) {
  Customer* aCustomer = new Customer(theCustomer);
 }
+
