@@ -27,7 +27,7 @@ void CarRentalSystem::start() {
 }
 
 void CarRentalSystem::menu() {
-    cout << "*************************Menu******************************" << endl;
+    cout << "\n\n*************************Menu******************************" << endl;
     cout << "1)Print Customer list" << endl;
     cout << "2)Print Car list" << endl;
     cout << "3)Add Customer" << endl;
@@ -50,18 +50,22 @@ void CarRentalSystem::menu() {
     switch (choice) {
         case 1:
             printCustomerList();
+            menu();
             break;
 
         case 2:
             printCarList();
+            menu();
             break;
 
         case 3:
             addCustomer();
+            menu();
             break;
 
         case 4:
             addCar();
+            menu();
             break;
 
         case 5:{
@@ -76,7 +80,8 @@ void CarRentalSystem::menu() {
             cin >> carIndex;
             carIndex--;
 
-            rentCar(listCustomer[customerIndex], listCar[carIndex]);}
+            rentCar(listCustomer[customerIndex], listCar[carIndex]);
+        menu();}
             break;
 
         case 6:
@@ -87,11 +92,14 @@ void CarRentalSystem::menu() {
             cin >> *theID;
             *theID--;
             returnCar(listCustomer[*theID]);
-            delete theID;}
+            delete theID;
+        theID = nullptr;
+        menu();}
             break;
 
         case 7:
             printPriviledges();
+            menu();
             break;
 
         case 8:
@@ -126,7 +134,10 @@ void CarRentalSystem::menu() {
             }
             //Reallocating memory after it's been used
             delete  theChoice;
-            delete  theNumDays;}
+            delete  theNumDays;
+        theChoice = nullptr;
+        theNumDays = nullptr;
+        menu();}
             break;
 
 
@@ -139,7 +150,9 @@ void CarRentalSystem::menu() {
             if (result != -1) {
                 cout << ". It's index is" << result;
             }
-            delete id;}
+            delete id;
+        id = nullptr;
+        menu();}
             break;
 
         case 10:
@@ -153,11 +166,18 @@ void CarRentalSystem::menu() {
             if (result1 != -1) {
                 cout << ". It's index is" << result1;
             }
-            delete theId;}
+            delete theId;
+        theId = nullptr;}
             break;
 
-        case 11:
-            //printCarListForCompany();
+        case 11:{
+            cout << "\nEnter the name of the company" << endl;
+            string* theCompanyName = new string;
+            cin.ignore();
+            getline(cin, *theCompanyName);
+            printCarListForCompany(*theCompanyName);
+
+        }
             break;
 
         //case 12:
@@ -191,25 +211,26 @@ void CarRentalSystem::addCustomer() {
     //Getting the data
     cin.ignore();
     cout << "Enter full name: ";
+    cin.ignore();
     getline(cin, name);
 
-
-    cin.ignore();
     cout << "Enter address: ";
+    cin.ignore();
     getline(cin, address);
 
-
-    cin.ignore();
     cout << "Enter telephone number: ";
+    cin.ignore();
     getline(cin, telephoneNumber);
 
     if (choice == 2) {
-        cin.ignore();
+
         cout << "Enter the company's name: ";
+        cin.ignore();
         getline(cin, companyName);
 
-        cin.ignore();
+
         cout << "Enter company's address: ";
+        cin.ignore();
         getline(cin, companyAddress);
     }
 
@@ -217,31 +238,26 @@ void CarRentalSystem::addCustomer() {
     switch (choice) {
         case 1:
             listCustomer.push_back(
-                    new RegularCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxRegular));
+                    new RegularCustomer((findMaxIDCustomer() + 1), name, address, telephoneNumber, currentMaxRegular));
             break;
         case 2:
             listCustomer.push_back(
-                    new CorporateCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxCorporate,
-                                          companyName, companyAddress));
+                    new CorporateCustomer((findMaxIDCustomer() + 1), name, address, telephoneNumber, currentMaxCorporate,companyName, companyAddress));
             break;
         case 3:
-            listCustomer.push_back(
-                    new VIPCustomer(findMaxIDCustomer() + 1, name, address, telephoneNumber, currentMaxVIP));
+            listCustomer.push_back(new VIPCustomer((findMaxIDCustomer() + 1), name, address, telephoneNumber, currentMaxVIP));
             break;
         default:
             cout << "Error occured" << endl;
-            menu();
             break;
     }
-    cout << "new customer created" << endl;
-    menu();
-
+    cout << "\nNew customer created" << endl;
 }
 
 //Function to add a new car
 void CarRentalSystem::addCar() {
     int choice = 0;
-    string isAvailable;
+    int isAvailable = 0;
     bool availability = true;
 
     //Title of this menu
@@ -260,18 +276,18 @@ void CarRentalSystem::addCar() {
         cin >> choice;
     }
 
-    cout << "\nIs the car readily available:\ny\nn" << endl;
+    cout << "\nIs the car readily available:\n1 - yes\n2 - no" << endl;
     cin.ignore();
     cin >> isAvailable;
 
     //Making sure that the customer only enters y or Y or n or N to know whether or not a new car is readily available
-    while (isAvailable != "y" || isAvailable != "Y" || isAvailable != "n" || isAvailable != "N") {
-        cout << "\nIs the car readily available:\ny\nn" << endl;
+    while (isAvailable < 1 || isAvailable >2) {
+        cout << "\nIs the car readily available:\n1 - yes\n2 - no" << endl;
         cin.ignore();
         cin >> isAvailable;
     }
 
-    if (isAvailable == "n" || isAvailable == "N") {
+    if (isAvailable == 2) {
         availability = false;
     }
 
@@ -279,10 +295,10 @@ void CarRentalSystem::addCar() {
     switch (choice) {
         case 1:
             //so that the ID is generated automatically
-            listCar.push_back(new luxuryCar(findMaxIDCar() + 1, availability));
+            listCar.push_back(new luxuryCar((findMaxIDCar() + 1), availability));
             break;
         default:
-            listCar.push_back(new regularCar(findMaxIDCar() + 1, availability));
+            listCar.push_back(new regularCar((findMaxIDCar() + 1), availability));
             break;
     }
     cout << "\nNew Car Added" << endl;
@@ -466,7 +482,6 @@ void CarRentalSystem::updateUserInfo(int id) {
 
 
 //Function which will enable one to rent a car
-
 void CarRentalSystem::rentCar(Customer *customer, Car *car) {
     if (!(car->isAvailable())) {
         cout << "Car is not available for the moment" << endl;
@@ -490,11 +505,12 @@ void CarRentalSystem::returnCar(Customer *customer) {
 
 //Function which prints all the cars
 void CarRentalSystem::printCarList() {
-    cout << "Type" << setw(10) << "id" << "availability" << endl;
+    cout<< setw(14) << left << "\nType " << setw(3) << "id    "  << "availability" << endl;
     //Use a for loop to print the car types and their ID
     int i = 1;
     for (Car *c : listCar) {
-        cout << i << ")" << c->getType() << " (" << c->getIdNum() << ")" << ": " << ((c->isAvailable()) ? " " : " not ")
+        //Prints the info in a good format
+        cout << i << ")" << setw(5) << left << setw(10) << left << c->getType() << " (" << c->getIdNum() << ")" << "  " << ((c->isAvailable()) ? " " : " not ")
              << "available" << endl;
         i++;
     }
@@ -503,7 +519,7 @@ void CarRentalSystem::printCarList() {
 //Function which prints the name of all customers
 void CarRentalSystem::printCustomerList() {
     //Nice Column header layout
-    cout << setw(4) << "\nName" << setw(22) << "id" << setw(20) << "Type" << endl;
+    cout << setw(4) << left << "\nName" << setw(22) << right << " id" << setw(20) << "Type" << endl;
     //Uses a for loop to go through the vector of customers and prints them
     int i = 1;
     for (Customer *c : listCustomer) {
@@ -524,13 +540,14 @@ void CarRentalSystem::printCarListForCompany(const string &name) {
             }
         }
     }
+menu();
 }
 
 
 //Find the current maximum ID for Car
 int CarRentalSystem::findMaxIDCar() {
     int max = 0;
-    for (unsigned int i = 0; i < listCustomer.size(); ++i) {
+    for (unsigned int i = 0; i < listCar.size(); ++i) {
         if (max < listCustomer[i]->getId())
             max = listCustomer[i]->getId();
     }
@@ -541,7 +558,7 @@ int CarRentalSystem::findMaxIDCar() {
 //Finding the latest, biggest ID for a customer
 int CarRentalSystem::findMaxIDCustomer() {
     int max = 0;
-    for (unsigned int i = 0; i < listCar.size(); ++i) {
+    for (unsigned int i = 0; i < listCustomer.size(); ++i) {
         if (max < listCar[i]->getIdNum())
             max = listCar[i]->getIdNum();
     }
