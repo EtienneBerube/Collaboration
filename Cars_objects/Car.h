@@ -50,7 +50,7 @@ public:
     virtual const string getType() const = 0;
 
     //setter
-    void setType(const string &type);
+    void setType(const int &type);
 
     //getter
     bool isAvailable() const;

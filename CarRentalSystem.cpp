@@ -21,12 +21,12 @@ void CarRentalSystem::start() {
     cout << "||                                                       ||" << endl;
     cout << "***********************************************************" << endl;
 
-
     menu();
 
 }
 
 void CarRentalSystem::menu() {
+    //Shows the options available to the user
     cout << "\n\n*************************Menu******************************" << endl;
     cout << "1)Print Customer list" << endl;
     cout << "2)Print Car list" << endl;
@@ -39,70 +39,113 @@ void CarRentalSystem::menu() {
     cout << "9)Search Car" << endl;
     cout << "10)Search Customer" << endl;
     cout << "11)Print cars per company" << endl;
-    cout << "12)End program" << endl;
+    cout << "12)Delete a customer" << endl;
+    cout << "13)Remove a car from inventory" << endl;
+    cout << "14)Update Car information" << endl;
+    cout << "15)Check if a customer rented a car" << endl;
+    cout << "16)End program" << endl;
+
     int choice = 0;
     cin >> choice;
 
-    while (choice < 1 || choice > 12) {
+    //makes sure that the user enters only a number between 1 and 16
+    while (choice < 1 || choice > 16) {
         cout << "Invalid input, try again!" << endl;
         cin >> choice;
     }
+
+    //Based on what they chose, the right menu will be ran
     switch (choice) {
         case 1:
+            //Calls in the function which prints the list of customers
+        {
             printCustomerList();
+            //Goes back to the menu
             menu();
+        }
             break;
 
-        case 2:
+        case 2: { //Calls the function which prints the list of cars
             printCarList();
+            //Goes back to the menu
             menu();
+        }
             break;
 
-        case 3:
+        case 3: {//The title
+            cout << "\nAdding a new Customer" << endl;
+            //calls function which will add a new customer
             addCustomer();
+            //Goes back to the menu
             menu();
+        }
             break;
 
-        case 4:
+        case 4: {//Calls the function which will add a new car to the inventory
             addCar();
+            //Goes back to the menu
             menu();
+        }
             break;
 
-        case 5:{
+        case 5: {
+            //The title
+            cout << "\nRenting a Car" << endl;
             printCustomerList();
             cout << "Enter the index number of the customer (not the ID): " << endl;
             int customerIndex;
             cin >> customerIndex;
+            //Gets the correct index of the customer
             customerIndex--;
 
+            //Prints car list
             printCarList();
             cout << "\nEnter the index number of the car (not the ID): " << endl;
             int carIndex;
             cin >> carIndex;
+            //gets the correct index of the car
             carIndex--;
 
+            //Function which will rent the car and the customer
             rentCar(listCustomer[customerIndex], listCar[carIndex]);
-        menu();}
+
+            cout << "\nCar has been rented" << endl;
+
+            //Goes back to the menu
+            menu();
+        }
             break;
 
-        case 6:
-        {printCustomerList();
+        case 6: {
+            //The title of the menu
+            cout << "\nReturning a Car" << endl;
+
+            //Prints the list of all customers so as to know who is returning the car
+            printCustomerList();
             cout << "\nChoose the customer (the index)" << endl;
             int theID = 0;
             cin.ignore();
             cin >> theID;
+            //Getting the right customer index
             theID--;
+
+            //Function which will return the car
             returnCar(listCustomer[theID]);
-        menu();}
-            break;
+            cout << "\nCar has been returned" << endl;
 
-        case 7:
-            printPriviledges();
+            //Goes back to the menu
             menu();
+        }
             break;
 
-        case 8:
-        {//Title of Current "Menu"
+        case 7: {   //Calls in the function which will print the priviledges for the types of customers
+            printPriviledges();
+            //goes back to the menu then
+            menu();
+        }
+            break;
+
+        case 8: {//Title of Current "Menu"
             cout << "\nChanging the number of days" << endl;
 
             //pointers to save data and then delete the memory
@@ -131,49 +174,133 @@ void CarRentalSystem::menu() {
                     changeDaysLimitVIP(theNumDays);
                     break;
             }
-        menu();}
+            //Goes back to the menu
+            menu();
+        }
             break;
 
 
-        case 9:
-        {cout << "Enter the id to validate: ";
+        case 9: {
+            //The title of the "menu"
+            cout << "Searching a Car" << endl;
+            cout << "Enter the id to validate: ";
             int id = 0;
             cin >> id;
+            //Gets the index of where the car with that ID is located in the vector
             int result = searchCar(id);
+            /*Will display the right message because if the ID of the car provided by the user doesnt exist in the vector, the function searchCar returns a -1 */
             cout << "The car with id: " << id << " does" << ((result == -1) ? " not" : "") << " exist";
             if (result != -1) {
                 cout << ". It's index is " << result;
             }
-        menu();}
+            //Goes back to the menu
+            menu();
+        }
             break;
 
-        case 10:
+        case 10: {
             //Title of the "Menu"
-        {cout << "\nSearching Customer" << endl;
+            cout << "\nSearching Customer" << endl;
             cout << "Enter the id to validate: ";
             int theId = 0;
             cin >> theId;
+
+            //Gets index in the vector where that customer is located in the vector
             int result1 = searchCustomer(theId);
-            cout << "The customer with id: " << theId << " does" << ((result1 != -1) ? "not" : "") << "exist";
+            //Displays the right message depending if the customer with that ID exist or not
+            cout << "The customer with id: " << theId << " does" << ((result1 == -1) ? "not" : "") << "exist";
             if (result1 != -1) {
                 cout << ". It's index is" << result1;
+                //Printing the type of customer, Question k)
+                cout << "The customer is " << listCustomer[result1]->getType();
             }
+            //Goes back to menu
+            menu();
         }
             break;
 
-        case 11:{
+        case 11: {
+            //The title
+            cout << "\nCars rented to a company" << endl;
             cout << "\nEnter the name of the company" << endl;
             string theCompanyName;
             cin.ignore();
+            //Use getline, so as to take the full line of the stream, companies may have space in their names
             getline(cin, theCompanyName);
+
+            //Calls in the function which will prints the cars rented to a particular company
             printCarListForCompany(theCompanyName);
 
+            //goes back to menu
+            menu();}
+            break;
+
+        case 12: {
+            //Title of this "menu"
+            cout << "\nDeleting a customer" << endl;
+
+            //Prints the list of customers so as to know which customer to delete
+            printCustomerList();
+            cout << "Enter the ID of the customer to be deleted" << endl;
+            int idCustomer = 0;
+            cin >> idCustomer;
+
+            //calls the function which will remove a customer by accepting the ID of the customer
+            removeCustomer(idCustomer);
+            cout << "\nCustomer has been deleted" << endl;
+            //Goes back to menu
+            menu(); }
+            break;
+
+        case 13: {
+            //The title of the "menu"
+            cout << "\nRemoving a car from the inventory" << endl;
+
+            //Prints the ID of cars so that the user may quickly find out which ID of the car to delete
+            printCarList();
+            cout << "Enter the ID of the car to be removed" << endl;
+            int idCAR = 0;
+            cin >> idCAR;
+
+            //Calls the function which takes a car ID and removes that car from the inventory
+            removeCar(idCAR);
+            cout << "\nCar was removed" << endl;
+            //goes back to menu
+            menu();
         }
             break;
 
-        //case 12:
-          //  break;
+        case 14: {
+            //The Title of the "menu"
+            cout << "\nUpdating car info" << endl;
+
+            //Prints car list so as to know which car id to update info
+            printCarList();
+            cout << "Enter the ID of the car to be updated" << endl;
+            int theCarID;
+            cin >> theCarID;
+            //Calls function which will update the info of a car using its ID
+            updateCarInfo(theCarID);
+            //goes back to menu
+            menu();
+        }
+            break;
+
+        case 15: {
+            //The title of the "menu"
+            cout << "\nCustomer Checking" << endl;
+            cout << "Enter the customer's ID" << endl;
+            int idCus;
+            cin >> idCus;
+            //Calls function which takes a customer ID and shows whether they rented a car or not
+            didCustomerRentCar(idCus);
+            //goes back to menu
+            menu();
+        }
+            break;
+
         default:
+            //Calls function which ends the program
             endProgram();
             break;
     }
@@ -232,10 +359,12 @@ void CarRentalSystem::addCustomer() {
             break;
         case 2:
             listCustomer.push_back(
-                    new CorporateCustomer((findMaxIDCustomer() + 1), name, address, telephoneNumber, currentMaxCorporate,companyName, companyAddress));
+                    new CorporateCustomer((findMaxIDCustomer() + 1), name, address, telephoneNumber,
+                                          currentMaxCorporate, companyName, companyAddress));
             break;
         case 3:
-            listCustomer.push_back(new VIPCustomer((findMaxIDCustomer() + 1), name, address, telephoneNumber, currentMaxVIP));
+            listCustomer.push_back(
+                    new VIPCustomer((findMaxIDCustomer() + 1), name, address, telephoneNumber, currentMaxVIP));
             break;
         default:
             cout << "Error occured" << endl;
@@ -271,7 +400,7 @@ void CarRentalSystem::addCar() {
     cin >> isAvailable;
 
     //Making sure that the customer only enters y or Y or n or N to know whether or not a new car is readily available
-    while (isAvailable < 1 || isAvailable >2) {
+    while (isAvailable < 1 || isAvailable > 2) {
         cout << "\nIs the car readily available:\n1 - yes\n2 - no" << endl;
         cin.ignore();
         cin >> isAvailable;
@@ -297,44 +426,22 @@ void CarRentalSystem::addCar() {
 
 //function which removes a car
 void CarRentalSystem::removeCar(int theID) {
-    /*
-     * int theID, theIndex = 0;
-    //Title of this menu
-    cout << "\nRemoving Car" << endl;
-    //Prints the ID of cars so that the user may quickly find out which ID of the car to delete
-    printCarList();
 
-    cout << "\nEnter the car's ID:" << endl;
-    cin.ignore();
-    cin >> theID;
-    */
-
-    //TODO to be put in actual menu
     //Function which will return the index related to the car's ID
     int theIndex = searchCar(theID);
     delete (listCar[theIndex]);
     listCar.erase(listCar.begin() + theIndex);
     cout << "Deleting . . ." << endl;
-    cout << "Returning back to menu" << endl;
-    menu();
 
 }
 
 //function which removes a customer
 void CarRentalSystem::removeCustomer(int delId) {
-    /*
-    int delIndex;
-    printCustomerList();
-    cout << "Enter the id of the customer you want to delete: ";
-    cin >> delId;
-    */
-    //TODO to be put in menu
     int delIndex = searchCustomer(delId);
     delete (listCar[delId]);
     listCustomer.erase(listCustomer.begin() + delIndex);
     cout << "Deleting . . . " << endl;
     cout << "Returning back to menu " << endl;
-    menu();
 }
 
 //returns index of Customer in array
@@ -413,28 +520,42 @@ void CarRentalSystem::changeDaysLimitCorporate(int newMaxDays) {
 
 //Function which will update info about a car
 void CarRentalSystem::updateCarInfo(int id) {
-    cout << "\nUpdating Car Info" << endl;
     int index = searchCar(id);
     if (index == -1) {
         cout << "\nCar does not exist" << endl;
     } else {
-        string yesOrNo;
-        bool isItAvailable = true;
+        int yesOrNo;
         cout << "Changing the availability" << endl;
-        cout << "Is the car available: yes or no?" << endl;
+        cout << "Car Availability: \n1 - yes\n2 - no" << endl;
         cin.ignore();
         cin >> yesOrNo;
 
-        //Making sure that the customer only enters y or Y or n or N to know whether or not a new car is readily available
-        while (yesOrNo != "y" || yesOrNo != "Y" || yesOrNo != "n" || yesOrNo != "N") {
-            cout << "\nIs the car readily available:\ny\nn" << endl;
+        //Making sure that the customer only enters 1 or 2 to know whether or not a car is readily available
+        while (yesOrNo < 1 || yesOrNo > 2) {
+            cout << "\nIs the car available: \n1 - yes\n2 - no" << endl;
             cin.ignore();
             cin >> yesOrNo;
         }
 
-        if (yesOrNo == "n" || yesOrNo == "N") {
-            isItAvailable = false;
-            int type;
+        if (yesOrNo == 2)
+            listCar[index]->setAvailability(false);
+        else
+            listCar[index]->setAvailability(true);
+        //Change the type of the car
+        cout << "Car Type:\n1 - Luxury\n2 - Regular" << endl;
+        cin >> yesOrNo;
+        //Making sure that the customer only enters 1 or 2 to change the type of the a car
+        while (yesOrNo < 1 || yesOrNo > 2) {
+            cout << "\nCar Type:\n1 - Luxury\n2 - Regular" << endl;
+            cin >> yesOrNo;
+        }
+        switch (yesOrNo) {
+            case 1:
+                listCar[index]->setType(1);
+                break;
+            default:
+                listCar[index]->setType(0);
+                break;
         }
     }
 }
@@ -470,7 +591,6 @@ void CarRentalSystem::updateUserInfo(int id) {
 }
 
 
-
 //Function which will enable one to rent a car
 void CarRentalSystem::rentCar(Customer *customer, Car *car) {
     if (!(car->isAvailable())) {
@@ -499,12 +619,13 @@ void CarRentalSystem::returnCar(Customer *customer) {
 
 //Function which prints all the cars
 void CarRentalSystem::printCarList() {
-    cout<< setw(14) << left << "\nType " << setw(3) << "id    "  << "availability" << endl;
+    cout << setw(14) << left << "\nType " << setw(3) << "id    " << "availability" << endl;
     //Use a for loop to print the car types and their ID
     int i = 1;
     for (Car *c : listCar) {
         //Prints the info in a good format
-        cout << i << ")" << setw(5) << left << setw(10) << left << c->getType() << " (" << c->getIdNum() << ")" << "  " << ((c->isAvailable()) ? " " : " not ")
+        cout << i << ")" << setw(5) << left << setw(10) << left << c->getType() << " (" << c->getIdNum() << ")" << "  "
+             << ((c->isAvailable()) ? " " : " not ")
              << "available" << endl;
         i++;
     }
@@ -518,7 +639,8 @@ void CarRentalSystem::printCustomerList() {
     int i = 1;
     for (Customer *c : listCustomer) {
         //Prints the stuffs in a nice layout
-        cout  << i << ")" << setw(5)<< left << setw(22) <<left << c->getName() << "(" << c->getId() << ")" <<setw(15) << " "<< c->getTypeString() << endl;
+        cout << i << ")" << setw(5) << left << setw(22) << left << c->getName() << "(" << c->getId() << ")" << setw(15)
+             << " " << c->getTypeString() << endl;
         i++;
     }
 }
@@ -540,7 +662,6 @@ void CarRentalSystem::printCarListForCompany(const string &name) {
             }
         }
     }
-menu();
 }
 
 
@@ -586,6 +707,8 @@ void CarRentalSystem::endProgram() {
 
 //Function which prints the priviledges of the types of customers
 void CarRentalSystem::printPriviledges() {
+    //The title
+    cout << "\nThe Priviledges" << endl;
     cout << "Types of customers:"
             "\n1)Regular: " << currentMaxRegular << " days. Restrictions: Only regular cars"
                  "\n2)Corporate: " << currentMaxCorporate << " days. Restrictions: No"
@@ -602,10 +725,8 @@ void CarRentalSystem::initialize() {
     listCustomer.push_back(new RegularCustomer(1, "Etienne", "123 test", "7327626832", currentMaxRegular));
     listCustomer.push_back(new RegularCustomer(2, "Dean", "124 test", "188888", currentMaxRegular));
     listCustomer.push_back(new VIPCustomer(3, "BigBenji", "999 im rich road", "99999999", currentMaxVIP));
-    listCustomer.push_back(new CorporateCustomer(4, "Mr Ron", "127 kk lol", "1234567", currentMaxCorporate, "Bell",
-                                                 "1800 service de marde"));
-    listCustomer.push_back(new CorporateCustomer(5, "Dr miller", "39 MDR", "19090", currentMaxCorporate, "Bell",
-                                                 "1800 service de marde"));
+    listCustomer.push_back(new CorporateCustomer(4, "Mr Ron", "127 kk lol", "1234567", currentMaxCorporate, "Bell", "1800 service de marde"));
+    listCustomer.push_back(new CorporateCustomer(5, "Dr miller", "39 MDR", "19090", currentMaxCorporate, "Bell", "1800 service de marde"));
 
     listCar.push_back(new regularCar(1, true));
     listCar.push_back(new regularCar(2, true));
@@ -613,6 +734,20 @@ void CarRentalSystem::initialize() {
 }
 
 
+//Function which tells if a particular customer rented a car
+void CarRentalSystem::didCustomerRentCar(int id) {
+    int Index = searchCustomer(id);
+    //Checks whether this id does exist
+    if (Index == -1) {
+        cout << "\nCustomer does not exist" << endl;
+    } else {
+        //Checks if the pointer is pointed to nowhere, if so that means that the customer did not rent any car presently
+        if (listCustomer[Index]->getRental() == nullptr)
+            cout << "This customer did not rent a car" << endl;
+        else
+            cout << "This customer did rent a car" << endl;
+    }
+}
 
 /* unnessecary
 //Prints out all the car from the inventory and shows if they are available or not

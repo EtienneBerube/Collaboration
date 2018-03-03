@@ -84,6 +84,9 @@ private:
     void printPriviledges();
 
     void initialize();
+
+    void didCustomerRentCar(int);
 };
+
 
 #endif //COLLABORATION_CARRENTALSYSTEM_H

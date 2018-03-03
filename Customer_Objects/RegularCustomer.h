@@ -21,12 +21,16 @@ public:
     //Copy constructor
     RegularCustomer(const RegularCustomer&);
 
+    //Function which adds the car which is to be rented
     virtual void addRental(Car *rental);
 
+    //Function which returns the type as an integer
     virtual int getType() const;
 
+    //function which prints info
     virtual void printInfo() const;
 
+    //Function which returns the type as a string
     virtual string getTypeString() const;
 
 

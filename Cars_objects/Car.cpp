@@ -15,8 +15,15 @@ void Car::setIdNum(int idNum) {
 }
 
 //Setter
-void Car::setType(const string &type) {
-    Car::type = type;
+void Car::setType(const int &theType) {
+    switch (theType) {
+        case 1:
+            type = "Luxury";
+            break;
+        default:
+            type = "Standard";
+            break;
+    }
 }
 
 //Getter

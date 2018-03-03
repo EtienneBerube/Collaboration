@@ -30,11 +30,11 @@ public:
 //int getType() const override;
 
     //Getter
-    //string getTypeString() const override;
 
     //Setters and Getters
     virtual int getType() const;
 
+    //Function which returns type as a string
     virtual string getTypeString() const;
 
     //Getter
