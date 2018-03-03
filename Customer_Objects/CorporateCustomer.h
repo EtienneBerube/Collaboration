@@ -42,6 +42,8 @@ public:
     virtual void printInfo() const;
 
 private:
+
+    //Attributes to Corporate Customers only
     string companyName;
     string companyAddress;
 };

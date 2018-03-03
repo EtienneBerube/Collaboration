@@ -31,17 +31,19 @@ public:
     static const int Luxury = 1;
     static const int Standard = 0;
 
-    //constructors
+    //Default constructor
     Car();
 
+    //Regular constructor
     Car(int, int, bool);
 
     //copy constructors
     Car(const Car &);
 
-    //setters and getters
+    //Getter
     int getIdNum() const;
 
+    //Setter
     void setIdNum(int idNum);
 
     //Pure virtual function which makes the class abstract

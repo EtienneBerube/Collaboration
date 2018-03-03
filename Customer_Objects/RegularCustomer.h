@@ -10,11 +10,17 @@ class Car;
 #include "Customer.h"
 
 class RegularCustomer: public Customer {
-public:
 
+public:
+//Default constructor
     RegularCustomer();
+
+    //Regular constructor
     RegularCustomer(int _id, string _name, string _address, string _telephoneNumber, int _maxDays);
+
+    //Copy constructor
     RegularCustomer(const RegularCustomer&);
+    
     virtual void addRental(Car *rental);
 
     virtual int getType() const;
@@ -22,6 +28,7 @@ public:
     virtual void printInfo() const;
 
     virtual string getTypeString() const;
+
 
 };
 

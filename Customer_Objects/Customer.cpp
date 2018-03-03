@@ -37,30 +37,37 @@ int Customer::getId() const {
     return id;
 }
 
+//Setter
 void Customer::setId(int id) {
     Customer::id = id;
 }
 
+//Getters
 const string &Customer::getName() const {
     return name;
 }
 
+//Setter
 void Customer::setName(const string &name) {
     Customer::name = name;
 }
 
+//Getters
 const string &Customer::getAddress() const {
     return address;
 }
 
+//Setter
 void Customer::setAddress(const string &address) {
     Customer::address = address;
 }
 
+//Getters
 const string &Customer::getTelephoneNumber() const {
     return telephoneNumber;
 }
 
+//Setter
 void Customer::setTelephoneNumber(const string &telephoneNumber) {
     Customer::telephoneNumber = telephoneNumber;
 }
