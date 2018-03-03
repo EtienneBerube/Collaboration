@@ -1,45 +1,126 @@
+/*
 //
-// Created by Etienne on 02/03/2018.
+// Created by Etienne on 19/02/2018.
 //
 
-#include "CarRentalSystem.h"
+
+#include "Customer_Objects/Customer.h"
+#include "Cars_objects/luxuryCar.h"
+#include "Cars_objects/regularCar.h"
+#include "Customer_Objects/RegularCustomer.h"
+#include "Customer_Objects/VIPCustomer.h"
+#include "Customer_Objects/CorporateCustomer.h"
+#include <vector>
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+*/
+/*
+ * Assumptions:
+ * - A Customer can only rent ONE car at the time
+ * - To compare customers of the same company, the user will enter the name of a com
+ * pany first
+ *
+ *//*
 
 
 
+class CarRentalSystem {
+public:
+    void start();
+    CarRentalSystem();
 
-void CarRentalSystem::start() {
+private:
+    vector<Car *> listCar;
+    vector<Customer *> listCustomer;
+    int currentMaxRegular = 20;
+    int currentMaxCorporate = 35;
+    int currentMaxVIP = 45;
 
-    //Need to fill vectors with already existing accounts
+    //**********************************Function declaration***********************************
+    void endProgram();
 
-    cout << "***********************************************************" << endl;
-    cout << "||                                                       ||" << endl;
-    cout << "||                                                       ||" << endl;
-    cout << "||                  CAR RENTAL SYSTEM                    ||" << endl;
-    cout << "||                                                       ||" << endl;
-    cout << "||                         BY                            ||" << endl;
-    cout << "||                                                       ||" << endl;
-    cout << "||                   VROOM VROOM inc.                    ||" << endl;
-    cout << "||                                                       ||" << endl;
-    cout << "||                                                       ||" << endl;
-    cout << "***********************************************************" << endl;
+    void menu();
+
+    void addCustomer();
+
+    void addCar();
+
+    void removeCar(int theID);
+
+    void removeCustomer(int delId);
+
+    int searchCustomer(int);
+
+    int searchCar(int id);
+
+    void changeDaysLimitRegular(int newMaxDays);
+
+    void changeDaysLimitVIP(int newMaxDays);
+
+    void changeDaysLimitCorporate(int newMaxDays);
+
+    void updateCarInfo(int id);
+
+    void updateUserInfo(int id);
+
+    void rentCar(Customer *customer, Car *car);
+
+    void returnCar(Customer *index);
+
+    void printCarList();
+
+    void printCustomerList();
+
+    void printCarListForCompany(const string &);
+
+    int findMaxIDCar();
+
+    int findMaxIDCustomer();
+
+    void printPriviledges();
 
 
-    menu();
 
-}
+};
 
-void CarRentalSystem::menu() {
-    cout << "*************************Menu******************************"<<endl;
-    cout << "1)Print Customer list"<<endl;
-    cout << "2)Print Car list"<<endl;
-    cout << "3)Add Customer"<<endl;
-    cout << "4)Add Car"<<endl;
-    cout << "5)Rent car"<<endl;
-    cout << "6)Return car"<<endl;
-    cout << "7)Print permissions per customer type"<<endl;
-    cout << "8)Change maximum days a customer can rent" <<endl;
-    cout << "9)Search Car"<<endl;
-    cout << "10)Search Customer"<<endl;
+
+
+    void CarRentalSystem::start() {
+
+        //Need to fill vectors with already existing accounts
+
+        cout << "***********************************************************" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "||                  CAR RENTAL SYSTEM                    ||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "||                         BY                            ||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "||                   VROOM VROOM inc.                    ||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "||                                                       ||" << endl;
+        cout << "***********************************************************" << endl;
+
+
+        menu();
+
+    }
+
+    void CarRentalSystem::menu() {
+        cout << "*************************Menu******************************"<<endl;
+        cout << "1)Print Customer list"<<endl;
+        cout << "2)Print Car list"<<endl;
+        cout << "3)Add Customer"<<endl;
+        cout << "4)Add Car"<<endl;
+        cout << "5)Rent car"<<endl;
+        cout << "6)Return car"<<endl;
+        cout << "7)Print permissions per customer type"<<endl;
+        cout << "8)Change maximum days a customer can rent" <<endl;
+        cout << "9)Search Car"<<endl;
+        cout << "10)Search Customer"<<endl;
     cout << "11)Print cars per company"<<endl;
     int choice = 0;
     cin >> choice;
@@ -198,7 +279,8 @@ void CarRentalSystem::addCar() {
 
 //function which removes a car
 void CarRentalSystem::removeCar(int theID) {
-    /*int theID, theIndex = 0;
+    */
+/*int theID, theIndex = 0;
     //Title of this menu
     cout << "\nRemoving Car" << endl;
     //Prints the ID of cars so that the user may quickly find out which ID of the car to delete
@@ -207,7 +289,8 @@ void CarRentalSystem::removeCar(int theID) {
     cout << "\nEnter the car's ID:" << endl;
     cin.ignore();
     cin >> theID;
-    */
+    *//*
+
 
     //TODO to be put in actual menu
     //Function which will return the index related to the car's ID
@@ -222,12 +305,14 @@ void CarRentalSystem::removeCar(int theID) {
 
 //function which removes a customer
 void CarRentalSystem::removeCustomer(int delId) {
-    /*
+    */
+/*
     int delIndex;
     printCustomerList();
     cout << "Enter the id of the customer you want to delete: ";
     cin >> delId;
-    */
+    *//*
+
     //TODO to be put in menu
     int delIndex = searchCustomer(delId);
     delete (listCar[delId]);
@@ -470,12 +555,16 @@ void CarRentalSystem::endProgram() {
 void CarRentalSystem::printPriviledges() {
     cout<<"Types of customers:"
             "\n1)Regular: "<<currentMaxRegular<<" days. Restrictions: Only regular cars"
-                "\2)Corporate: "<<currentMaxCorporate<<" days. Restrictions: No"
-                "\n3)VIP: "<<currentMaxVIP<<" days. Restrictions: NO";
+            "\2)Corporate: "<<currentMaxCorporate<<" days. Restrictions: No"
+            "\n3)VIP: "<<currentMaxVIP<<" days. Restrictions: NO";
+}
+
+CarRentalSystem::CarRentalSystem() {
+
 }
 
 
-
+*/
 /* unnessecary
 //Prints out all the car from the inventory and shows if they are available or not
 void Coen244CarRentingBusiness::determineGivenCarRented() {
@@ -486,9 +575,11 @@ void Coen244CarRentingBusiness::determineGivenCarRented() {
         (c->isAvailable()) ? cout << "is available" : cout << "is not available" << endl;
     }
 }
- */
+ *//*
 
 
+
+*/
 /* unnessecary
 void Coen244CarRentingBusiness::showPriviledgesCust() {
     int theID, theIndex = 0;
@@ -500,4 +591,10 @@ void Coen244CarRentingBusiness::showPriviledgesCust() {
     theIndex = searchCustomer(theID);
     listCustomer[theIndex].
 }
- */
+ *//*
+
+
+
+
+
+*/
