@@ -9,17 +9,27 @@
 #include "Customer.h"
 
 class RegularCustomer: public Customer {
-public:
 
+public:
+//Default constructor
     RegularCustomer();
+
+    //Regular constructor
     RegularCustomer(int _id, string _name, string _address, string _telephoneNumber, int _maxDays);
+
+    //Copy constructor
     RegularCustomer(const RegularCustomer&);
+
+    //Function which adds a car to a regular consumer
     void addRental(Car *rental) override;
 
+    //getter
     int getType() const override;
 
+    //Function which is pure virtual in base class
     void printInfo() const override;
 
+    //Function which is pure virtual in base class
     string getTypeString() const override;
 
 };

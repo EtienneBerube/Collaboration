@@ -39,6 +39,8 @@ public:
     void printInfo() const override;
 
 private:
+
+    //Attributes to Corporate Customers only
     string companyName;
     string companyAddress;
 };
