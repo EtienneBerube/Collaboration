@@ -4,9 +4,10 @@
 
 #include "Customer.h"
 
+//The default constructor
 Customer::Customer() = default;
 
-
+//Regular constructor
 Customer::Customer(int _id, string _name, string _address, string _telephoneNumber, int _type, int _maxDays) {
     id = _id;
     name = _name;
@@ -14,9 +15,9 @@ Customer::Customer(int _id, string _name, string _address, string _telephoneNumb
     telephoneNumber = _telephoneNumber;
     type = _type;
     maxDays = _maxDays;
-
 }
 
+//Copy constructor
 Customer::Customer(const Customer &customer){
     id = customer.getId();
     name = customer.getName();
@@ -26,8 +27,10 @@ Customer::Customer(const Customer &customer){
     type = customer.getType();
 }
 
+//Destructor
 Customer::~Customer() = default;
 
+//Setters and getters
 int Customer::getId() const {
     return id;
 }
@@ -60,25 +63,30 @@ void Customer::setTelephoneNumber(const string &telephoneNumber) {
     Customer::telephoneNumber = telephoneNumber;
 }
 
+//Function which returns the car which was rented by the customer
 Car *Customer::getRental() const {
     return rental;
 }
 
+//Function which adds a car rented to a customer
 void Customer::addRental(Car *rental) {
     Customer::rental = rental;
     rental -> setAvailability(false);
 }
 
-
+//Function which removes a car rented by a customer because it was returned?
 void Customer::removeRental() {
     rental->setAvailability(true);
+    //Sets the pointed to nullptr as the car is no more
     rental = nullptr;
 }
 
+//Getter
 int Customer::getMaxDaysRental() {
     return maxDays;
 }
 
+//Setter
 void Customer::setMaxDays(int num){
     maxDays = num;
 }

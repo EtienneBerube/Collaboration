@@ -10,13 +10,19 @@
 
 using std::string;
 
+//Class derived from customer
 class CorporateCustomer: public Customer {
 public:
+    //Default constructor
     CorporateCustomer();
-    CorporateCustomer(int _id, string _name, string _address, string _telephoneNumber,int _maxDays, string companyName,
-                      string companyAddress);
+
+    //Regular constructor
+    CorporateCustomer(int _id, string _name, string _address, string _telephoneNumber,int _maxDays, string companyName, string companyAddress);
+
+    //Copy constructor
     CorporateCustomer(const CorporateCustomer&);
 
+    //Setters and Getters
     int getType() const override;
 
     string getTypeString() const override;
@@ -29,6 +35,7 @@ public:
 
     void setCompanyPhoneNumber(const string &companyPhoneNumber);
 
+    //Function which is overriden from base class
     void printInfo() const override;
 
 private:
