@@ -20,7 +20,7 @@ public:
 
     //Copy constructor
     RegularCustomer(const RegularCustomer&);
-    
+
     virtual void addRental(Car *rental);
 
     virtual int getType() const;

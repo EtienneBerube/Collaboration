@@ -41,6 +41,7 @@ void CarRentalSystem::menu() {
     cout << "9)Search Car"<<endl;
     cout << "10)Search Customer"<<endl;
     cout << "11)Print cars per company"<<endl;
+    cout << "12)End program"<<endl;
     int choice = 0;
     cin >> choice;
 
@@ -57,7 +58,18 @@ void CarRentalSystem::menu() {
             break;
         case 4: addCar();
             break;
-        case 5:
+        case 5:printCustomerList();
+            cout << "Enter the index number of the customer (not the ID): ";
+            int customerIndex;
+            cin >> customerIndex;
+            customerIndex++;
+
+            cout << "\nEnter the index number of the car (not the ID): ";
+            int carIndex;
+            cin >> carIndex;
+            carIndex++;
+
+            rentCar(listCustomer[customerIndex], listCar[carIndex]);
             break;
         case 6:
             break;
@@ -71,6 +83,7 @@ void CarRentalSystem::menu() {
             break;
         case 11:
             break;
+        case 12:
         default: endProgram();
     }
 
