@@ -35,8 +35,8 @@ private:
     void menu();
     void addCustomer();
     void addCar();
-    void removeCar();
-    void removeCustomer();
+    void removeCar(int theID);
+    void removeCustomer(int delId);
     int searchCustomer(int);
     int searchCar(int id);
     void changeDaysLimitRegular(int newMaxDays);
@@ -44,8 +44,8 @@ private:
     void changeDaysLimitCorporate(int newMaxDays);
     void updateCarInfo(int id);
     void updateUserInfo(int id);
-    void rentCar();
-    void returnCar();
+    void rentCar(Customer *customer, Car *car);
+    void returnCar(Customer *index);
     void printCarList();
     void printCustomerList();
     void printCarListForCompany(const string &name);
@@ -200,8 +200,8 @@ void CarRentalSystem::addCar() {
 }
 
 //function which removes a car
-void CarRentalSystem::removeCar() {
-    int theID, theIndex = 0;
+void CarRentalSystem::removeCar(int theID) {
+    /*int theID, theIndex = 0;
     //Title of this menu
     cout << "\nRemoving Car" << endl;
     //Prints the ID of cars so that the user may quickly find out which ID of the car to delete
@@ -210,9 +210,11 @@ void CarRentalSystem::removeCar() {
     cout << "\nEnter the car's ID:" << endl;
     cin.ignore();
     cin >> theID;
+    */
 
+    //TODO to be put in actual menu
     //Function which will return the index related to the car's ID
-    theIndex = searchCar(theID);
+    int theIndex = searchCar(theID);
     delete(listCar[theIndex]);
     listCar.erase(listCar.begin()+ theIndex);
     cout << "Deleting . . ." << endl;
@@ -222,14 +224,15 @@ void CarRentalSystem::removeCar() {
 }
 
 //function which removes a customer
-void CarRentalSystem::removeCustomer() {
-    int delId;
+void CarRentalSystem::removeCustomer(int delId) {
+    /*
     int delIndex;
     printCustomerList();
     cout << "Enter the id of the customer you want to delete: ";
     cin >> delId;
-
-    delIndex = searchCustomer(delId);
+    */
+    //TODO to be put in menu
+    int delIndex = searchCustomer(delId);
     delete(listCar[delId]);
     listCustomer.erase(listCustomer.begin() + delIndex);
     cout << "Deleting . . . "<< endl;
@@ -366,12 +369,25 @@ void CarRentalSystem::updateUserInfo(int id) {
     }
 }
 
-void CarRentalSystem::rentCar() {
+void CarRentalSystem::rentCar(Customer *customer, Car *car) {
+    if(!(car ->isAvailable())){
+        cout << "Car is not available for the moment"<<endl;
+    }else if(customer ->getRental() != nullptr){
+        cout <<"This customer is currently renting a car"<<endl;
+    }else{
+        car->setAvailability(false);
+        customer->addRental(car);
+    }
 
 }
 
-void CarRentalSystem::returnCar() {
-
+void CarRentalSystem::returnCar(Customer *customer) {
+    if(customer -> getRental() == nullptr)
+        cout<<"This customer doesn't have a car to return" <<endl;
+    else{
+        customer->getRental()->setAvailability(true);
+        customer->removeRental();
+    }
 }
 
 //Function which prints all the cars
@@ -393,8 +409,16 @@ void CarRentalSystem::printCustomerList() {
 }
 
 void CarRentalSystem::printCarListForCompany(const string &name) {
-    cout << "Type" << setw(10) << "id";
-    //TODO double loop into customer then car O(n^2)
+    cout<< "For company: "<<name<<endl;
+    for(Customer* c: listCustomer){
+        if(c->getType()==1){
+            auto *corporateCustomer = dynamic_cast<CorporateCustomer*>(c);
+            if(corporateCustomer->getCompanyName() == name){
+                if(corporateCustomer->getRental() != nullptr)
+                    cout<< corporateCustomer -> getName() <<": "<<corporateCustomer->getRental()->getType();
+            }
+        }
+    }
 }
 
 
