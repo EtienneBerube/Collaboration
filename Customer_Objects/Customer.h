@@ -30,7 +30,7 @@ public :
     Customer(int _id, string _name, string _address, string _telephoneNumber, int _type, int _maxDays);
 
     //Destructor
-    ~Customer();
+    virtual ~Customer();
 
     //Setters and getters
     int getId() const;

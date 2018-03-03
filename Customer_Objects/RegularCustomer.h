@@ -5,6 +5,7 @@
 #ifndef COLLABORATION_REGULARCUSTOMER_H
 #define COLLABORATION_REGULARCUSTOMER_H
 
+class Car;
 
 #include "Customer.h"
 
@@ -19,18 +20,15 @@ public:
 
     //Copy constructor
     RegularCustomer(const RegularCustomer&);
+    
+    virtual void addRental(Car *rental);
 
-    //Function which adds a car to a regular consumer
-    void addRental(Car *rental) override;
+    virtual int getType() const;
 
-    //getter
-    int getType() const override;
+    virtual void printInfo() const;
 
-    //Function which is pure virtual in base class
-    void printInfo() const override;
+    virtual string getTypeString() const;
 
-    //Function which is pure virtual in base class
-    string getTypeString() const override;
 
 };
 

@@ -7,6 +7,9 @@
 
 #include <string>
 #include "Customer.h"
+//#include "../Cars_objects/Car.h"
+
+class Car;
 
 using std::string;
 
@@ -22,11 +25,18 @@ public:
     //Copy constructor
     CorporateCustomer(const CorporateCustomer&);
 
+<<<<<<< HEAD
     //Getter
     int getType() const override;
 
     //Getter
     string getTypeString() const override;
+=======
+    //Setters and Getters
+    virtual int getType() const;
+
+    virtual string getTypeString() const;
+>>>>>>> 2ac025a2e5222a72dba6041ea2eb32ece05160f3
 
     //Getter
     const string &getCompanyName() const;
@@ -41,7 +51,7 @@ public:
     void setCompanyPhoneNumber(const string &companyPhoneNumber);
 
     //Function which is overriden from base class
-    void printInfo() const override;
+    virtual void printInfo() const;
 
 private:
 

@@ -28,7 +28,9 @@ Customer::Customer(const Customer &customer){
 }
 
 //Destructor
-Customer::~Customer() = default;
+Customer::~Customer(){
+    rental == nullptr;
+};
 
 //Setters and getters
 int Customer::getId() const {

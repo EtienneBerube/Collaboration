@@ -7,8 +7,11 @@
 
 
 #include "Customer.h"
+#include <string>
 
-//TODO finish class
+using std::string;
+
+
 class VIPCustomer: public Customer {
 
 public:
@@ -16,11 +19,11 @@ public:
     VIPCustomer(int _id, string _name, string _address, string _telephoneNumber, int _maxDays);
     VIPCustomer(const VIPCustomer&);
 
-    void printInfo() const override;
+    virtual void printInfo() const;
 
-    int getType() const override;
+    virtual int getType() const;
 
-    string getTypeString() const override;
+    virtual string getTypeString() const;
 };
 
 
