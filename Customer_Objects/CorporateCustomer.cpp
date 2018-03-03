@@ -19,27 +19,32 @@ CorporateCustomer::CorporateCustomer(const CorporateCustomer &corporateCustomer)
 
 }
 
-//Setters and Getters
+//Getter
 const string &CorporateCustomer::getCompanyName() const {
     return companyName;
 }
 
+//Setter
 void CorporateCustomer::setCompanyName(const string &companyName) {
     CorporateCustomer::companyName = companyName;
 }
 
+//Getter
 const string &CorporateCustomer::getCompanyPhoneNumber() const {
     return companyAddress;
 }
 
+//Setter
 void CorporateCustomer::setCompanyPhoneNumber(const string &companyPhoneNumber) {
     CorporateCustomer::companyAddress = companyPhoneNumber;
 }
 
+//Getter
 int CorporateCustomer::getType() const {
     return Customer::CORPORATE;
 }
 
+//Getter
 string CorporateCustomer::getTypeString() const{
     return "Corporate";
 }

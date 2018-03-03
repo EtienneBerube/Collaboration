@@ -35,18 +35,25 @@ public :
     //Setters and getters
     int getId() const;
 
+    //Setter
     void setId(int id);
 
+    //Getter
     const string &getName() const;
 
+    //Setter
     void setName(const string &name);
 
+    //Getter
     const string &getAddress() const;
 
+    //Setter
     void setAddress(const string &address);
 
+    //Getter
     const string &getTelephoneNumber() const;
 
+    //Setter
     void setTelephoneNumber(const string &telephoneNumber);
 
     //Functions which returns the car
@@ -67,6 +74,7 @@ public :
     //Getter
     int getMaxDaysRental();
 
+    //Setter
     void setMaxDays(int num);
 
     //Another pure virtual function
