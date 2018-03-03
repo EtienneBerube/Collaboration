@@ -9,7 +9,7 @@ set(SOURCE_FILES Cars_objects/Car.cpp Cars_objects/Car.h Customer_Objects/Custom
         Customer_Objects/CorporateCustomer.h
         Customer_Objects/RegularCustomer.cpp Customer_Objects/RegularCustomer.h
         Cars_objects/regularCar.cpp Cars_objects/regularCar.h Cars_objects/luxuryCar.cpp Cars_objects/luxuryCar.h
-        CarRentalSystem.cpp)
+        Coen244CarRentingBusiness.cpp testCoen244CarRentingSystem.cpp CarRentalSystem.cpp CarRentalSystem.h)
 
 
 add_executable(Collaboration ${SOURCE_FILES})
