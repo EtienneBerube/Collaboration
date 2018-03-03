@@ -44,33 +44,45 @@ void CarRentalSystem::menu() {
     int choice = 0;
     cin >> choice;
 
-    while(choice < 1 || choice > 11){
+    while(choice < 1 || choice > 12){
         cout<<"Invalid input, try again!"<<endl;
         cin >> choice;
     }
     switch (choice){
         case 1: printCustomerList();
             break;
+
         case 2: printCarList();
             break;
+
         case 3: addCustomer();
             break;
+
         case 4: addCar();
             break;
+
         case 5:printCustomerList();
-            cout << "Enter the index number of the customer (not the ID): ";
+            cout << "Enter the index number of the customer (not the ID): " << endl;
             int customerIndex;
             cin >> customerIndex;
             customerIndex--;
 
-            cout << "\nEnter the index number of the car (not the ID): ";
+            cout << "\nEnter the index number of the car (not the ID): " << endl;
             int carIndex;
             cin >> carIndex;
             carIndex--;
 
             rentCar(listCustomer[customerIndex], listCar[carIndex]);
             break;
-        case 6: ;
+
+        case 6: printCustomerList();
+            cout << "Choose the customer (the index)" << endl;
+            int* theID = new int;
+            cin.ignore();
+            cin >> *theID;
+            *theID --;
+            returnCar(listCustomer[*theID]);
+            delete theID;
             break;
         case 7:
             break;
@@ -218,7 +230,8 @@ void CarRentalSystem::addCar() {
 
 //function which removes a car
 void CarRentalSystem::removeCar(int theID) {
-    /*int theID, theIndex = 0;
+    /*
+     * int theID, theIndex = 0;
     //Title of this menu
     cout << "\nRemoving Car" << endl;
     //Prints the ID of cars so that the user may quickly find out which ID of the car to delete
