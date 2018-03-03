@@ -53,6 +53,7 @@ private:
     int searchCar(int id);
 
     void changeDaysLimitRegular(int newMaxDays);
+
     void changeDaysLimitVIP(int newMaxDays);
 
     void changeDaysLimitCorporate(int newMaxDays);
@@ -476,8 +477,10 @@ void CarRentalSystem::printCarList() {
     //Use a for loop to print the car types and their ID
     int i=0;
     for (Car* c : listCar) {
-        cout <<i<<")"<< c->getType() << " (" << c->getIdNum() << ")"<<": "<<((c->isAvailable())?" ":" not ")<<"available"<< endl;
+        cout << i << ")" << c->getType() << " (" << c->getIdNum() << ")" << ": " << ((c->isAvailable()) ? " " : " not ")
+             << "available" << endl;
         i++;
+    }
 }
 
 //Function which prints the name of all customers
@@ -516,7 +519,7 @@ int CarRentalSystem::findMaxIDCar() {
 }
 
 
-//Finding the latest, bigest ID for a customer
+//Finding the latest, biggest ID for a customer
 int CarRentalSystem::findMaxIDCustomer() {
     int max = 0;
     for (unsigned int i = 0; i < listCar.size(); ++i) {
@@ -549,6 +552,7 @@ void CarRentalSystem::printPriviledges() {
 }
 
 
+/* unnessecary
 //Prints out all the car from the inventory and shows if they are available or not
 void CarRentalSystem::determineGivenCarRented() {
 
@@ -557,9 +561,11 @@ void CarRentalSystem::determineGivenCarRented() {
         cout << c->getType() << " (" << c->getIdNum() << ") ";
         (c->isAvailable()) ? cout << "is available" : cout << "is not available" << endl;
     }
+}
+ */
 
 
-
+/* unnessecary
 void CarRentalSystem::showPriviledgesCust() {
     int theID, theIndex = 0;
     cout << "\nList of customers" <<endl;
@@ -570,6 +576,7 @@ void CarRentalSystem::showPriviledgesCust() {
     theIndex = searchCustomer(theID);
     listCustomer[theIndex].
 }
+ */
 
 
 
