@@ -62,20 +62,6 @@ Car::Car(const Car &theCar) {
 
 }
 
-void Car::setCustomerRenting( VIPCustomer* theVIPCustomer) {
-
-    aVIPCustomer = theVIPCustomer;
-}
-
-void Car::setCustomerRenting( CorporateCustomer* theCorporateCustomer) {
-
-    aCorporateCustomer = theCorporateCustomer;
-}
-
-void Car::setCustomerRenting( RegularCustomer* theRegCustomer) {
-
-    aregularCustomer = theRegCustomer;
-}
-
+//Destructor
 Car::~Car() = default;
 

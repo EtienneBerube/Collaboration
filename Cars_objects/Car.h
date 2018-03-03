@@ -14,49 +14,49 @@
 
 using std::string;
 
-class Customer; //Forward delcaration
+class Customer; //Forward declaration
 
 class Car {
 
 protected:
-
+    //the attributes
     int idNum;
     string type;
     bool availability;
-    CorporateCustomer *aCorporateCustomer = nullptr; //An object of customer in the class car to be able to better keep track of info
-    VIPCustomer * aVIPCustomer = nullptr ;
-    RegularCustomer *aregularCustomer;
 
 public:
     //Will be used to denote whether the cars are regular or luxury
     static const int Luxury = 1;
     static const int Standard = 0;
 
+    //constructors
     Car();
 
     Car(int, int, bool);
 
+    //copy constructors
     Car(const Car &);
 
+    //setters and getters
     int getIdNum() const;
 
     void setIdNum(int idNum);
 
+    //Pure virtual function which makes the class abstract
     virtual const string getType() const = 0;
 
+    //setter
     void setType(const string &type);
 
+    //getter
     bool isAvailable() const;
 
+    //setter
     void setAvailability(bool availability);
 
+    //Destructor
     virtual ~Car();
 
-    void setCustomerRenting( VIPCustomer*);
-
-    void setCustomerRenting( CorporateCustomer*);
-
-    void setCustomerRenting( RegularCustomer*);
 
 
 
