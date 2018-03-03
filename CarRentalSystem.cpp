@@ -6,7 +6,6 @@
 
 
 
-
 void CarRentalSystem::start() {
 
     //Need to fill vectors with already existing accounts
@@ -57,19 +56,19 @@ void CarRentalSystem::menu() {
             break;
         case 4: addCar();
             break;
-        case 5:
+        case 5: rentCar(listCustomer, listCar);
             break;
-        case 6:
+        case 6: ;
             break;
         case 7:
             break;
-        case 8:
+        case 8: cha
             break;
-        case 9:
+        case 9: searchCar(id);
             break;
-        case 10:
+        case 10: ;
             break;
-        case 11:
+        case 11:printCarListForCompany();
             break;
         default: endProgram();
     }

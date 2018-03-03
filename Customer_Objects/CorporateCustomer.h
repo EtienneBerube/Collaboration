@@ -22,17 +22,22 @@ public:
     //Copy constructor
     CorporateCustomer(const CorporateCustomer&);
 
-    //Setters and Getters
+    //Getter
     int getType() const override;
 
+    //Getter
     string getTypeString() const override;
 
+    //Getter
     const string &getCompanyName() const;
 
+    //Setter
     void setCompanyName(const string &companyName);
 
+    //Getter
     const string &getCompanyPhoneNumber() const;
 
+    //Setter
     void setCompanyPhoneNumber(const string &companyPhoneNumber);
 
     //Function which is overriden from base class

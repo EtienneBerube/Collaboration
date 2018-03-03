@@ -15,9 +15,10 @@ public:
     //Defaut constructor
     regularCar();
 
-    //Regular constructors
+    //Regular constructor
     regularCar(int _id, int _type, bool _isAvailable);
 
+    //Regular constructor
     regularCar(int theID, bool theAvailability);
 
     //Destructors
