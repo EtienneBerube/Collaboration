@@ -65,8 +65,3 @@ Car::Car(const Car &theCar) {
 //Destructor
 Car::~Car() = default;
 
-//TODO bug
-void Car::setCustomerRenting(const Customer theCustomer) {
- Customer* aCustomer = new Customer(theCustomer);
-}
-

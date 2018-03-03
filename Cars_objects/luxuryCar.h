@@ -7,13 +7,19 @@
 
 #include "Car.h"
 
+//Class derived from base class car
 class luxuryCar : public Car {
 
 public:
+
+    //constructors
     luxuryCar();
     luxuryCar(int, bool);
+
+    //Destructors
     ~luxuryCar();
 
+    //Getter which has to be overriden from the base class since it is pure virtual there
     const string getType() const override;
 
 };
