@@ -75,6 +75,7 @@ void CarRentalSystem::menu() {
             cin >> customerIndex;
             customerIndex--;
 
+            printCarList();
             cout << "\nEnter the index number of the car (not the ID): " << endl;
             int carIndex;
             cin >> carIndex;
@@ -87,13 +88,11 @@ void CarRentalSystem::menu() {
         case 6:
         {printCustomerList();
             cout << "\nChoose the customer (the index)" << endl;
-            int *theID = new int;
+            int theID = 0;
             cin.ignore();
-            cin >> *theID;
-            *theID--;
-            returnCar(listCustomer[*theID]);
-            delete theID;
-        theID = nullptr;
+            cin >> theID;
+            theID--;
+            returnCar(listCustomer[theID]);
         menu();}
             break;
 
@@ -107,51 +106,44 @@ void CarRentalSystem::menu() {
             cout << "\nChanging the number of days" << endl;
 
             //pointers to save data and then delete the memory
-            int *theChoice, *theNumDays = new int;
+            int theChoice, theNumDays = 0;
 
             cout << "\nEnter the new day limit" << endl;
-            cin >> *theNumDays;
+            cin >> theNumDays;
 
             cout << "Choose the type of customer:\n1) Regular\n2) Corporate\n3) VIP" << endl;
-            cin >> *theChoice;
+            cin >> theChoice;
 
             //Making sure its only between one and 3
-            while (*theChoice < 1 | *theChoice > 3) {
+            while (theChoice < 1 || theChoice > 3) {
                 cout << "Choose the type of customer:\n1) Regular\n2) Corporate\n3) VIP" << endl;
-                cin >> *theChoice;
+                cin >> theChoice;
             }
             //switch case to know for which type of customer to change the limit
-            switch (*theChoice) {
+            switch (theChoice) {
                 case 1:
-                    changeDaysLimitRegular(*theNumDays);
+                    changeDaysLimitRegular(theNumDays);
                     break;
                 case 2:
-                    changeDaysLimitCorporate(*theNumDays);
+                    changeDaysLimitCorporate(theNumDays);
                     break;
                 case 3:
-                    changeDaysLimitVIP(*theNumDays);
+                    changeDaysLimitVIP(theNumDays);
                     break;
             }
-            //Reallocating memory after it's been used
-            delete  theChoice;
-            delete  theNumDays;
-        theChoice = nullptr;
-        theNumDays = nullptr;
         menu();}
             break;
 
 
         case 9:
         {cout << "Enter the id to validate: ";
-            int* id = new int;
-            cin >> *id;
-            int result = searchCar(*id);
-            cout << "The car with id: " << *id << " does" << ((result != -1) ? "not" : "") << "exist";
+            int id = 0;
+            cin >> id;
+            int result = searchCar(id);
+            cout << "The car with id: " << id << " does" << ((result == -1) ? " not" : "") << " exist";
             if (result != -1) {
-                cout << ". It's index is" << result;
+                cout << ". It's index is " << result;
             }
-            delete id;
-        id = nullptr;
         menu();}
             break;
 
@@ -159,23 +151,22 @@ void CarRentalSystem::menu() {
             //Title of the "Menu"
         {cout << "\nSearching Customer" << endl;
             cout << "Enter the id to validate: ";
-            int* theId = new int;
-            cin >> *theId;
-            int result1 = searchCustomer(*theId);
-            cout << "The customer with id: " << *theId << " does" << ((result1 != -1) ? "not" : "") << "exist";
+            int theId = 0;
+            cin >> theId;
+            int result1 = searchCustomer(theId);
+            cout << "The customer with id: " << theId << " does" << ((result1 != -1) ? "not" : "") << "exist";
             if (result1 != -1) {
                 cout << ". It's index is" << result1;
             }
-            delete theId;
-        theId = nullptr;}
+        }
             break;
 
         case 11:{
             cout << "\nEnter the name of the company" << endl;
-            string* theCompanyName = new string;
+            string theCompanyName;
             cin.ignore();
-            getline(cin, *theCompanyName);
-            printCarListForCompany(*theCompanyName);
+            getline(cin, theCompanyName);
+            printCarListForCompany(theCompanyName);
 
         }
             break;
@@ -209,7 +200,6 @@ void CarRentalSystem::addCustomer() {
     }
 
     //Getting the data
-    cin.ignore();
     cout << "Enter full name: ";
     cin.ignore();
     getline(cin, name);
@@ -494,9 +484,13 @@ void CarRentalSystem::rentCar(Customer *customer, Car *car) {
 
 }
 
+
+//Function which allows a customer to return a car
 void CarRentalSystem::returnCar(Customer *customer) {
+    //Checks if the customer has no car rented to his name
     if (customer->getRental() == nullptr)
         cout << "This customer doesn't have a car to return" << endl;
+        //If he does have a car then it returns the car
     else {
         customer->getRental()->setAvailability(true);
         customer->removeRental();
@@ -529,13 +523,19 @@ void CarRentalSystem::printCustomerList() {
     }
 }
 
+//Function which prints the list of cars for a certain company
 void CarRentalSystem::printCarListForCompany(const string &name) {
+    //From the company name obtained from the user
     cout << "For company: " << name << endl;
+    //Goes through the list of customers, finds if the customer is corporate
     for (Customer *c: listCustomer) {
         if (c->getType() == 1) {
             auto *corporateCustomer = dynamic_cast<CorporateCustomer *>(c);
+            //If the customer is corporate it then checks for the company name
             if (corporateCustomer->getCompanyName() == name) {
+                //Checks if a car was rented by that corporate customer
                 if (corporateCustomer->getRental() != nullptr)
+                    //If all of this is true, then the car type is printed
                     cout << corporateCustomer->getName() << ": " << corporateCustomer->getRental()->getType();
             }
         }
@@ -545,20 +545,21 @@ menu();
 
 
 //Find the current maximum ID for Car
-int CarRentalSystem::findMaxIDCar() {
+int CarRentalSystem::findMaxIDCustomer() {
     int max = 0;
-    for (unsigned int i = 0; i < listCar.size(); ++i) {
+    //Goes through the list of
+    for (unsigned int i = 0; i < listCustomer.size(); ++i) {
         if (max < listCustomer[i]->getId())
             max = listCustomer[i]->getId();
     }
     return max;
 }
 
-
 //Finding the latest, biggest ID for a customer
-int CarRentalSystem::findMaxIDCustomer() {
+int CarRentalSystem::findMaxIDCar() {
     int max = 0;
-    for (unsigned int i = 0; i < listCustomer.size(); ++i) {
+    //Goes through the list of customers, find the biggest ID there and returns it
+    for (unsigned int i = 0; i < listCar.size(); ++i) {
         if (max < listCar[i]->getIdNum())
             max = listCar[i]->getIdNum();
     }
@@ -567,11 +568,14 @@ int CarRentalSystem::findMaxIDCustomer() {
 
 //Used to end the program
 void CarRentalSystem::endProgram() {
+
+    //All the customers are deleted
     for (Customer *c : listCustomer) {
         delete (c);
     }
     listCustomer.clear();
 
+    //Delete all the cars
     for (Car *c: listCar) {
         delete (c);
     }
@@ -580,10 +584,11 @@ void CarRentalSystem::endProgram() {
     exit(0);
 }
 
+//Function which prints the priviledges of the types of customers
 void CarRentalSystem::printPriviledges() {
     cout << "Types of customers:"
             "\n1)Regular: " << currentMaxRegular << " days. Restrictions: Only regular cars"
-                 "\2)Corporate: " << currentMaxCorporate << " days. Restrictions: No"
+                 "\n2)Corporate: " << currentMaxCorporate << " days. Restrictions: No"
                  "\n3)VIP: " << currentMaxVIP << " days. Restrictions: NO";
 }
 
@@ -591,7 +596,9 @@ CarRentalSystem::CarRentalSystem() {
     initialize();
 }
 
+//Function which initializes the system
 void CarRentalSystem::initialize() {
+    //Creates a few car and customers so the system looks like it has some stuffs from the beginning
     listCustomer.push_back(new RegularCustomer(1, "Etienne", "123 test", "7327626832", currentMaxRegular));
     listCustomer.push_back(new RegularCustomer(2, "Dean", "124 test", "188888", currentMaxRegular));
     listCustomer.push_back(new VIPCustomer(3, "BigBenji", "999 im rich road", "99999999", currentMaxVIP));
