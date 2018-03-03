@@ -5,15 +5,17 @@
 
 #include "luxuryCar.h"
 
-luxuryCar::luxuryCar() {
+//Default constructor
+luxuryCar::luxuryCar()= default;
 
-}
-
+//Regular constructor
 luxuryCar::luxuryCar(int theID, bool theAvailability) : Car( theID, Car::Luxury,theAvailability ){
 }
 
+//Getter
 const string luxuryCar::getType() const {
     return "Luxury";
 }
 
+//Destructor
 luxuryCar::~luxuryCar() = default;

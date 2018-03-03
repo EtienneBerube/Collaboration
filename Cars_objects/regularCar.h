@@ -7,17 +7,23 @@
 
 #include "Car.h"
 
+//Class derived from base class of car
 class regularCar : public  Car{
 
 public:
+
+    //Defaut constructor
     regularCar();
 
+    //Regular constructors
     regularCar(int _id, int _type, bool _isAvailable);
 
     regularCar(int theID, bool theAvailability);
 
+    //Destructors
     ~regularCar() override = default;
 
+    //Getter for the type of car
     const string getType() const override;
 
 };
