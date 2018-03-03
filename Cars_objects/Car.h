@@ -6,10 +6,12 @@
 #define COLLABORATION_CAR_H
 
 #include <string>
+/*
 #include "../Customer_Objects/Customer.h"
 #include "../Customer_Objects/CorporateCustomer.h"
 #include "../Customer_Objects/VIPCustomer.h"
 #include "../Customer_Objects/RegularCustomer.h"
+ */
 
 
 using std::string;

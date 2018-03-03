@@ -5,6 +5,7 @@
 #ifndef COLLABORATION_REGULARCUSTOMER_H
 #define COLLABORATION_REGULARCUSTOMER_H
 
+class Car;
 
 #include "Customer.h"
 
@@ -14,13 +15,13 @@ public:
     RegularCustomer();
     RegularCustomer(int _id, string _name, string _address, string _telephoneNumber, int _maxDays);
     RegularCustomer(const RegularCustomer&);
-    void addRental(Car *rental) override;
+    virtual void addRental(Car *rental);
 
-    int getType() const override;
+    virtual int getType() const;
 
-    void printInfo() const override;
+    virtual void printInfo() const;
 
-    string getTypeString() const override;
+    virtual string getTypeString() const;
 
 };
 
