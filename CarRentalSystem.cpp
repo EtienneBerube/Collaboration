@@ -61,14 +61,14 @@ void CarRentalSystem::menu() {
         {
             printCustomerList();
             //Goes back to the menu
-            menu();
+
         }
             break;
 
         case 2: { //Calls the function which prints the list of cars
             printCarList();
             //Goes back to the menu
-            menu();
+
         }
             break;
 
@@ -77,14 +77,14 @@ void CarRentalSystem::menu() {
             //calls function which will add a new customer
             addCustomer();
             //Goes back to the menu
-            menu();
+
         }
             break;
 
         case 4: {//Calls the function which will add a new car to the inventory
             addCar();
             //Goes back to the menu
-            menu();
+
         }
             break;
 
@@ -112,7 +112,7 @@ void CarRentalSystem::menu() {
             cout << "\nCar has been rented" << endl;
 
             //Goes back to the menu
-            menu();
+
         }
             break;
 
@@ -134,14 +134,14 @@ void CarRentalSystem::menu() {
             cout << "\nCar has been returned" << endl;
 
             //Goes back to the menu
-            menu();
+
         }
             break;
 
         case 7: {   //Calls in the function which will print the priviledges for the types of customers
             printPriviledges();
             //goes back to the menu then
-            menu();
+
         }
             break;
 
@@ -175,7 +175,7 @@ void CarRentalSystem::menu() {
                     break;
             }
             //Goes back to the menu
-            menu();
+
         }
             break;
 
@@ -194,7 +194,6 @@ void CarRentalSystem::menu() {
                 cout << ". It's index is " << result;
             }
             //Goes back to the menu
-            menu();
         }
             break;
 
@@ -215,8 +214,8 @@ void CarRentalSystem::menu() {
                 cout << "The customer is " << listCustomer[result1]->getType();
             }
             //Goes back to menu
-            menu();
-        }
+
+            }
             break;
 
         case 11: {
@@ -232,7 +231,7 @@ void CarRentalSystem::menu() {
             printCarListForCompany(theCompanyName);
 
             //goes back to menu
-            menu();}
+            }
             break;
 
         case 12: {
@@ -241,7 +240,7 @@ void CarRentalSystem::menu() {
 
             //Prints the list of customers so as to know which customer to delete
             printCustomerList();
-            cout << "Enter the ID of the customer to be deleted" << endl;
+            cout << "Enter the id of the customer to be deleted" << endl;
             int idCustomer = 0;
             cin >> idCustomer;
 
@@ -249,9 +248,9 @@ void CarRentalSystem::menu() {
             removeCustomer(idCustomer);
             cout << "\nCustomer has been deleted" << endl;
             //Goes back to menu
-            menu(); }
-            break;
 
+            break;
+        }
         case 13: {
             //The title of the "menu"
             cout << "\nRemoving a car from the inventory" << endl;
@@ -266,7 +265,7 @@ void CarRentalSystem::menu() {
             removeCar(idCAR);
             cout << "\nCar was removed" << endl;
             //goes back to menu
-            menu();
+
         }
             break;
 
@@ -282,7 +281,6 @@ void CarRentalSystem::menu() {
             //Calls function which will update the info of a car using its ID
             updateCarInfo(theCarID);
             //goes back to menu
-            menu();
         }
             break;
 
@@ -295,7 +293,7 @@ void CarRentalSystem::menu() {
             //Calls function which takes a customer ID and shows whether they rented a car or not
             didCustomerRentCar(idCus);
             //goes back to menu
-            menu();
+
         }
             break;
 
@@ -304,7 +302,7 @@ void CarRentalSystem::menu() {
             endProgram();
             break;
     }
-
+    menu();
 
 }
 
@@ -402,7 +400,6 @@ void CarRentalSystem::addCar() {
     //Making sure that the customer only enters y or Y or n or N to know whether or not a new car is readily available
     while (isAvailable < 1 || isAvailable > 2) {
         cout << "\nIs the car readily available:\n1 - yes\n2 - no" << endl;
-        cin.ignore();
         cin >> isAvailable;
     }
 
