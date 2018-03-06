@@ -5,7 +5,9 @@
 #include "Customer.h"
 
 //The default constructor
-Customer::Customer() = default;
+Customer::Customer(){
+    rental = nullptr;
+}
 
 //Regular constructor
 Customer::Customer(int _id, string _name, string _address, string _telephoneNumber, int _type, int _maxDays) {
@@ -15,6 +17,7 @@ Customer::Customer(int _id, string _name, string _address, string _telephoneNumb
     telephoneNumber = _telephoneNumber;
     type = _type;
     maxDays = _maxDays;
+    rental = nullptr;
 }
 
 //Copy constructor
@@ -25,6 +28,7 @@ Customer::Customer(const Customer &customer){
     telephoneNumber = customer.getTelephoneNumber();
     rental = customer.getRental();
     type = customer.getType();
+    rental = nullptr;
 }
 
 //Destructor

@@ -426,6 +426,10 @@ void CarRentalSystem::removeCar(int theID) {
 
     //Function which will return the index related to the car's ID
     int theIndex = searchCar(theID);
+    if(listCar[theID]->isAvailable()==false){
+        cout<<"Cannot Delete. Car is being used";
+        return;
+    }
     delete (listCar[theIndex]);
     listCar.erase(listCar.begin() + theIndex);
     cout << "Deleting . . ." << endl;
@@ -435,6 +439,10 @@ void CarRentalSystem::removeCar(int theID) {
 //function which removes a customer
 void CarRentalSystem::removeCustomer(int delId) {
     int delIndex = searchCustomer(delId);
+    if(listCustomer[delId]->getRental()!=nullptr){
+        cout<<"Cannot Delete. Customer is active";
+        return;
+    }
     delete (listCar[delId]);
     listCustomer.erase(listCustomer.begin() + delIndex);
     cout << "Deleting . . . " << endl;
