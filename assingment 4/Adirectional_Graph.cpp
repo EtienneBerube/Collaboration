@@ -6,12 +6,12 @@
 #include "Node.h"
 #include "Edge.h"
 
-bool A_Directional_Graph::addNode(Node &v) {
+bool ADirectional_Graph::addNode(Node &v) {
     nodes.push_back(&v);
     return true;
 }
 
-bool A_Directional_Graph::removeNode(Node &v) {
+bool ADirectional_Graph::removeNode(Node &v) {
     int currentId = v.getId();
 
     if(!searchNode(v))
@@ -32,12 +32,12 @@ bool A_Directional_Graph::removeNode(Node &v) {
     return false;
 }
 
-bool A_Directional_Graph::addEdge(Edge &e) {
+bool ADirectional_Graph::addEdge(Edge &e) {
     edges.push_back(&e);
     return true;
 }
 
-bool A_Directional_Graph::removeEdge(Edge &e) {
+bool ADirectional_Graph::removeEdge(Edge &e) {
 <<<<<<< HEAD
     int startId = e.getStartNode();
 	int endId = e.getEndNode();
@@ -55,11 +55,11 @@ bool A_Directional_Graph::removeEdge(Edge &e) {
     return false;
 }
 
-bool A_Directional_Graph::removeMultipleEdges(Edge *e, int length) {
+bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
     return false;
 }
 
-bool A_Directional_Graph::searchNode(const Node &v) {
+bool ADirectional_Graph::searchNode(const Node &v) {
     for(Node* n: nodes){
         if (n->getId() == v.getId())
             return true;
@@ -67,7 +67,7 @@ bool A_Directional_Graph::searchNode(const Node &v) {
     return false;
 }
 
-bool A_Directional_Graph::searchEdge(const Edge &e) {
+bool ADirectional_Graph::searchEdge(const Edge &e) {
     //go through all edges in vector and compare the weight.
 	//If they have the same weight, check their start and end ID
 	//if all three values are the same, they're identical
@@ -84,23 +84,23 @@ bool A_Directional_Graph::searchEdge(const Edge &e) {
     return false;
 }
 
-void A_Directional_Graph::display(Edge &v) const {
+void ADirectional_Graph::display(Edge &v) const {
 
 }
 
-void A_Directional_Graph::display(Node &e) const {
+void ADirectional_Graph::display(Node &e) const {
 
 }
 //Adjencency Matrix
-void A_Directional_Graph::display() const {
+void ADirectional_Graph::display() const {
 
 }
 
-std::string A_Directional_Graph::toString() const {
+std::string ADirectional_Graph::toString() const {
     return nullptr;
 }
 
-bool A_Directional_Graph::clean() {
+bool ADirectional_Graph::clean() {
     try {
         for (unsigned int i = 0; i < nodes.size(); ++i) {
             delete nodes[i];
@@ -118,10 +118,10 @@ bool A_Directional_Graph::clean() {
     return true;
 }
 
-int A_Directional_Graph::getIndexNode(Node &n) {
+int ADirectional_Graph::getIndexNode(Node &n) {
     return 0;
 }
 
-int A_Directional_Graph::getIndexEgde(Edge &e) {
+int ADirectional_Graph::getIndexEgde(Edge &e) {
     return 0;
 }

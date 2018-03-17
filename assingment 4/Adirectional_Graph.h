@@ -8,7 +8,7 @@
 
 #include "Graph.h"
 
-class A_Directional_Graph: public Graph {
+class ADirectional_Graph: public Graph {
 public:
     bool addNode(Node &v);
 
