@@ -34,7 +34,7 @@ public:
 // remove the edge
     virtual bool remove(Edge& e) = 0;
 
-    virtual bool removeMultipleEdges(Edge* e) = 0;
+    virtual bool removeMultipleEdges(Edge *e, int length) = 0;
 // returns bool if a vertex exists in a graph.
     virtual bool searchNode(const Node& v) = 0;
 // returns bool if an Node exists in a graph.
