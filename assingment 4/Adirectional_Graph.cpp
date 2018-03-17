@@ -14,6 +14,9 @@ bool A_Directional_Graph::addNode(Node &v) {
 bool A_Directional_Graph::removeNode(Node &v) {
     int currentId = v.getId();
 
+    if(!searchNode(v))
+        return false;
+
     for(unsigned int i =0; i < nodes.size(); ++i){
         if(currentId == nodes[i]->getId()){
             for(Edge* e: edges){
@@ -35,6 +38,7 @@ bool A_Directional_Graph::addEdge(Edge &e) {
 }
 
 bool A_Directional_Graph::removeEdge(Edge &e) {
+<<<<<<< HEAD
     int startId = e.getStartNode();
 	int endId = e.getEndNode();
 
@@ -43,6 +47,11 @@ bool A_Directional_Graph::removeEdge(Edge &e) {
 		if
 	}
     //TODO finish || Dont forget to delete pointer
+=======
+    int startId;
+    int endId;
+
+>>>>>>> 4282808ee7f5ccccec2d2ff22d3575ed20d18ae6
     return false;
 }
 
