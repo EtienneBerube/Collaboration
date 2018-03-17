@@ -4,6 +4,7 @@
 
 #include "Adirectional_Graph.h"
 #include "Node.h"
+#include "Edge.h"
 
 bool A_Directional_Graph::addNode(Node &v) {
     nodes.push_back(&v);
@@ -48,6 +49,19 @@ bool A_Directional_Graph::searchNode(const Node &v) {
 }
 
 bool A_Directional_Graph::searchEdge(const Edge &e) {
+    //go through all edges in vector and compare the weight.
+	//If they have the same weight, check their start and end ID
+	//if all three values are the same, they're identical
+	for (Edge* ed: edges)
+	{
+		if (ed->getWeight() == e.getWeight())
+		{
+			//check the start and end points
+			if (ed->getStartNode() == e.getStartNode() && ed->getEndNode() == e.getEndNode())
+				return true;
+		}
+	}
+	//blah, blah blah
     return false;
 }
 
