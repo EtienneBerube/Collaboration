@@ -10,3 +10,19 @@ Graph &Graph::operator++() {
         e->incrementWeight();
     return *this;
 }
+
+Graph::Graph() {
+
+}
+
+Graph::~Graph() {
+    for (unsigned int i = 0; i < nodes.size(); ++i) {
+        delete nodes[i];
+        nodes.erase(nodes.begin() + i);
+    }
+
+    for (unsigned int i = 0; i < edges.size(); ++i) {
+        delete edges[i];
+        edges.erase(edges.begin() + i);
+    }
+}
