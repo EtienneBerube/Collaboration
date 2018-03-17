@@ -37,6 +37,10 @@ public:
     std::string toString() const;
 
     bool clean() override;
+
+    int getIndexNode(int id);
+
+    int getIndexEgde(int id);
 };
 
 
