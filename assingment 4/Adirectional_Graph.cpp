@@ -7,8 +7,13 @@
 #include "Edge.h"
 
 bool ADirectional_Graph::addNode(Node &v) {
-	nodes.push_back(&v);
-	return true;
+    if(!searchNode(v)) {
+        nodes.push_back(&v);
+        return true;
+    }
+    std::cout<<"Node already exists, Change ID to add node to graph";
+    return false;
+
 }
 
 bool ADirectional_Graph::removeNode(Node &v) {
@@ -33,8 +38,15 @@ bool ADirectional_Graph::removeNode(Node &v) {
 }
 
 bool ADirectional_Graph::addEdge(Edge &e) {
-	edges.push_back(&e);
-	return true;
+
+    if(!searchEdge(e)) {
+        edges.push_back(&e);
+        nodes[getIndexNode(e.getStartNode())]->incrementDegree();
+        nodes[getIndexNode(e.getEndNode())]->incrementDegree();
+        return true;
+    }
+    std::cout<<"Edge already exists, duplicates are not allowed in bi-direcitonal graphs";
+    return false;
 }
 
 bool ADirectional_Graph::removeEdge(Edge &e) {
@@ -42,10 +54,8 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
 	int startId = e.getStartNode();
 	int endId = e.getEndNode();
 
-	if (searchEdge(e))
-	{
-		for (unsigned int i = 0; i < edges.size(); i++)
-		{
+	if (searchEdge(e)) {
+		for (unsigned int i = 0; i < edges.size(); i++) {
 			if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId)
 			{
 				delete edges.at(i);
@@ -127,10 +137,35 @@ bool ADirectional_Graph::clean() {
 	return true;
 }
 
-int ADirectional_Graph::getIndexNode(Node &n) {
-	return 0;
+
+int ADirectional_Graph::getIndexNode(Node &v) {
+    for(unsigned int i =0 ; i< nodes.size(); i++){
+        if(nodes[i]->getId() == v.getId())
+            return i;
+    }
+    return -1;
+}
+
+int ADirectional_Graph::getIndexNode(int id) {
+    for(unsigned int i =0 ; i< nodes.size(); i++){
+        if(nodes[i]->getId() == id)
+            return i;
+    }
+    return -1;
 }
 
 int ADirectional_Graph::getIndexEgde(Edge &e) {
-	return 0;
+    for(unsigned int i =0 ; i< nodes.size(); i++){
+        if(edges[i]->getStartNode() == e.getStartNode() && edges[i]->getEndNode() == e.getEndNode())
+            return i;
+    }
+    return -1;;
+}
+
+int ADirectional_Graph::getIndexEgde(int id) {
+    for (unsigned int i = 0; i < nodes.size(); i++) {
+        if (edges[i]->getStartNode() == id && edges[i]->getEndNode() == id)
+            return i;
+    }
+    return -1;;
 }
