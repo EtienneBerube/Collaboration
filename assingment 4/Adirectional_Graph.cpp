@@ -13,30 +13,32 @@ bool ADirectional_Graph::addNode(Node &v) {
     }
     std::cout<<"Node already exists, Change ID to add node to graph";
     return false;
+
 }
 
 bool ADirectional_Graph::removeNode(Node &v) {
-    int currentId = v.getId();
+	int currentId = v.getId();
 
-    if(!searchNode(v))
-        return false;
+	if (!searchNode(v))
+		return false;
 
-    for(unsigned int i =0; i < nodes.size(); ++i){
-        if(currentId == nodes[i]->getId()){
-            for(Edge* e: edges){
-                if(e->getEndNode() == currentId || e->getStartNode() == currentId){
-                    removeEdge(*e);
-                }
-            }
-            delete nodes[i];
-            nodes.erase(nodes.begin()+i);
-            return true;
-        }
-    }
-    return false;
+	for (unsigned int i = 0; i < nodes.size(); ++i) {
+		if (currentId == nodes[i]->getId()) {
+			for (Edge* e : edges) {
+				if (e->getEndNode() == currentId || e->getStartNode() == currentId) {
+					removeEdge(*e);
+				}
+			}
+			delete nodes[i];
+			nodes.erase(nodes.begin() + i);
+			return true;
+		}
+	}
+	return false;
 }
 
 bool ADirectional_Graph::addEdge(Edge &e) {
+
     if(!searchEdge(e)) {
         edges.push_back(&e);
         nodes[getIndexNode(e.getStartNode())]->incrementDegree();
@@ -49,35 +51,37 @@ bool ADirectional_Graph::addEdge(Edge &e) {
 
 bool ADirectional_Graph::removeEdge(Edge &e) {
 
-    int startId = e.getStartNode();
+	int startId = e.getStartNode();
 	int endId = e.getEndNode();
 
-	for(unsigned int i = 0; i < edges.size(); ++i)
-	{
-		if
+	if (searchEdge(e)) {
+		for (unsigned int i = 0; i < edges.size(); i++) {
+			if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId)
+				edges.erase(edges.begin() + i);
+		}
 	}
-    //TODO finish || Dont forget to delete pointer
+	//TODO finish || Dont forget to delete pointer
 
-    return false;
+	return false;
 }
 
 bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
-    return false;
+	return false;
 }
 
 bool ADirectional_Graph::searchNode(const Node &v) {
-    for(Node* n: nodes){
-        if (n->getId() == v.getId())
-            return true;
-    }
-    return false;
+	for (Node* n : nodes) {
+		if (n->getId() == v.getId())
+			return true;
+	}
+	return false;
 }
 
 bool ADirectional_Graph::searchEdge(const Edge &e) {
-    //go through all edges in vector and compare the weight.
+	//go through all edges in vector and compare the weight.
 	//If they have the same weight, check their start and end ID
 	//if all three values are the same, they're identical
-	for (Edge* ed: edges)
+	for (Edge* ed : edges)
 	{
 		if (ed->getWeight() == e.getWeight())
 		{
@@ -87,7 +91,7 @@ bool ADirectional_Graph::searchEdge(const Edge &e) {
 		}
 	}
 	//blah, blah blah
-    return false;
+	return false;
 }
 
 void ADirectional_Graph::display(Edge &v) const {
@@ -103,26 +107,28 @@ void ADirectional_Graph::display() const {
 }
 
 std::string ADirectional_Graph::toString() const {
-    return nullptr;
+	return nullptr;
 }
 
 bool ADirectional_Graph::clean() {
-    try {
-        for (unsigned int i = 0; i < nodes.size(); ++i) {
-            delete nodes[i];
-            nodes.erase(nodes.begin() + i);
-        }
+	try {
+		for (unsigned int i = 0; i < nodes.size(); ++i) {
+			delete nodes[i];
+			nodes.erase(nodes.begin() + i);
+		}
 
-        for (unsigned int i = 0; i < edges.size(); ++i) {
-            delete edges[i];
-            edges.erase(edges.begin() + i);
-        }
-    }catch (...){
-        std::cout<<"An error has occured when clearing the graph"<<std::endl;
-        return false;
-    }
-    return true;
+		for (unsigned int i = 0; i < edges.size(); ++i) {
+			delete edges[i];
+			edges.erase(edges.begin() + i);
+		}
+	}
+	catch (...) {
+		std::cout << "An error has occured when clearing the graph" << std::endl;
+		return false;
+	}
+	return true;
 }
+
 
 int ADirectional_Graph::getIndexNode(Node &v) {
     for(unsigned int i =0 ; i< nodes.size(); i++){
@@ -149,8 +155,8 @@ int ADirectional_Graph::getIndexEgde(Edge &e) {
 }
 
 int ADirectional_Graph::getIndexEgde(int id) {
-    for(unsigned int i =0 ; i< nodes.size(); i++){
-        if(edges[i]->getStartNode() == id && edges[i]->getEndNode() == id)
+    for (unsigned int i = 0; i < nodes.size(); i++) {
+        if (edges[i]->getStartNode() == id && edges[i]->getEndNode() == id)
             return i;
     }
     return -1;;
