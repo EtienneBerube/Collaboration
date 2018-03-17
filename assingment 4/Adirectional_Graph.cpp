@@ -47,16 +47,24 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
 		for (unsigned int i = 0; i < edges.size(); i++)
 		{
 			if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId)
+			{
+				delete edges.at(i);
 				edges.erase(edges.begin() + i);
+				
+			}
 		}
 	}
-	//TODO finish || Dont forget to delete pointer
-
 	return false;
 }
 
 bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
-	return false;
+	
+	for (unsigned int i = 0; i < length; i++)
+		removeEdge(e[i]);
+		delete[] e;
+
+	
+	return true;
 }
 
 bool ADirectional_Graph::searchNode(const Node &v) {
