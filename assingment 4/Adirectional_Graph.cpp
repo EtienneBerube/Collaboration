@@ -16,7 +16,12 @@ bool A_Directional_Graph::removeNode(Node &v) {
 
     for(unsigned int i =0; i < nodes.size(); ++i){
         if(currentId == nodes[i]->getId()){
-            //TODO REMOVE EDGE IF CONNECTED || Dont forget to delete pointer
+            for(Edge* e: edges){
+                if(e->getEndNode() == currentId || e->getStartNode() == currentId){
+                    remove(*e);
+                }
+            }
+            delete nodes[i];
             nodes.erase(nodes.begin()+i);
             return true;
         }
