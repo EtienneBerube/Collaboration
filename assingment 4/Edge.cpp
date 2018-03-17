@@ -6,8 +6,8 @@
 
 Edge::Edge(Node &n1, Node n2)
 {
-	setStartNode(n1.getId);
-	setEndNode(n2.getId);
+	setStartNode(n1.getId());
+	setEndNode(n2.getId());
 }
 
 
