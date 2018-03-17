@@ -9,9 +9,12 @@ class Node;
 class Edge;
 
 #include <iostream>
+#include <vector>
 
 class Graph{
 protected:
+    std::vector<Node*> nodes;
+    std::vector<Edge*> edges;
 public:
     Graph();
 
