@@ -8,9 +8,12 @@
 class Vertex;
 class Edge;
 
+#include <iostream>
+
 class Graph{
 public:
     Graph();
+
     virtual ~Graph();
 //adds one vertex; returns bool if added successfully.
     virtual bool addVertex(Vertex& v)=0;
@@ -39,7 +42,7 @@ public:
     virtual void display() const = 0;
     // converts the whole graph to a string such as 1-2-4-5; 1-3-5; each path
     // is separated by ';'
-    virtual string toString () const = 0;
+    virtual std::string toString () const = 0;
 //remove all the vertices and edges;
     virtual bool clean() = 0;
 };
