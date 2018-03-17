@@ -10,27 +10,27 @@
 
 class A_Directional_Graph: public Graph {
 public:
-    bool addNode(Node &v) override;
+    bool addNode(Node &v);
 
-    bool removeNode(Node &v) override;
+    bool removeNode(Node &v);
 
-    bool addEdge(Edge &e) override;
+    bool addEdge(Edge &e);
 
-    bool remove(Edge &e) override;
+    bool remove(Edge &e);
 
-    bool removeMultipleEdges(Edge *e) override;
+    bool removeMultipleEdges(Edge *e, int length);
 
-    bool searchNode(const Node &v) override;
+    bool searchNode(const Node &v);
 
-    bool searchEdge(const Edge &e) override;
+    bool searchEdge(const Edge &e);
 
-    void display(Edge &v) const override;
+    void display(Edge &v) const;
 
-    void display(Node &e) const override;
+    void display(Node &e) const;
 
-    void display() const override;
+    void display() const;
 
-    std::string toString() const override;
+    std::string toString() const;
 
     bool clean() override;
 };

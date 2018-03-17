@@ -3,28 +3,47 @@
 //
 
 #include "A_Directional_Graph.h"
+#include "Node.h"
 
 bool A_Directional_Graph::addNode(Node &v) {
-    return false;
+    nodes.push_back(&v);
+    return true;
 }
 
 bool A_Directional_Graph::removeNode(Node &v) {
+    int currentId = v.getId();
+
+    for(unsigned int i =0; i < nodes.size(); ++i){
+        if(currentId == nodes[i]->getId()){
+            //TODO REMOVE EDGE IF CONNECTED
+            nodes.erase(nodes.begin()+i);
+            return true;
+        }
+    }
     return false;
 }
 
 bool A_Directional_Graph::addEdge(Edge &e) {
-    return false;
+    edges.push_back(&e);
+    return true;
 }
 
 bool A_Directional_Graph::remove(Edge &e) {
+    int startId;
+    int endId;
+    //TODO finish
     return false;
 }
 
-bool A_Directional_Graph::removeMultipleEdges(Edge *e) {
+bool A_Directional_Graph::removeMultipleEdges(Edge *e, int length) {
     return false;
 }
 
 bool A_Directional_Graph::searchNode(const Node &v) {
+    for(Node* n: nodes){
+        if (n->getId() == v.getId())
+            return true;
+    }
     return false;
 }
 
