@@ -15,6 +15,7 @@ class Edge
 		~Edge() {};
 		void setWeight(int _weight) { weight = _weight; }
 		int getWeight() const { return weight; }
+        void incrementWeight(){weight++;}
 		void setStartNode(int _startNode) { startNode = _startNode; }
 		void setEndNode(int _endNode) { endNode = _endNode; }
 		int getStartNode() const { return startNode; }
