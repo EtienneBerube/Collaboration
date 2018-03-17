@@ -3,3 +3,9 @@
 //
 
 #include "Graph.h"
+
+Graph &Graph::operator++() {
+    for(Edge* e: edges)
+        e->incrementWeight();
+    return *this;
+}

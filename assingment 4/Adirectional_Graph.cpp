@@ -68,6 +68,20 @@ std::string A_Directional_Graph::toString() const {
 }
 
 bool A_Directional_Graph::clean() {
+    try {
+        for (unsigned int i = 0; i < nodes.size(); ++i) {
+            delete nodes[i];
+            nodes.erase(nodes.begin() + i);
+        }
+
+        for (unsigned int i = 0; i < edges.size(); ++i) {
+            delete edges[i];
+            edges.erase(edges.begin() + i);
+        }
+    }catch (...){
+        std::cout<<"An error has occured when clearing the graph"<<std::endl;
+        return false;
+    }
     return true;
 }
 

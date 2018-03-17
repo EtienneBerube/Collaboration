@@ -50,6 +50,8 @@ public:
     virtual std::string toString () const = 0;
 //remove all the vertices and edges;
     virtual bool clean() = 0;
+
+    Graph& operator++();
 };
 
 
