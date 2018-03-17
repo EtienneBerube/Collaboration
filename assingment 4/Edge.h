@@ -6,7 +6,7 @@
 #define ASSINGMENT_4_EDGE_H
 
 
-class Edge {
+class Node {
 
 };
 
