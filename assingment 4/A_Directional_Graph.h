@@ -10,19 +10,21 @@
 
 class A_Directional_Graph: public Graph {
 public:
-    bool addVertex(Vertex &v) override;
+    bool addNode(Node &v) override;
 
-    bool removeVertex(Vertex &v) override;
+    bool removeNode(Node &v) override;
 
-    bool addEdge(Node &e) override;
+    bool addEdge(Edge &e) override;
 
-    bool remove(Node &e) override;
+    bool remove(Edge &e) override;
 
-    bool searchVertex(const Vertex &v) override;
+    bool removeMultipleEdges(Edge *e) override;
 
-    bool searchEdge(const Node &e) override;
+    bool searchNode(const Node &v) override;
 
-    void display(Vertex &v) const override;
+    bool searchEdge(const Edge &e) override;
+
+    void display(Edge &v) const override;
 
     void display(Node &e) const override;
 

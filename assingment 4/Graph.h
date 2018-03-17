@@ -5,37 +5,39 @@
 #ifndef ASSINGMENT_4_GRAPH_H
 #define ASSINGMENT_4_GRAPH_H
 
-class Vertex;
 class Node;
+class Edge;
 
 #include <iostream>
 
 class Graph{
+protected:
 public:
     Graph();
 
     virtual ~Graph();
 //adds one vertex; returns bool if added successfully.
-    virtual bool addVertex(Vertex& v)=0;
+    virtual bool addNode(Node& v)=0;
 //Bonus question: adds in a set of vertices; returns bool if added
     //successfully
-//virtual bool addVertices(Vertex* vArray) = 0;
+//virtual bool addVertices(Node* vArray) = 0;
 //removes a vertex; the edges that have connection with this vertex need to
     //be removed;
-    virtual bool removeVertex(Vertex& v) = 0;
+    virtual bool removeNode(Node& v) = 0;
 //adds an edge; returns true if the edge is added successfully.
-    virtual bool addEdge(Node& e) = 0;
+    virtual bool addEdge(Edge& e) = 0;
 //Bonus question: removes a set of edges; as a result, some nodes may remain
     //as orphan.
-//virtual bool addEdges(Node* eArray) = 0;
 // remove the edge
-    virtual bool remove(Node& e) = 0;
+    virtual bool remove(Edge& e) = 0;
+
+    virtual bool removeMultipleEdges(Edge* e) = 0;
 // returns bool if a vertex exists in a graph.
-    virtual bool searchVertex(const Vertex& v) = 0;
+    virtual bool searchNode(const Node& v) = 0;
 // returns bool if an Node exists in a graph.
-    virtual bool searchEdge(const Node& e) = 0;
+    virtual bool searchEdge(const Edge& e) = 0;
 // displays the path that contains the vertex.
-    virtual void display(Vertex& v) const = 0;
+    virtual void display(Edge& v) const = 0;
 // displays the path that contains the edge.
     virtual void display(Node& e) const = 0;
 // displays the whole graph with your own defined format

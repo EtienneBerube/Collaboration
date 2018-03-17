@@ -4,31 +4,35 @@
 
 #include "A_Directional_Graph.h"
 
-bool A_Directional_Graph::addVertex(Vertex &v) {
+bool A_Directional_Graph::addNode(Node &v) {
     return false;
 }
 
-bool A_Directional_Graph::removeVertex(Vertex &v) {
+bool A_Directional_Graph::removeNode(Node &v) {
     return false;
 }
 
-bool A_Directional_Graph::addEdge(Node &e) {
+bool A_Directional_Graph::addEdge(Edge &e) {
     return false;
 }
 
-bool A_Directional_Graph::remove(Node &e) {
+bool A_Directional_Graph::remove(Edge &e) {
     return false;
 }
 
-bool A_Directional_Graph::searchVertex(const Vertex &v) {
+bool A_Directional_Graph::removeMultipleEdges(Edge *e) {
     return false;
 }
 
-bool A_Directional_Graph::searchEdge(const Node &e) {
+bool A_Directional_Graph::searchNode(const Node &v) {
     return false;
 }
 
-void A_Directional_Graph::display(Vertex &v) const {
+bool A_Directional_Graph::searchEdge(const Edge &e) {
+    return false;
+}
+
+void A_Directional_Graph::display(Edge &v) const {
 
 }
 

@@ -5,9 +5,25 @@
 #ifndef ASSINGMENT_4_VERTEX_H
 #define ASSINGMENT_4_VERTEX_H
 
+#include <iostream>
+#include <vector>
 
-class Vertex {
+class Vertex;
 
+class Node {
+private:
+    int id;
+
+    int degree;
+
+public:
+    int getId() const;
+
+    void setId(int id);
+
+    inline void incrementDegree(){degree++;}
+
+    inline void decrementDegree(){degree--;}
 };
 
 
