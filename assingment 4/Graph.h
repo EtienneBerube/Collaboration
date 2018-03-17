@@ -31,8 +31,8 @@ public:
     virtual bool addEdge(Edge& e) = 0;
 //Bonus question: removes a set of edges; as a result, some nodes may remain
     //as orphan.
-// remove the edge
-    virtual bool remove(Edge& e) = 0;
+// removeEdge the edge
+    virtual bool removeEdge(Edge &e) = 0;
 
     virtual bool removeMultipleEdges(Edge *e, int length) = 0;
 // returns bool if a vertex exists in a graph.
@@ -48,7 +48,7 @@ public:
     // converts the whole graph to a string such as 1-2-4-5; 1-3-5; each path
     // is separated by ';'
     virtual std::string toString () const = 0;
-//remove all the vertices and edges;
+//removeEdge all the vertices and edges;
     virtual bool clean() = 0;
 
     Graph& operator++();
