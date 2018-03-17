@@ -35,8 +35,13 @@ bool A_Directional_Graph::addEdge(Edge &e) {
 }
 
 bool A_Directional_Graph::removeEdge(Edge &e) {
-    int startId;
-    int endId;
+    int startId = e.getStartNode();
+	int endId = e.getEndNode();
+
+	for (unsigned int i = 0; i < edges.size(); i++)
+	{
+		if
+	}
     //TODO finish || Dont forget to delete pointer
     return false;
 }
