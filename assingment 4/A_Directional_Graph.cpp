@@ -15,7 +15,7 @@ bool A_Directional_Graph::removeNode(Node &v) {
 
     for(unsigned int i =0; i < nodes.size(); ++i){
         if(currentId == nodes[i]->getId()){
-            //TODO REMOVE EDGE IF CONNECTED
+            //TODO REMOVE EDGE IF CONNECTED || Dont forget to delete pointer
             nodes.erase(nodes.begin()+i);
             return true;
         }
@@ -31,7 +31,7 @@ bool A_Directional_Graph::addEdge(Edge &e) {
 bool A_Directional_Graph::remove(Edge &e) {
     int startId;
     int endId;
-    //TODO finish
+    //TODO finish || Dont forget to delete pointer
     return false;
 }
 
