@@ -20,6 +20,10 @@ public:
 
     bool removeMultipleEdges(Edge *e, int length);
 
+    int getIndexNode(Node& n);
+
+    int getIndexEgde(Edge& e);
+
     bool searchNode(const Node &v);
 
     bool searchEdge(const Edge &e);

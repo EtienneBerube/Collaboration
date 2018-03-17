@@ -58,7 +58,7 @@ void A_Directional_Graph::display(Edge &v) const {
 void A_Directional_Graph::display(Node &e) const {
 
 }
-
+//Adjencency Matrix
 void A_Directional_Graph::display() const {
 
 }
@@ -68,5 +68,13 @@ std::string A_Directional_Graph::toString() const {
 }
 
 bool A_Directional_Graph::clean() {
-    return false;
+    return true;
+}
+
+int A_Directional_Graph::getIndexNode(Node &n) {
+    return 0;
+}
+
+int A_Directional_Graph::getIndexEgde(Edge &e) {
+    return 0;
 }
