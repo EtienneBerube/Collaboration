@@ -16,7 +16,7 @@ public:
 
     bool addEdge(Edge &e);
 
-    bool remove(Edge &e);
+    bool removeEdge(Edge &e);
 
     bool removeMultipleEdges(Edge *e, int length);
 
