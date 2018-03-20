@@ -41,6 +41,10 @@ public:
     int getIndexNode(int id);
 
     int getIndexEgde(int id);
+
+private:
+	void sortNodeVector();
+	void sortEdgeVector();
 };
 
 
