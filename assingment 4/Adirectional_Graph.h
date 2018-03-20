@@ -42,11 +42,16 @@ public:
 
     int getIndexEgde(int id);
 
+    void printGraphEdges();
+
+    void printGraphNodes();
+
 private:
-    void pathFinder();
 	void sortNodeVector();
 	void sortEdgeVector();
-
+    bool searchNode(int id);
+    void pathFinder(const Edge *e);
+    void pathFinder(const Node *e);
 };
 
 

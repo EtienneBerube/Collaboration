@@ -17,6 +17,8 @@ private:
     int degree;
 
 public:
+
+    Node(int id);
     int getId() const;
 
     void setId(int id);

@@ -12,3 +12,8 @@ void Node::setId(int id) {
     Node::id = id;
 }
 
+Node::Node(int id) {
+    degree = 0;
+    this->id = id;
+}
+

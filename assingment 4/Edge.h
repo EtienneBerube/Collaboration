@@ -11,15 +11,16 @@ class Edge
 {
 	public:
 		Edge() {}; //does nothing
-		Edge(Node & n1, Node n2);
+		Edge(Node *n1, Node* n2);
 		~Edge() {};
 		void setWeight(int _weight) { weight = _weight; }
 		int getWeight() const { return weight; }
         void incrementWeight(){weight++;}
-		void setStartNode(int _startNode) { startNode = _startNode; }
-		void setEndNode(int _endNode) { endNode = _endNode; }
+		void setStartNode(int _startNode){ startNode = _startNode; }
+		void setEndNode(int _endNode){ endNode = _endNode; }
 		int getStartNode() const { return startNode; }
 		int getEndNode() const { return endNode; }
+
 
 	protected:
 		int startNode, endNode; //integer ID values of start and end nodes
