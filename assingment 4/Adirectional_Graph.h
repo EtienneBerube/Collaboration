@@ -44,8 +44,9 @@ public:
 
 private:
     void pathFinder();
+	void sortNodeVector();
+	void sortEdgeVector();
 
-    void pathFinder(Node &start, Node &previous, Node &next);
 };
 
 

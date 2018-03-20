@@ -100,7 +100,6 @@ bool ADirectional_Graph::searchEdge(const Edge &e) {
 				return true;
 		}
 	}
-	//blah, blah blah
 	return false;
 }
 
@@ -173,9 +172,6 @@ int ADirectional_Graph::getIndexEgde(int id) {
     return -1;;
 }
 
-void ADirectional_Graph::PathFinderStart(){
-    PathFinder(*nodes[0], *nodes[0], *nodes[0],*nodes[getIndexNode(edges[0]->getEndNode())],,false;
-}
 
 void ADirectional_Graph::pathFinder(Node &start, Node &previous, Node& current ,Node &next,std::string path, bool flag){
     //USE STACK !!!
@@ -193,3 +189,28 @@ void ADirectional_Graph::pathFinder(Node &start, Node &previous, Node& current ,
 
     }
 }
+
+void ADirectional_Graph::sortNodeVector()
+{
+	//preform insertion sort based on node ID
+	int j;
+	Node *tmp;
+
+	for (int i = 0; i < nodes.size(); i++)
+	{
+		j = i;
+
+		while (j > 0 && nodes[j] < nodes[j - 1])
+		{
+			tmp = nodes[j];
+			nodes[j] = nodes[j - 1];
+			nodes[j - 1] = tmp;
+			j--;
+		}
+	}
+}
+
+void ADirectional_Graph::sortEdgeVector()
+{
+}
+
