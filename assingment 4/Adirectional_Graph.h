@@ -41,6 +41,11 @@ public:
     int getIndexNode(int id);
 
     int getIndexEgde(int id);
+
+private:
+    void pathFinder();
+
+    void pathFinder(Node &start, Node &previous, Node &next);
 };
 
 

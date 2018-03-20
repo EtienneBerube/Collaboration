@@ -42,7 +42,7 @@ bool ADirectional_Graph::addEdge(Edge &e) {
     if(!searchEdge(e)) {
         edges.push_back(&e);
         nodes[getIndexNode(e.getStartNode())]->incrementDegree();
-        nodes[getIndexNode(e.getEndNode())]->incrementDegree();
+        //nodes[getIndexNode(e.getEndNode())]->incrementDegree();
         return true;
     }
     std::cout<<"Edge already exists, duplicates are not allowed in bi-direcitonal graphs";
@@ -58,7 +58,9 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
 		for (unsigned int i = 0; i < edges.size(); i++) {
 			if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId)
 			{
-				delete edges.at(i);
+                nodes[getIndexNode(e.getStartNode())]->decrementDegree();
+                //nodes[getIndexNode(e.getEndNode())]->decrementDegree();
+                delete edges.at(i);
 				edges.erase(edges.begin() + i);
 				
 			}
@@ -107,6 +109,7 @@ void ADirectional_Graph::display(Edge &v) const {
 }
 
 void ADirectional_Graph::display(Node &e) const {
+//Assume path starts at 1
 
 }
 //Adjencency Matrix
@@ -168,4 +171,25 @@ int ADirectional_Graph::getIndexEgde(int id) {
             return i;
     }
     return -1;;
+}
+
+void ADirectional_Graph::PathFinderStart(){
+    PathFinder(*nodes[0], *nodes[0], *nodes[0],*nodes[getIndexNode(edges[0]->getEndNode())],,false;
+}
+
+void ADirectional_Graph::pathFinder(Node &start, Node &previous, Node& current ,Node &next,std::string path, bool flag){
+    //USE STACK !!!
+    Node currentNode = next;
+    for(unsigned int i = 0; i < edges.size();++i){
+        if(currentNode.getId() == start.getId()) {
+            std::cout << path << std::endl;
+            break;
+            flag = true;
+        }else if(flag != false){
+
+        }else{
+            return;
+        }
+
+    }
 }
