@@ -206,12 +206,12 @@ std::string ADirectional_Graph::toString()  {
             }
         }
     }
-    if(notPath){
+    /*if(notPath){
         std::cout<<"graph is empty"<<std::endl;
         return nullptr;
-    }else{
+    }else{*/
         return output;
-    }
+   // }
 
 }
 
@@ -433,21 +433,20 @@ void ADirectional_Graph::sortEdgeVector() {
 }
 
 void ADirectional_Graph::printGraphEdges(){
+    std::cout<<"from -> to : weight"<<std::endl;
     for(Edge *e: edges){
-        std::cout<<e->getStartNode()<<"->"<<e->getEndNode()<<std::endl;
+        std::cout<<e->getStartNode()<<"->"<<e->getEndNode()<<":" << e->getWeight() <<std::endl;
     }
+    std::cout<<std::endl;
 }
 
 void ADirectional_Graph::printGraphNodes(){
-    for(Node *node: nodes){
-        std::cout<<node->getId()<<std::endl;
-    }
-}
-
-void ADirectional_Graph::printDegreesDebug() {
+    std::cout<<"ID: Degree out"<<std::endl;
     for(Node *n : nodes)
         std::cout<<n->getId()<<": " << n->getdegree()<<std::endl;
+    std::cout<<std::endl;
 }
+
 
 
 ADirectional_Graph::~ADirectional_Graph() {
@@ -470,7 +469,7 @@ std::string ADirectional_Graph::stackToString(std::stack<Edge *> &stack) {
         stack.push(buffer[i]);
         output += (std::string("") + to_string(buffer[i]->getStartNode()) + std::string("->") + to_string(buffer[i]->getEndNode()) + std::string(";"));
     }
-    return output;
+    return output+"\n";
 
 }
 

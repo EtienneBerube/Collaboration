@@ -37,11 +37,10 @@ int main() {
     g1.printGraphNodes();
     g1.printGraphEdges();
 
-    g1.printDegreesDebug();
 
     g1.display(n4);
     std::cout<<std::endl;
     g1.display(e4);
-
+    std::cout<<"\nRepresentation of this graph:\n"<<g1.toString()<<std::endl;
 	return 0;
 }
