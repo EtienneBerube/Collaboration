@@ -11,9 +11,9 @@ Edge::Edge(Node *n1, Node *n2)
 }
 
 bool Edge::operator==(const Edge &rhs) const {
-    return startNode == rhs.startNode &&
-           endNode == rhs.endNode &&
-           weight == rhs.weight;
+    return (startNode == rhs.startNode) &&
+            (endNode == rhs.endNode) &&
+            (weight == rhs.weight);
 }
 
 bool Edge::operator!=(const Edge &rhs) const {
