@@ -158,12 +158,11 @@ void ADirectional_Graph::display() const {
 
 }
 //NOT DONE
-std::string ADirectional_Graph::toString() const {
+std::string ADirectional_Graph::toString()  {
     std::string output;
     std::stack<Edge*> pathStack;
     std::stack<int> currentDegreeStack;
 
-    bool pathFound = false;
     bool notPath = false;
 
     for(unsigned int i = 0; i < edges.size();++i){
@@ -172,7 +171,7 @@ std::string ADirectional_Graph::toString() const {
         pathStack.push(edges[i]);
         currentDegreeStack.push(0);
         //std::cout<<"********************Starts with: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
-        while(!pathFound&&!notPath) {
+        while(!notPath) {
             /*std::cout<<"inside While"<<std::endl;
             std::cout<<"Stack top edge: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
             std::cout<<"Stack degree top: "<<currentDegreeStack.top()<<std::endl;*/
@@ -180,9 +179,6 @@ std::string ADirectional_Graph::toString() const {
                 //std::cout << "woupsi" << std::endl;
                 notPath = true;
                 break;
-            }else if(pathStack.top() == e){
-                //std::cout<<"inside path found"<<std::endl;
-                pathFound = true;
             }else if(currentDegreeStack.top()!= nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){
                 //std::cout<<"inside go deeper"<<std::endl;
                 pathStack.push(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode())+currentDegreeStack.top()]);
@@ -190,6 +186,8 @@ std::string ADirectional_Graph::toString() const {
 
             }else if(currentDegreeStack.top() == nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){
                 //std::cout<<"inside abort"<<std::endl;
+
+                output+=stackToString(pathStack);
                 pathStack.pop();
                 currentDegreeStack.pop();
 
@@ -203,10 +201,8 @@ std::string ADirectional_Graph::toString() const {
                 //std::cout<<"Test"<<std::endl;
             }
         }
-        if(pathFound)
-            break;
     }
-    if(!pathFound || notPath){
+    if(notPath){
         std::cout<<"graph is empty"<<std::endl;
         return nullptr;
     }else{
@@ -343,15 +339,24 @@ void ADirectional_Graph::pathFinder(const Edge* e) const {
 void ADirectional_Graph::pathFinder(const Node* n) const {
     std::stack<Edge*> pathStack;
     std::stack<int> currentDegreeStack;
+    std::vector<int> visitedNodes;
 
     bool pathFound = false;
     bool notPath = false;
 
     for(unsigned int i = 0; i < edges.size();++i){
         //source
+        visitedNodes.clear();
+
         notPath = false;
+
         pathStack.push(edges[i]);
+
+        visitedNodes.push_back(edges[i]->getStartNode());
+        visitedNodes.push_back(edges[i]->getEndNode());
+
         currentDegreeStack.push(0);
+
         //std::cout<<"********************Starts with: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
         while(!pathFound&&!notPath) {
             /*std::cout<<"inside While"<<std::endl;
@@ -366,8 +371,21 @@ void ADirectional_Graph::pathFinder(const Node* n) const {
                 pathFound = true;
             }else if(currentDegreeStack.top()!= nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){//<----- crashes
                 //std::cout<<"inside go deeper"<<std::endl;
-                pathStack.push(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode())+currentDegreeStack.top()]);
-                currentDegreeStack.push(0);
+                if(!hasBeenVisited(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode()) + currentDegreeStack.top()]->getEndNode(),visitedNodes)) {
+                    pathStack.push(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode()) + currentDegreeStack.top()]);
+                    visitedNodes.push_back(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode()) + currentDegreeStack.top()]->getEndNode());
+                    currentDegreeStack.push(0);
+                }else{
+                    pathStack.pop();
+                    currentDegreeStack.pop();
+
+                    if(!pathStack.empty() && !currentDegreeStack.empty()) {
+                        int temp = currentDegreeStack.top();
+                        temp++;
+                        currentDegreeStack.pop();
+                        currentDegreeStack.push(temp);
+                    }
+                }
 
             }else if(currentDegreeStack.top() == nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){
                 //std::cout<<"inside abort"<<std::endl;
@@ -411,21 +429,6 @@ void ADirectional_Graph::pathFinder(const Node* n) const {
 
 
 void ADirectional_Graph::sortNodeVector() {
-    //preform insertion sort based on node ID
-    /*int j;
-    Node *tmp;
-
-    for (int i = 0; i < nodes.size(); i++) {
-        j = i;
-
-        while (j > 0 && nodes[j] > nodes[j - 1]) {
-            tmp = nodes[j];
-            nodes[j] = nodes[j - 1];
-            nodes[j - 1] = tmp;
-            j--;
-        }
-    }*/
-
     std::sort(nodes.begin(), nodes.end(), CompareNodes());
 }
 
@@ -474,6 +477,14 @@ std::string ADirectional_Graph::stackToString(std::stack<Edge *> &stack) {
     }
     return output;
 
+}
+
+bool ADirectional_Graph::hasBeenVisited(int id, std::vector<int>& vector) const {
+    bool isVisited = false;
+    for(int i: vector)
+        if(i == id)
+            return true;
+    return false;
 }
 
 

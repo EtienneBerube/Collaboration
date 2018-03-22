@@ -23,14 +23,14 @@ int main() {
     g1.addNode(n7);
 
     Edge e1(&n1,&n2);
-    Edge e2(&n1,&n3);
-    Edge e3(&n2,&n4);
+    Edge e2(&n3,&n1);
+    //Edge e3(&n2,&n4);
     Edge e4(&n3,&n4);
     Edge e5(&n2,&n3);
 
     g1.addEdge(e1);
     g1.addEdge(e2);
-    g1.addEdge(e3);
+    //g1.addEdge(e3);
     g1.addEdge(e4);
     g1.addEdge(e5);
 
@@ -39,7 +39,7 @@ int main() {
 
     g1.printDegreesDebug();
 
-    g1.display(n7);
+    g1.display(n4);
     std::cout<<std::endl;
     g1.display(e4);
 

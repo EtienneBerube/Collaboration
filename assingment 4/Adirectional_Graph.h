@@ -33,7 +33,8 @@ public:
 
     void display() const;
 
-    std::string toString() const;
+    //Needed to turn toString non-const
+    std::string toString();
 
     bool clean() override;
 
@@ -58,6 +59,7 @@ private:
     int getIndexEdgeStartWith(int id) const;
     bool searchNode(int id);
     std::string stackToString(std::stack<Edge *> &stack);
+    bool hasBeenVisited(int id, std::vector<int>& vector) const;
 
 };
 
