@@ -9,6 +9,11 @@ Graph::Graph() {
 
 }
 
+Graph::Graph(std::vector<Node *> &n, std::vector<Edge *> &e) {
+    nodes = n;
+    edges = e;
+}
+
 
 Graph::~Graph() {
     for (unsigned int i = 0; i < nodes.size(); ++i) {
@@ -78,6 +83,8 @@ Graph &Graph::operator=(const Graph &rhs) {
     for(Node* n: rhs.getNode()){
         nodes.push_back(new Node(n->getId(),n->getdegree()));
     }
+
+    return *this;
 }
 
 
@@ -89,19 +96,32 @@ std::vector<Node *> Graph::getNode() const{
     return nodes;
 }
 
-Graph &Graph::operator+(const Graph &rhs) {
-    for(Edge* e: rhs.getEdges()){
-        for(Edge* e2: edges)
-            if(e!=e2)
-                edges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
-    }
+Graph& Graph::operator+(const Graph &rhs) {
+    std::vector<Node*> tempNodes;
+    std::vector<Edge*> tempEdges;
 
-    for(Node* n: rhs.getNode()){
-        for(Node *n2: nodes)
-            if(n != n2)
-                nodes.push_back(new Node(n->getId(),n->getdegree()));
+    for(Edge* e: rhs.getEdges()){
+        tempEdges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
     }
+    for(Edge* e2: edges){
+        for(Edge* e3: tempEdges)
+            if(e2 != e3)
+                tempEdges.push_back(new Edge(e2->getStartNode(), e2->getEndNode(), e2->getWeight()));
+    }
+    for(Node* n: rhs.getNode()){
+        tempNodes.push_back(new Node(n->getId(),n->getdegree()));
+    }
+    for(Node *n2: nodes)
+        for(Node *n3: tempNodes)
+            if(n3 != n2)
+                nodes.push_back(new Node(n2->getId(),n2->getdegree()));
+
+
+
+    //return Graph(tempNodes,tempEdges);
 }
+
+
 
 
 

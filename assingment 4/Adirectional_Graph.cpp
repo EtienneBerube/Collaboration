@@ -501,10 +501,107 @@ bool ADirectional_Graph::hasBeenVisited(int id, std::vector<int>& vector) const 
     return false;
 }
 
-ostream &operator<<(ostream &os, ADirectional_Graph &graph) {
+ADirectional_Graph::ADirectional_Graph() {
+
+}
+
+ADirectional_Graph::ADirectional_Graph(std::vector<Node *> &n, std::vector<Edge *> &e) : Graph(n,e){
+
+}
+
+//*****************************************************************************************************
+std::ostream &operator<<(std::ostream &os, ADirectional_Graph &graph) {
     os << graph.toString();
     return os;
 }
+//******************************************************************************************************
+bool ADirectional_Graph::operator==(const ADirectional_Graph &rhs) const {
+    if(edges.size() != rhs.getEdges().size() || nodes.size() != rhs.getNode().size())
+        return false;
+
+    std::vector<Edge*> tempEdge = rhs.getEdges();
+    for(unsigned int i = 0; i < edges.size(); i++){
+        if(edges[i] != tempEdge[i])
+            return false;
+    }
+    std::vector<Node*> tempNode = rhs.getNode();
+    for(unsigned int i = 0; i < nodes.size(); i++){
+        if(nodes[i] != tempNode[i])
+            return false;
+    }
+    return true;
+}
+
+bool ADirectional_Graph::operator!=(const ADirectional_Graph &rhs) const {
+    return !(rhs == *this);
+}
+
+bool ADirectional_Graph::operator<(const ADirectional_Graph &rhs) const {
+    int weight1 =0;
+    int weight2 =0;
+
+    for(Edge* e: edges){
+        weight1 += e->getWeight();
+    }
+
+    for(Edge* e: rhs.getEdges()){
+        weight2 += e->getWeight();
+    }
+    return weight1 < weight2;
+
+
+}
+
+bool ADirectional_Graph::operator>(const ADirectional_Graph &rhs) const {
+    return rhs < *this;
+}
+
+
+ADirectional_Graph &ADirectional_Graph::operator++() {
+    for(Edge* e: edges)
+        e->incrementWeight();
+    return *this;
+}
+
+ADirectional_Graph &ADirectional_Graph::operator=(const ADirectional_Graph &rhs) {
+    for(Edge* e: rhs.getEdges()){
+        edges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
+    }
+
+    for(Node* n: rhs.getNode()){
+        nodes.push_back(new Node(n->getId(),n->getdegree()));
+    }
+
+    return *this;
+}
+
+
+ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) {
+    std::vector<Node*> tempNodes;
+    std::vector<Edge*> tempEdges;
+
+    for(Edge* e: rhs.getEdges()){
+        tempEdges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
+    }
+    for(Edge* e2: edges){
+        for(Edge* e3: tempEdges)
+            if(e2 != e3)
+                tempEdges.push_back(new Edge(e2->getStartNode(), e2->getEndNode(), e2->getWeight()));
+    }
+    for(Node* n: rhs.getNode()){
+        tempNodes.push_back(new Node(n->getId(),n->getdegree()));
+    }
+    for(Node *n2: nodes)
+        for(Node *n3: tempNodes)
+            if(n3 != n2)
+                nodes.push_back(new Node(n2->getId(),n2->getdegree()));
+
+
+
+    return ADirectional_Graph(tempNodes,tempEdges);
+}
+
+
 
 
 

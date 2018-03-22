@@ -12,6 +12,8 @@
 
 class ADirectional_Graph: public Graph {
 public:
+    ADirectional_Graph();
+    ADirectional_Graph(std::vector<Node *>&, std::vector<Edge*>&);
 
     ~ADirectional_Graph();
     bool addNode(Node &v);
@@ -47,7 +49,21 @@ public:
 
     void printGraphNodes();
 
-    friend std::ostream &operator<<(std::ostream &os, const ADirectional_Graph &graph);
+    friend std::ostream &operator<<(std::ostream &os, ADirectional_Graph &graph);
+
+    ADirectional_Graph& operator++();
+
+    ADirectional_Graph& operator=(const ADirectional_Graph &rhs);
+
+    ADirectional_Graph operator+(const ADirectional_Graph &rhs);
+
+    bool operator<(const ADirectional_Graph &rhs) const;
+
+    bool operator>(const ADirectional_Graph &rhs) const;
+
+    bool operator==(const ADirectional_Graph &rhs) const;
+
+    bool operator!=(const ADirectional_Graph &rhs) const;
 
 
 private:

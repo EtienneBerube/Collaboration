@@ -22,7 +22,11 @@ protected:
 public:
     Graph();
 
+    Graph(std::vector<Node *>&, std::vector<Edge* >&);
+
     virtual ~Graph();
+
+
 //adds one vertex; returns bool if added successfully.
     virtual bool addNode(Node& v)=0;
 //Bonus question: adds in a set of vertices; returns bool if added
