@@ -34,6 +34,7 @@ struct CompareNodes
 //*****************************COMPARATOR*****************************
 
 bool ADirectional_Graph::addNode(Node &v) {
+
     if (!searchNode(v)) {
         nodes.push_back(&v);
         sortNodeVector();
@@ -66,8 +67,9 @@ bool ADirectional_Graph::removeNode(Node &v) {
 }
 
 bool ADirectional_Graph::addEdge(Edge &e) {
-
-    if (!searchEdge(e)) {
+    if(e.getStartNode() > e.getEndNode()){
+        std::cout<<"A node with a bigger ID cannot be connected with a node wit ha smaller ID"<<std::endl;
+    }else if (!searchEdge(e)) {
         if(!searchNode(e.getStartNode()) || !searchNode(e.getEndNode())){
             std::cout<<"One or more nodes to be connected do not exist"<<std::endl;
             return false;
