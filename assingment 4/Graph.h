@@ -10,6 +10,10 @@ class Edge;
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
+
+using namespace std;
 
 class Graph{
 protected:
