@@ -226,12 +226,8 @@ std::string ADirectional_Graph::toString()  {
             }
         }
     }
-    /*if(notPath){
-        std::cout<<"graph is empty"<<std::endl;
-        return nullptr;
-    }else{*/
-        return output;
-   // }
+    return output;
+
 
 }
 
@@ -501,8 +497,8 @@ bool ADirectional_Graph::hasBeenVisited(int id, std::vector<int>& vector) const 
     return false;
 }
 
-ostream &operator<<(ostream &os, const ADirectional_Graph &graph) {
-    os << toString();
+ostream &operator<<(ostream &os, ADirectional_Graph &graph) {
+    os << graph.toString();
     return os;
 }
 

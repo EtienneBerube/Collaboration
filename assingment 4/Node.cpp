@@ -31,3 +31,8 @@ Node::Node(const Node &node) {
     degree = node.getdegree();
 }
 
+Node::Node(int id, int degree) {
+    this->id = id;
+    this-> degree = degree;
+}
+
