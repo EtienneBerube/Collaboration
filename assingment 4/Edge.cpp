@@ -10,5 +10,21 @@ Edge::Edge(Node *n1, Node *n2)
 	setEndNode(n2->getId());
 }
 
+bool Edge::operator==(const Edge &rhs) const {
+    return startNode == rhs.startNode &&
+           endNode == rhs.endNode &&
+           weight == rhs.weight;
+}
+
+bool Edge::operator!=(const Edge &rhs) const {
+    return !(rhs == *this);
+}
+
+std::ostream &operator<<(std::ostream &os, const Edge &edge) {
+    os << edge.startNode << "->" << edge.endNode;
+    return os;
+}
+
+
 
 

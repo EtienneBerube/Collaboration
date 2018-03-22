@@ -23,6 +23,8 @@ public:
 
     void setId(int id);
 
+    inline int getdegree() const {return degree;}
+
     inline void incrementDegree(){degree++;}
 
     inline void decrementDegree(){degree--;}

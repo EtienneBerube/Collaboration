@@ -5,6 +5,7 @@
 #ifndef ASSINGMENT_4_EDGE_H
 #define ASSINGMENT_4_EDGE_H
 
+#include <ostream>
 #include "Node.h"
 
 class Edge
@@ -21,8 +22,14 @@ class Edge
 		int getStartNode() const { return startNode; }
 		int getEndNode() const { return endNode; }
 
+    bool operator==(const Edge &rhs) const;
 
-	protected:
+    bool operator!=(const Edge &rhs) const;
+
+    friend std::ostream &operator<<(std::ostream &os, const Edge &edge);
+
+
+protected:
 		int startNode, endNode; //integer ID values of start and end nodes
 		int weight;//weight of the edge
 };

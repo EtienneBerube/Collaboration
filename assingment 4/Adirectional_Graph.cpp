@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include <stack>
 #include "Adirectional_Graph.h"
 #include "Node.h"
 #include "Edge.h"
@@ -144,11 +145,11 @@ bool ADirectional_Graph::searchEdge(const Edge &e) {
 }
 
 void ADirectional_Graph::display(Edge &v) const {
-
+    pathFinder(&v);
 }
 
 void ADirectional_Graph::display(Node &e) const {
-//Assume path starts at 1
+    pathFinder(&e);
 
 }
 
@@ -181,7 +182,7 @@ bool ADirectional_Graph::clean() {
 }
 
 
-int ADirectional_Graph::getIndexNode(Node &v) {
+int ADirectional_Graph::getIndexNode(Node &v) const{
     for (unsigned int i = 0; i < nodes.size(); i++) {
         if (nodes[i]->getId() == v.getId())
             return i;
@@ -189,7 +190,7 @@ int ADirectional_Graph::getIndexNode(Node &v) {
     return -1;
 }
 
-int ADirectional_Graph::getIndexNode(int id) {
+int ADirectional_Graph::getIndexNode(int id) const{
     for (unsigned int i = 0; i < nodes.size(); i++) {
         if (nodes[i]->getId() == id)
             return i;
@@ -197,7 +198,7 @@ int ADirectional_Graph::getIndexNode(int id) {
     return -1;
 }
 
-int ADirectional_Graph::getIndexEgde(Edge &e) {
+int ADirectional_Graph::getIndexEgde(Edge &e) const {
     for (unsigned int i = 0; i < nodes.size(); i++) {
         if (edges[i]->getStartNode() == e.getStartNode() && edges[i]->getEndNode() == e.getEndNode())
             return i;
@@ -205,20 +206,153 @@ int ADirectional_Graph::getIndexEgde(Edge &e) {
     return -1;;
 }
 
-int ADirectional_Graph::getIndexEgde(int id) {
-    for (unsigned int i = 0; i < nodes.size(); i++) {
+int ADirectional_Graph::getIndexEgde(int id) const{ //Might Delete
+    for (unsigned int i = 0; i < edges.size(); i++) {
         if (edges[i]->getStartNode() == id && edges[i]->getEndNode() == id)
             return i;
     }
-    return -1;;
+    return -1;
 }
 
 
-void ADirectional_Graph::pathFinder(const Edge* e) {
-
+int ADirectional_Graph::getIndexEdgeStartWith(int id) const{
+    for (unsigned int i = 0; i < edges.size(); i++) {
+        if (edges[i]->getStartNode() == id)
+            return i;
+    }
+    return -1;
 }
 
-void ADirectional_Graph::pathFinder(const Node* e) {
+
+void ADirectional_Graph::pathFinder(const Edge* e) const {
+    std::stack<Edge*> pathStack;
+    std::stack<int> currentDegreeStack;
+
+    bool pathFound = false;
+    bool notPath = false;
+
+    for(unsigned int i = 0; i < edges.size();++i){
+        //source
+        notPath = false;
+        pathStack.push(edges[i]);
+        currentDegreeStack.push(0);
+        //std::cout<<"********************Starts with: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
+        while(!pathFound&&!notPath) {
+            /*std::cout<<"inside While"<<std::endl;
+            std::cout<<"Stack top edge: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
+            std::cout<<"Stack degree top: "<<currentDegreeStack.top()<<std::endl;*/
+            if( pathStack.empty() && currentDegreeStack.empty()) {
+                //std::cout << "woupsi" << std::endl;
+                notPath = true;
+                break;
+            }else if(pathStack.top() == e){
+                //std::cout<<"inside path found"<<std::endl;
+                pathFound = true;
+            }else if(currentDegreeStack.top()!= nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){
+                //std::cout<<"inside go deeper"<<std::endl;
+                pathStack.push(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode())+currentDegreeStack.top()]);
+                currentDegreeStack.push(0);
+
+            }else if(currentDegreeStack.top() == nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){
+                //std::cout<<"inside abort"<<std::endl;
+                pathStack.pop();
+                currentDegreeStack.pop();
+
+                if(!pathStack.empty() && !currentDegreeStack.empty()) {
+                    int temp = currentDegreeStack.top();
+                    temp++;
+                    currentDegreeStack.pop();
+                    currentDegreeStack.push(temp);
+                }
+            }else{
+                //std::cout<<"Test"<<std::endl;
+            }
+        }
+        if(pathFound)
+            break;
+    }
+    if(!pathFound || notPath){
+        std::cout<<"No possible path using edge "<<e<<"it may not exist"<<std::endl;
+        return;
+    }else{
+        std::vector<Edge*> buffer;
+        while(!pathStack.empty()){
+            Edge *temp = pathStack.top();
+            buffer.push_back(temp);
+            pathStack.pop();
+        }
+        std::cout<<"Path using edge: "<<*e<<std::endl;
+
+        for(size_t i = buffer.size()-1;i>=0&&i<buffer.size();--i)
+            std::cout<<buffer[i]->getStartNode()<<"->"<<buffer[i]->getEndNode()<<";";
+        std::cout<<std::endl;
+    }
+}
+
+void ADirectional_Graph::pathFinder(const Node* n) const {
+    std::stack<Edge*> pathStack;
+    std::stack<int> currentDegreeStack;
+
+    bool pathFound = false;
+    bool notPath = false;
+
+    for(unsigned int i = 0; i < edges.size();++i){
+        //source
+        notPath = false;
+        pathStack.push(edges[i]);
+        currentDegreeStack.push(0);
+        //std::cout<<"********************Starts with: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
+        while(!pathFound&&!notPath) {
+            /*std::cout<<"inside While"<<std::endl;
+            std::cout<<"Stack top edge: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
+            std::cout<<"Stack degree top: "<<currentDegreeStack.top()<<std::endl;*/
+            if( pathStack.empty() && currentDegreeStack.empty()) {
+                //std::cout << "woupsi" << std::endl;
+                notPath = true;
+                break;
+            }else if(pathStack.top()->getEndNode() == n->getId()){
+                //std::cout<<"inside path found"<<std::endl;
+                pathFound = true;
+            }else if(currentDegreeStack.top()!= nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){//<----- crashes
+                //std::cout<<"inside go deeper"<<std::endl;
+                pathStack.push(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode())+currentDegreeStack.top()]);
+                currentDegreeStack.push(0);
+
+            }else if(currentDegreeStack.top() == nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){
+                //std::cout<<"inside abort"<<std::endl;
+                pathStack.pop();
+                currentDegreeStack.pop();
+
+                if(!pathStack.empty() && !currentDegreeStack.empty()) {
+                    int temp = currentDegreeStack.top();
+                    temp++;
+                    currentDegreeStack.pop();
+                    currentDegreeStack.push(temp);
+                }
+            }else{
+                //std::cout<<"Test"<<std::endl;
+            }
+        }
+        if(pathFound)
+            break;
+    }
+    if(!pathFound || notPath){
+        std::cout<<"No possible path to node#"<<n->getId()<<". It might be orphan"<<std::endl;
+        return;
+    }else{
+        std::vector<Edge*> buffer;
+        while(!pathStack.empty()){
+            Edge *temp = pathStack.top();
+            buffer.push_back(temp);
+            pathStack.pop();
+        }
+        std::cout<<"Path up to node: "<<n->getId()<<std::endl;
+
+        for(size_t i = buffer.size()-1;i>=0&&i<buffer.size();--i)
+            std::cout<<buffer[i]->getStartNode()<<"->"<<buffer[i]->getEndNode()<<";";
+        std::cout<<std::endl;
+    }
+
 
 }
 
@@ -259,6 +393,19 @@ void ADirectional_Graph::printGraphNodes(){
     for(Node *node: nodes){
         std::cout<<node->getId()<<std::endl;
     }
+}
+
+void ADirectional_Graph::printDegreesDebug() {
+    for(Node *n : nodes)
+        std::cout<<n->getId()<<": " << n->getdegree()<<std::endl;
+}
+
+
+ADirectional_Graph::~ADirectional_Graph() {
+    for(Node* n: nodes)
+        delete n;
+    for(Edge* e: edges)
+        delete e;
 }
 
 

@@ -10,6 +10,8 @@
 
 class ADirectional_Graph: public Graph {
 public:
+
+    ~ADirectional_Graph();
     bool addNode(Node &v);
 
     bool removeNode(Node &v);
@@ -19,10 +21,6 @@ public:
     bool removeEdge(Edge &e);
 
     bool removeMultipleEdges(Edge *e, int length);
-
-    int getIndexNode(Node& n);
-
-    int getIndexEgde(Edge& e);
 
     bool searchNode(const Node &v);
 
@@ -38,20 +36,27 @@ public:
 
     bool clean() override;
 
-    int getIndexNode(int id);
+    int getIndexNode(int id) const;
 
-    int getIndexEgde(int id);
+    int getIndexEgde(int id) const;
 
     void printGraphEdges();
 
     void printGraphNodes();
 
+    void printDegreesDebug();
+
+
 private:
+    void pathFinder(const Edge *e) const;
+    void pathFinder(const Node *e) const;
 	void sortNodeVector();
 	void sortEdgeVector();
+    int getIndexNode(Node& n) const;
+    int getIndexEgde(Edge& e) const;
+    int getIndexEdgeStartWith(int id) const;
     bool searchNode(int id);
-    void pathFinder(const Edge *e);
-    void pathFinder(const Node *e);
+
 };
 
 
