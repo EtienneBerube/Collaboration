@@ -591,7 +591,7 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
 
     for(Edge* e2: edges){
         for(Edge* e3: tempEdges)
-            if(e2 !=e3)
+            if(e2 !=e3)//<-------- broken
                 tempEdges.push_back(new Edge(e2->getStartNode(), e2->getEndNode(), e2->getWeight()));
     }
 
@@ -607,7 +607,8 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
 	{
 		for (int j = 0; j < tempNodes.size(); j++)
 		{
-			if (nodes.at(i) != tempNodes.at(j))
+			if (nodes[i]->getId() != tempNodes[i]->getId()
+                || nodes[i]->getdegree() != tempNodes[i]->getdegree()) //<---- broken
 				tempNodes2.push_back(new Node(nodes.at(i)->getId(), nodes.at(i)->getdegree()));
 		}
 	}
