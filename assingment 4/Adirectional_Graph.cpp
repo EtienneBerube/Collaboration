@@ -162,7 +162,12 @@ void ADirectional_Graph::display() const {
 
 	int** matrix = new int*[nodes.size()];
 	for (int i = 0; i < nodes.size(); i++)
-		matrix[i] = new int(nodes.size());
+        matrix[i] = new int(nodes.size());
+
+
+    //TODO INTIALIZE TO ZERO
+
+
 	
 	//first line will be a whitespace followed by the ID's of the numbers
 	std::cout << " ";
@@ -170,14 +175,32 @@ void ADirectional_Graph::display() const {
 	for (unsigned int i = 0; i < nodes.size(); i++)
 		std::cout << nodes.at(i)->getId() ;
 
-
+    //*********************ETIENNE*****************
+    for(size_t i = 0; i < nodes.size(); ++i){ //<------ WRONG
+        matrix[0][i+1] = nodes[i]->getId();
+    }
 
 	for (int i = 0; i < edges.size(); i++)
 	{
-		for (int j = 0; j < edges.size(); j++)
-		{
-			
-		}
+		int from = edges[i]->getStartNode();
+        int to = edges[i]->getEndNode();
+
+        int indexRow = 0;
+        int indexCol = 0;
+
+        for(size_t i = 0; i < nodes.size();i++){
+            if(matrix[0][i] == to)
+                indexCol = to;
+        }
+
+        for(size_t i = 0; i < nodes.size();i++){
+            if(matrix[i][0] == from)
+                indexRow = from;
+        }
+
+        matrix[indexRow][indexCol] = 1;
+
+
 	}
 
 	
