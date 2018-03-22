@@ -593,7 +593,7 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
 		if (!tempEdges.empty()) 
 		{
 			for (Edge* e3 : tempEdges)
-				if (e2 != e3)
+				if (e2->getStartNode() != e3->getStartNode() ||	e2->getEndNode() != e3->getEndNode() ||	e2->getWeight() != e3->getWeight())
 					tempEdges.push_back(new Edge(e2->getStartNode(), e2->getEndNode(), e2->getWeight()));
 		}
 
