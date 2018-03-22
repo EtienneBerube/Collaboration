@@ -12,6 +12,7 @@ class Edge;
 #include <vector>
 #include <string>
 #include <sstream>
+#include <array>
 
 using namespace std;
 

@@ -160,29 +160,54 @@ void ADirectional_Graph::display(Node &e) const {
 //Adjencency Matrix
 void ADirectional_Graph::display() const {
 
-	//print a white space in the top left corner of the matrix
+	int** matrix = new int*[nodes.size()];
+	for (int i = 0; i < nodes.size(); i++)
+		matrix[i] = new int(nodes.size());
+	
+	//first line will be a whitespace followed by the ID's of the numbers
 	std::cout << " ";
 	//start by printing the first row
 	for (unsigned int i = 0; i < nodes.size(); i++)
-		std::cout << i + 1;
-	cout << endl;
-	//print rest of rows
-	for (unsigned int i = 0; i < nodes.size(); i++)
+		std::cout << nodes.at(i)->getId() ;
+
+
+
+	for (int i = 0; i < edges.size(); i++)
 	{
-		//print the number of the row
-		std::cout << i + 1;
-
-
-		//check to see if the current row element is connected to the current collumn
-		for (unsigned int j = 0; j < nodes.size(); j++)
+		for (int j = 0; j < edges.size(); j++)
 		{
-			if (edges.at(i)->getEndNode() == edges.at(j)->getStartNode())
-				cout << "1";
-			else
-				cout << "0";
+			
 		}
-		cout << endl;
 	}
+
+	
+
+
+
+
+
+	////print a white space in the top left corner of the matrix
+	//std::cout << " ";
+	////start by printing the first row
+	//for (unsigned int i = 0; i < nodes.size(); i++)
+	//	std::cout << nodes.at(i)->getId() ;
+	//cout << endl;
+	////print rest of rows
+	//for (unsigned int i = 0; i < nodes.size(); i++)
+	//{
+	//	//print the number of the row
+	//	std::cout << nodes.at(i)->getId();
+
+	//	//check to see if the current row element is connected to the current collumn
+	//	for (unsigned int j = 0; j < nodes.size(); j++)
+	//	{
+	//		if (edges.at(i)->getEndNode() == edges.at(j)->getStartNode())
+	//			cout << "1";
+	//		else
+	//			cout << "0";
+	//	}
+	//	cout << endl;
+	//}
 
 }
 //NOT DONE
