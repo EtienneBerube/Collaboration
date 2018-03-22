@@ -165,7 +165,7 @@ void ADirectional_Graph::display() const {
 	//start by printing the first row
 	for (unsigned int i = 0; i < nodes.size(); i++)
 		std::cout << i + 1;
-
+	cout << endl;
 	//print rest of rows
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
