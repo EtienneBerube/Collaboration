@@ -481,6 +481,11 @@ bool ADirectional_Graph::hasBeenVisited(int id, std::vector<int>& vector) const 
     return false;
 }
 
+ostream &operator<<(ostream &os, const ADirectional_Graph &graph) {
+    os << toString();
+    return os;
+}
+
 
 
 
