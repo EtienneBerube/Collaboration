@@ -67,9 +67,9 @@ public:
 
     bool operator!=(const Graph &rhs) const;
 
-    std::vector<Edge *> &getEdges() const;
+    std::vector<Edge *> getEdges() const;
 
-    std::vector<Node *> &getNode() const;
+    std::vector<Node *> getNode() const;
 };
 
 

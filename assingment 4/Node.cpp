@@ -17,3 +17,17 @@ Node::Node(int id) {
     this->id = id;
 }
 
+bool Node::operator==(const Node &rhs) const {
+    return id == rhs.id &&
+           degree == rhs.degree;
+}
+
+bool Node::operator!=(const Node &rhs) const {
+    return !(rhs == *this);
+}
+
+Node::Node(const Node &node) {
+    id = node.getId();
+    degree = node.getdegree();
+}
+
