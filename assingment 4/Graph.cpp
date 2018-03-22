@@ -23,22 +23,24 @@ Graph::~Graph() {
 }
 
 bool Graph::operator==(const Graph &rhs) const {
-    if(edges.size != rhs.getEdges().size() )
-    for(unsigned int i = 0; i < ){
+    if(edges.size() != rhs.getEdges().size() || nodes.size() != rhs.getNode().size())
+        return false;
 
+    std::vector<Edge*> tempEdge = rhs.getEdges();
+    for(unsigned int i = 0; i < edges.size(); i++){
+        if(edges[i] != tempEdge[i])
+            return false;
     }
-    for(Node* n: nodes){
-
+    std::vector<Node*> tempNode = rhs.getNode();
+    for(unsigned int i = 0; i < nodes.size(); i++){
+        if(nodes[i] != tempNode[i])
+            return false;
     }
+    return true;
 }
 
 bool Graph::operator!=(const Graph &rhs) const {
     return !(rhs == *this);
-}
-
-std::ostream &operator<<(std::ostream &os, const Graph &graph) {
-    os<<toString();
-    return os;
 }
 
 bool Graph::operator<(const Graph &rhs) const {
@@ -61,7 +63,7 @@ Graph &Graph::operator++() {
 }
 
 Graph &Graph::operator=(const Graph &rhs) {
-    return <#initializer#>;
+    return ;
 }
 
 

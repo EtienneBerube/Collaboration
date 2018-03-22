@@ -47,7 +47,7 @@ public:
 
     void printGraphNodes();
 
-
+    friend std::ostream &operator<<(std::ostream &os, const ADirectional_Graph &graph);
 
 
 private:

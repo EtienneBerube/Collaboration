@@ -59,8 +59,6 @@ public:
 
     Graph& operator=(const Graph &rhs);
 
-    friend std::ostream &operator<<(std::ostream &os, const Graph &graph);
-
     bool operator<(const Graph &rhs) const;
 
     bool operator>(const Graph &rhs) const;
