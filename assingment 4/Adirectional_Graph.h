@@ -8,6 +8,7 @@
 
 #include "Graph.h"
 #include <stack>
+#include <ostream>
 
 class ADirectional_Graph: public Graph {
 public:
@@ -48,6 +49,7 @@ public:
 
 
 
+
 private:
     void pathFinder(const Edge *e) const;
     void pathFinder(const Node *e) const;
@@ -59,6 +61,7 @@ private:
     bool searchNode(int id);
     std::string stackToString(std::stack<Edge *> &stack);
     bool hasBeenVisited(int id, std::vector<int>& vector) const;
+
 
 };
 

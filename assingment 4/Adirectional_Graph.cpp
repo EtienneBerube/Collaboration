@@ -128,7 +128,7 @@ bool ADirectional_Graph::searchNode(const Node &v) {
 bool ADirectional_Graph::searchNode(int id) {
     for (Node *n : nodes) {
         //std::cout<<"debug comparing "<<n->getId() << " and " << id << std::endl;
-        if (n->getId() == id);
+        if (n->getId() == id)
             return true;
     }
     return false;
@@ -480,6 +480,9 @@ bool ADirectional_Graph::hasBeenVisited(int id, std::vector<int>& vector) const 
             return true;
     return false;
 }
+
+
+
 
 
 

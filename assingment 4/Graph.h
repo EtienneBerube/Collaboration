@@ -52,6 +52,22 @@ public:
     virtual bool clean() = 0;
 
     Graph& operator++();
+
+    Graph& operator=(const Graph &rhs);
+
+    friend std::ostream &operator<<(std::ostream &os, const Graph &graph);
+
+    bool operator<(const Graph &rhs) const;
+
+    bool operator>(const Graph &rhs) const;
+
+    bool operator==(const Graph &rhs) const;
+
+    bool operator!=(const Graph &rhs) const;
+
+    std::vector<Edge *> &getEdges() const;
+
+    std::vector<Node *> &getNode() const;
 };
 
 
