@@ -590,7 +590,7 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
     }
 
     for(Edge* e2: edges){
-		if (tempEdges.size() != 0) 
+		if (!tempEdges.empty()) 
 		{
 			for (Edge* e3 : tempEdges)
 				if (e2 != e3)
