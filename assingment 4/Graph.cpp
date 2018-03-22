@@ -44,11 +44,10 @@ bool Graph::operator!=(const Graph &rhs) const {
 }
 
 bool Graph::operator<(const Graph &rhs) const {
-    if (nodes < rhs.nodes)
-        return true;
-    if (rhs.nodes < nodes)
-        return false;
-    return edges < rhs.edges;
+    int weight1 =0;
+    int weight2 =0;
+
+
 }
 
 bool Graph::operator>(const Graph &rhs) const {
@@ -67,11 +66,11 @@ Graph &Graph::operator=(const Graph &rhs) {
 }
 
 
-std::vector<Edge *> & Graph::getEdges() const{
+std::vector<Edge *> Graph::getEdges() const{
     return edges;
 }
 
-std::vector<Node *> & Graph::getNode() const{
+std::vector<Node *> Graph::getNode() const{
     return nodes;
 }
 

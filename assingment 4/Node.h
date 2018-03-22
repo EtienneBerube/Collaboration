@@ -19,6 +19,8 @@ private:
 public:
 
     Node(int id);
+
+    Node(const Node& node);
     int getId() const;
 
     void setId(int id);
@@ -28,6 +30,10 @@ public:
     inline void incrementDegree(){degree++;}
 
     inline void decrementDegree(){degree--;}
+
+    bool operator==(const Node &rhs) const;
+
+    bool operator!=(const Node &rhs) const;
 };
 
 

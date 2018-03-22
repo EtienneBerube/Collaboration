@@ -25,6 +25,12 @@ std::ostream &operator<<(std::ostream &os, const Edge &edge) {
     return os;
 }
 
+Edge::Edge(const Edge &edge) {
+    startNode = edge.getStartNode();
+    endNode = edge.getEndNode();
+    weight = edge.getWeight();
+}
+
 
 
 

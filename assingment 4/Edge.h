@@ -12,6 +12,7 @@ class Edge
 {
 	public:
 		Edge() {}; //does nothing
+        Edge(const Edge& edge);
 		Edge(Node *n1, Node* n2);
 		~Edge() {};
 		void setWeight(int _weight) { weight = _weight; }
@@ -27,6 +28,8 @@ class Edge
     bool operator!=(const Edge &rhs) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Edge &edge);
+
+
 
 
 protected:
