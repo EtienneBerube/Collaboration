@@ -109,7 +109,7 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
 
 bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
 
-    for (unsigned int i = 0; i < length; i++)
+    for (int i = 0; i < length; i++)
         removeEdge(e[i]);
     delete[] e;
 

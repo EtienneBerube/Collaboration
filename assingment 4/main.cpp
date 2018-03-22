@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Adirectional_Graph.h"
 #include "Node.h"
 #include "Edge.h"
