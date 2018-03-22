@@ -7,6 +7,7 @@
 
 
 #include "Graph.h"
+#include <stack>
 
 class ADirectional_Graph: public Graph {
 public:
@@ -56,6 +57,7 @@ private:
     int getIndexEgde(Edge& e) const;
     int getIndexEdgeStartWith(int id) const;
     bool searchNode(int id);
+    std::string stackToString(std::stack<Edge *> &stack);
 
 };
 
