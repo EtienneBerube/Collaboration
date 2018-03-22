@@ -579,24 +579,40 @@ ADirectional_Graph &ADirectional_Graph::operator=(const ADirectional_Graph &rhs)
 ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) {
     std::vector<Node*> tempNodes;
     std::vector<Edge*> tempEdges;
+	std::vector<Node*> tempNodes2;
+	std::vector<Edge*> tempEdges2;
 
     for(Edge* e: rhs.getEdges()){
         tempEdges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
     }
+
     for(Edge* e2: edges){
         for(Edge* e3: tempEdges)
             if(e2 != e3)
                 tempEdges.push_back(new Edge(e2->getStartNode(), e2->getEndNode(), e2->getWeight()));
     }
+
+
     for(Node* n: rhs.getNode()){
         tempNodes.push_back(new Node(n->getId(),n->getdegree()));
     }
-    for(Node *n2: nodes)
+  /*  for(Node *n2: nodes)
         for(Node *n3: tempNodes)
             if(n3 != n2)
-                nodes.push_back(new Node(n2->getId(),n2->getdegree()));
-
-
+                nodes.push_back(new Node(n2->getId(),n2->getdegree()));	*/
+	for (int i = 0; i < nodes.size(); i++)
+	{
+		for (int j = 0; j < tempNodes.size(); j++)
+		{
+			if (nodes.at(i) != tempNodes.at(j))
+				tempNodes2.push_back(new Node(nodes.at(i)->getId(), nodes.at(i)->getdegree()));
+		}
+	}
+	//add tempNodes2 to tempNotes
+	for (int i = 0; i < tempNodes.size(); i++)
+		tempNodes.at(i) = tempNodes2.at(i);
+	for (int i = 0; i < tempEdges.size(); i++)
+		tempEdges.at(i) = tempEdges2.at(i);
 
     return ADirectional_Graph(tempNodes,tempEdges);
 }
