@@ -19,7 +19,7 @@ private:
 public:
 
     Node(int id);
-
+    Node(int id, int degree);
     Node(const Node& node);
     int getId() const;
 

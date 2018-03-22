@@ -31,6 +31,12 @@ Edge::Edge(const Edge &edge) {
     weight = edge.getWeight();
 }
 
+Edge::Edge(int id1, int id2, int weight) {
+    startNode = id1;
+    endNode = id2;
+    this->weight = weight;
+}
+
 
 
 

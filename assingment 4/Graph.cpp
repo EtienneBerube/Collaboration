@@ -71,7 +71,13 @@ Graph &Graph::operator++() {
 }
 
 Graph &Graph::operator=(const Graph &rhs) {
-    return ;
+    for(Edge* e: rhs.getEdges()){
+        edges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
+    }
+
+    for(Node* n: rhs.getNode()){
+        nodes.push_back(new Node(n->getId(),n->getdegree()));
+    }
 }
 
 

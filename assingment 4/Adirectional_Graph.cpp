@@ -226,12 +226,8 @@ std::string ADirectional_Graph::toString()  {
             }
         }
     }
-    /*if(notPath){
-        std::cout<<"graph is empty"<<std::endl;
-        return nullptr;
-    }else{*/
-        return output;
-   // }
+    return output;
+
 
 }
 

@@ -14,6 +14,7 @@ class Edge
 		Edge() {}; //does nothing
         Edge(const Edge& edge);
 		Edge(Node *n1, Node* n2);
+        Edge(int id1, int id2, int weight);
 		~Edge() {};
 		void setWeight(int _weight) { weight = _weight; }
 		int getWeight() const { return weight; }
