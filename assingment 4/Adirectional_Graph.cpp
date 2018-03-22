@@ -8,7 +8,7 @@
 #include "Node.h"
 #include "Edge.h"
 #include <sstream>
-using namespace std;
+//using namespace std;
 
 //*****************************COMPARATOR*****************************
 struct CompareEdges
@@ -160,22 +160,25 @@ void ADirectional_Graph::display(Node &e) const {
 //Adjencency Matrix
 void ADirectional_Graph::display() const {
 
-	/print a white space in the top left corner of the matrix
+	//print a white space in the top left corner of the matrix
 	std::cout << " ";
 	//start by printing the first row
-	for (int i = 0; i < nodes.size(); i++)
-	std::cout << i + 1;
+	for (unsigned int i = 0; i < nodes.size(); i++)
+		std::cout << i + 1;
 
 	//print rest of rows
-	for (int i = 0; i < nodes.size(); i++)
+	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
-	//print the number of the row
-	std::cout << i ;
+		//print the number of the row
+		std::cout << i;
 
-	//check to see if the current row element is connected to the current collumn
-	for (int j = 0; j < nodes.size(); j++)
-	{
-		if (nodes.at(i));
+
+		//check to see if the current row element is connected to the current collumn
+		for (unsigned int j = 0; j < nodes.size(); j++)
+		{
+			if (nodes.at(i));
+		}
+	}
 
 }
 //NOT DONE
