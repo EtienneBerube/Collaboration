@@ -47,6 +47,15 @@ bool Graph::operator<(const Graph &rhs) const {
     int weight1 =0;
     int weight2 =0;
 
+    for(Edge* e: edges){
+        weight1 += e->getWeight();
+    }
+
+    for(Edge* e: rhs.getEdges()){
+        weight2 += e->getWeight();
+    }
+    return weight1 < weight2;
+
 
 }
 
