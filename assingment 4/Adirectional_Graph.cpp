@@ -7,6 +7,8 @@
 #include "Adirectional_Graph.h"
 #include "Node.h"
 #include "Edge.h"
+#include <sstream>
+using namespace std;
 
 //*****************************COMPARATOR*****************************
 struct CompareEdges
@@ -497,7 +499,7 @@ std::string ADirectional_Graph::stackToString(std::stack<Edge *> &stack) {
 
     for(size_t i = buffer.size()-1;i>=0&&i<buffer.size();--i) {
         stack.push(buffer[i]);
-        output += (std::string("") + std::to_string(buffer[i]->getStartNode()) + std::string("->") + std::to_string(buffer[i]->getEndNode()) + std::string(";"));
+        output += (std::string("") + to_string(buffer[i]->getStartNode()) + std::string("->") + to_string(buffer[i]->getEndNode()) + std::string(";"));
     }
     return output;
 
