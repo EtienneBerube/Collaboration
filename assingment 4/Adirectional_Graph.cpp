@@ -157,30 +157,6 @@ void ADirectional_Graph::display(Node &e) const {
 
 //Adjencency Matrix
 void ADirectional_Graph::display() const {
-	
-	/*/print a white space in the top left corner of the matrix
-	std::cout << " ";
-	//start by printing the first row
-	for (int i = 0; i < nodes.size(); i++)
-		std::cout << i + 1;
-
-	//print rest of rows
-	for (int i = 0; i < nodes.size(); i++) 
-	{
-		//print the number of the row
-		std::cout << i ;
-
-		//check to see if the current row element is connected to the current collumn 
-		for (int j = 0; j < nodes.size(); j++)
-		{
-			if(nodes.at(i))
-		}
-	}
-
-
-
-
-	//print the rest of the rows*/
 
 }
 //NOT DONE
@@ -397,21 +373,12 @@ void ADirectional_Graph::pathFinder(const Node* n) const {
                 pathFound = true;
             }else if(currentDegreeStack.top()!= nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){//<----- crashes
                 //std::cout<<"inside go deeper"<<std::endl;
-                if(!hasBeenVisited(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode()) + currentDegreeStack.top()]->getEndNode(),visitedNodes)) {
-                    pathStack.push(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode()) + currentDegreeStack.top()]);
-                    visitedNodes.push_back(edges[getIndexEdgeStartWith(pathStack.top()->getEndNode()) + currentDegreeStack.top()]->getEndNode());
-                    currentDegreeStack.push(0);
-                }else{
-                    pathStack.pop();
-                    currentDegreeStack.pop();
 
-                    if(!pathStack.empty() && !currentDegreeStack.empty()) {
-                        int temp = currentDegreeStack.top();
-                        temp++;
-                        currentDegreeStack.pop();
-                        currentDegreeStack.push(temp);
-                    }
-                }
+                    pathStack.push(
+                            edges[getIndexEdgeStartWith(pathStack.top()->getEndNode()) + currentDegreeStack.top()]);
+                    visitedNodes.push_back(pathStack.top()->getEndNode() + currentDegreeStack.top());
+                    currentDegreeStack.push(0);
+
 
             }else if(currentDegreeStack.top() == nodes[getIndexNode(pathStack.top()->getEndNode())]->getdegree()){
                 //std::cout<<"inside abort"<<std::endl;
