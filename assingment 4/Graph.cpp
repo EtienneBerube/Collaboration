@@ -26,7 +26,7 @@ Graph::~Graph() {
         edges.erase(edges.begin() + i);
     }
 }
-
+/*
 bool Graph::operator==(const Graph &rhs) const {
     if(edges.size() != rhs.getEdges().size() || nodes.size() != rhs.getNode().size())
         return false;
@@ -87,7 +87,7 @@ Graph &Graph::operator=(const Graph &rhs) {
     return *this;
 }
 
-
+*/
 std::vector<Edge *> Graph::getEdges() const{
     return edges;
 }
@@ -95,7 +95,7 @@ std::vector<Edge *> Graph::getEdges() const{
 std::vector<Node *> Graph::getNode() const{
     return nodes;
 }
-
+/*
 Graph& Graph::operator+(const Graph &rhs) {
     std::vector<Node*> tempNodes;
     std::vector<Edge*> tempEdges;
@@ -119,7 +119,7 @@ Graph& Graph::operator+(const Graph &rhs) {
 
 
     //return Graph(tempNodes,tempEdges);
-}
+}*/
 
 
 

@@ -52,7 +52,7 @@ int main() {
     ++g2;
     std::cout<<"Is g2 greater (after incrementing the weights?: )"<< (g2 > g1) << std::endl;
 
-    std::cout<<"Adding g1 and g4";
+    std::cout<<"Adding g1 and g4"<<std::endl;
     Node n8(8);
     Node n9(9);
     Node n10(10);
@@ -61,7 +61,7 @@ int main() {
     g4.addNode(n9);
     g4.addNode(n10);
 
-    g3 = g1+g4;
+    g3 = g1+g4; //<----- crashes
     g3.printGraphNodes();
     g3.printGraphEdges();
 	
