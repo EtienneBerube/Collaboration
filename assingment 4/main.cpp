@@ -43,9 +43,5 @@ int main() {
     std::cout<<std::endl;
     g1.display(e4);
 
-<<<<<<< HEAD
 	return 0;
-=======
-    return 0;
->>>>>>> 6b21204343bf9088fb5f0cecd0aa341aa6b53baa
 }
