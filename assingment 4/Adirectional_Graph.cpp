@@ -170,14 +170,18 @@ void ADirectional_Graph::display() const {
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
 		//print the number of the row
-		std::cout << i;
+		std::cout << i + 1;
 
 
 		//check to see if the current row element is connected to the current collumn
 		for (unsigned int j = 0; j < nodes.size(); j++)
 		{
-			if (nodes.at(i));
+			if (edges.at(i)->getEndNode() == edges.at(j)->getStartNode() || edges.at(i)->getStartNode() == edges.at(j)->getEndNode())
+				cout << "1";
+			else
+				cout << "0";
 		}
+		cout << endl;
 	}
 
 }
