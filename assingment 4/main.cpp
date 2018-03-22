@@ -61,9 +61,10 @@ int main() {
     g4.addNode(n9);
     g4.addNode(n10);
 
-    g3 = g1+g4;
-    g3.printGraphNodes();
-    g3.printGraphEdges();
+  //  g3 = g1+g4;
+   // g3.printGraphNodes();
+ //   g3.printGraphEdges();
+	g4.display();
 
 	return 0;
 }
