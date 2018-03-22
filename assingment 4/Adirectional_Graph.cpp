@@ -589,14 +589,13 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
         tempEdges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
     }
 
-    for(Edge* e2: edges){
-		if (!tempEdges.empty()) 
+	if (!tempEdges.empty()){
+		for (Edge* e2 : edges)
 		{
 			for (Edge* e3 : tempEdges)
 				if (e2->getStartNode() != e3->getStartNode() ||	e2->getEndNode() != e3->getEndNode() ||	e2->getWeight() != e3->getWeight())
 					tempEdges.push_back(new Edge(e2->getStartNode(), e2->getEndNode(), e2->getWeight()));
 		}
-
     }
 
 
