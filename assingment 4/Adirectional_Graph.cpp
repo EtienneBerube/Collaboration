@@ -176,7 +176,7 @@ void ADirectional_Graph::display() const {
 		//check to see if the current row element is connected to the current collumn
 		for (unsigned int j = 0; j < nodes.size(); j++)
 		{
-			if (edges.at(i)->getEndNode() == edges.at(j)->getStartNode() || edges.at(i)->getStartNode() == edges.at(j)->getEndNode())
+			if (edges.at(i)->getEndNode() == edges.at(j)->getStartNode())
 				cout << "1";
 			else
 				cout << "0";

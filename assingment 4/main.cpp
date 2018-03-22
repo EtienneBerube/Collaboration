@@ -64,6 +64,8 @@ int main() {
     g3 = g1+g4;
     g3.printGraphNodes();
     g3.printGraphEdges();
+	
+	g4.display();
 
 	return 0;
 }
