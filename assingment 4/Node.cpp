@@ -18,8 +18,7 @@ Node::Node(int id) {
 }
 
 bool Node::operator==(const Node &rhs) const {
-    return id == rhs.id &&
-           degree == rhs.degree;
+    return (id == rhs.id) && (degree == rhs.degree);
 }
 
 bool Node::operator!=(const Node &rhs) const {

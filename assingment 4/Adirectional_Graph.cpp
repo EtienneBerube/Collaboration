@@ -521,12 +521,15 @@ bool ADirectional_Graph::operator==(const ADirectional_Graph &rhs) const {
 
     std::vector<Edge*> tempEdge = rhs.getEdges();
     for(unsigned int i = 0; i < edges.size(); i++){
-        if(edges[i] != tempEdge[i])
+        std::cout<<edges[i]->getStartNode()<<"->"<<edges[i]->getEndNode()<<":"<<tempEdge[i]->getStartNode()<<"->"<<tempEdge[i]->getEndNode()<<std::endl;
+        if(edges[i]->getStartNode() != tempEdge[i]->getStartNode() ||
+                edges[i]->getEndNode() != tempEdge[i]->getEndNode() ||
+                edges[i]->getWeight() != tempEdge[i]->getWeight())
             return false;
     }
     std::vector<Node*> tempNode = rhs.getNode();
     for(unsigned int i = 0; i < nodes.size(); i++){
-        if(nodes[i] != tempNode[i])
+        if(nodes[i]->getId() != tempNode[i]->getId() || nodes[i]->getdegree() != tempNode[i]->getdegree())
             return false;
     }
     return true;
