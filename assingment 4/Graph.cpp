@@ -16,15 +16,18 @@ Graph::Graph(std::vector<Node *> &n, std::vector<Edge *> &e) {
 
 
 Graph::~Graph() {
-    for (unsigned int i = 0; i < nodes.size(); ++i) {
-        delete nodes[i];
-        nodes.erase(nodes.begin() + i);
+    /*if(!nodes.empty()) {
+        for (unsigned int i = 0; i < nodes.size(); ++i) {
+            delete nodes[i];
+            nodes.erase(nodes.begin() + i);
+        }
     }
-
-    for (unsigned int i = 0; i < edges.size(); ++i) {
-        delete edges[i];
-        edges.erase(edges.begin() + i);
-    }
+    if(!edges.empty()){
+        for (unsigned int i = 0; i < edges.size(); ++i) {
+            delete edges[i];
+            edges.erase(edges.begin() + i);
+        }
+    }*/
 }
 /*
 bool Graph::operator==(const Graph &rhs) const {
