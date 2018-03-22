@@ -4,6 +4,9 @@
 
 int main() {
     ADirectional_Graph g1;
+    ADirectional_Graph g2;
+    ADirectional_Graph g3;
+    ADirectional_Graph g4;
 
     Node n1(1);
     Node n2(2);
@@ -40,6 +43,27 @@ int main() {
     g1.display(n4);
     std::cout<<std::endl;
     g1.display(e4);
-    std::cout<<"\nRepresentation of this graph:\n"<<g1.toString()<<std::endl;
+    std::cout<<"\nRepresentation of this graph:\n"<<g1<<std::endl;
+
+
+
+    g2 = g1;
+    std::cout<<"Equal?(g1 vs g2): "<< (g1==g2) <<std::endl;
+    ++g2;
+    std::cout<<"Is g2 greater (after incrementing the weights?: )"<< (g2 > g1) << std::endl;
+
+    std::cout<<"Adding g1 and g4";
+    Node n8(8);
+    Node n9(9);
+    Node n10(10);
+
+    g4.addNode(n8);
+    g4.addNode(n9);
+    g4.addNode(n10);
+
+    g3 = g1+g4;
+    g3.printGraphNodes();
+    g3.printGraphEdges();
+
 	return 0;
 }

@@ -59,6 +59,8 @@ public:
 
     Graph& operator=(const Graph &rhs);
 
+    Graph& operator+(const Graph &rhs);
+
     bool operator<(const Graph &rhs) const;
 
     bool operator>(const Graph &rhs) const;

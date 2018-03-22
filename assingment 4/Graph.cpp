@@ -89,6 +89,20 @@ std::vector<Node *> Graph::getNode() const{
     return nodes;
 }
 
+Graph &Graph::operator+(const Graph &rhs) {
+    for(Edge* e: rhs.getEdges()){
+        for(Edge* e2: edges)
+            if(e!=e2)
+                edges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
+    }
+
+    for(Node* n: rhs.getNode()){
+        for(Node *n2: nodes)
+            if(n != n2)
+                nodes.push_back(new Node(n->getId(),n->getdegree()));
+    }
+}
+
 
 
 
