@@ -590,7 +590,7 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
     }
 
     for(Edge* e2: edges){
-		if (!tempEdges.empty()) 
+		if (!tempEdges.empty())
 		{
 			for (Edge* e3 : tempEdges)
 				if (e2 != e3)
@@ -609,18 +609,22 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
                 nodes.push_back(new Node(n2->getId(),n2->getdegree()));	*/
 	for (int i = 0; i < nodes.size(); i++)
 	{
+        bool needTransfer = false;
 		for (int j = 0; j < tempNodes.size(); j++)
 		{
-			if (nodes[i]->getId() != tempNodes[i]->getId()
-                || nodes[i]->getdegree() != tempNodes[i]->getdegree()) //<---- broken
-				tempNodes2.push_back(new Node(nodes.at(i)->getId(), nodes.at(i)->getdegree()));
+			if (nodes[i]->getId() != tempNodes[j]->getId() || nodes[i]->getdegree() != tempNodes[j]->getdegree()) //<---- broken
+				needTransfer = true;
 		}
+        if(needTransfer){
+            tempNodes2.push_back(new Node(nodes.at(i)->getId(), nodes.at(i)->getdegree()));
+        }
 	}
 	//add tempNodes2 to tempNotes
-	for (int i = 0; i < tempNodes.size(); i++)
-		tempNodes.at(i) = tempNodes2.at(i);
-	for (int i = 0; i < tempEdges.size(); i++)
-		tempEdges.at(i) = tempEdges2.at(i);
+	for (int i = 0; i < tempNodes2.size(); i++)
+		tempNodes.push_back(tempNodes2.[i]);
+
+    for (int i = 0; i < tempEdges2.size(); i++)
+		tempEdges.push_back(tempEdges2[i]);
 
     return ADirectional_Graph(tempNodes,tempEdges);
 }
