@@ -584,19 +584,32 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
     std::vector<Edge*> tempEdges;
 	std::vector<Node*> tempNodes2;
 	std::vector<Edge*> tempEdges2;
+	std::vector<Edge*> edgesBowl; //Sorry for the name
 
     for(Edge* e: rhs.getEdges()){
         tempEdges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
     }
 
+    for(Edge* e: edges){
+        tempEdges2.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
+    }
 
-	if (!tempEdges.empty()){
+
+	if (!tempEdges.empty() || !edges.empty()){
 		for (Edge* e2 : edges)
 		{
 			for (Edge* e3 : tempEdges)
 				if (e2->getStartNode() != e3->getStartNode() ||	e2->getEndNode() != e3->getEndNode() ||	e2->getWeight() != e3->getWeight())
 					tempEdges.push_back(new Edge(e2->getStartNode(), e2->getEndNode(), e2->getWeight()));
 		}
+    }else{
+        for(Edge* e: rhs.getEdges()){
+            edgesBowl.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
+        }
+
+        for(Edge* e: edges){
+            edgesBowl.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
+        }
     }
 
 
