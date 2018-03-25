@@ -161,26 +161,36 @@ void ADirectional_Graph::display(Node &e) const {
 void ADirectional_Graph::display() const {
 
 	int** matrix = new int*[nodes.size()];
-	for (int i = 0; i < nodes.size(); i++)
+	for (unsigned int i = 0; i < nodes.size(); i++)
         matrix[i] = new int(nodes.size());
 
 
     //TODO INTIALIZE TO ZERO
-
+	for (unsigned int i = 0; i < nodes.size(); i++)
+	{
+		for (unsigned int j = 0; j < nodes.size(); j++)
+			matrix[i][j] = 0;
+	}
 
 	
 	//first line will be a whitespace followed by the ID's of the numbers
-	std::cout << " ";
+	std::cout << "  ";
 	//start by printing the first row
-	for (unsigned int i = 0; i < nodes.size(); i++)
+	/*for (unsigned int i = 0; i < nodes.size(); i++)
 		std::cout << nodes.at(i)->getId() ;
+	cout << endl;
+	*/
 
-    //*********************ETIENNE*****************
-    for(size_t i = 0; i < nodes.size(); ++i){ //<------ WRONG
-        matrix[0][i+1] = nodes[i]->getId();
-    }
-
-	for (int i = 0; i < edges.size(); i++)
+    //print first row with ID's
+	for (size_t i = 0; i < nodes.size(); i++)
+	{
+		matrix[0][i + 1] = nodes[i]->getId();
+		cout << matrix[0][i + 1];
+	}
+	cout << endl;
+	
+	//print the rest of the matrix
+	for (unsigned int i = 0; i < edges.size(); i++)
 	{
 		int from = edges[i]->getStartNode();
         int to = edges[i]->getEndNode();
@@ -188,22 +198,31 @@ void ADirectional_Graph::display() const {
         int indexRow = 0;
         int indexCol = 0;
 
-        for(size_t i = 0; i < nodes.size();i++){
-            if(matrix[0][i] == to)
+        for(unsigned int j = 0; j < nodes.size(); j++)
+		{
+            if(matrix[i][j] == to)
                 indexCol = to;
         }
 
-        for(size_t i = 0; i < nodes.size();i++){
-            if(matrix[i][0] == from)
+        for(unsigned int j = 0; j < nodes.size(); j++)
+		{
+            if(matrix[j][i] == from)
                 indexRow = from;
         }
-
-        matrix[indexRow][indexCol] = 1;
+		if(!indexRow && !indexCol)
+			matrix[indexRow][indexCol] = 1;
 
 
 	}
 
-	
+	//print the contents of the matrix
+	for (unsigned int i = 0; i < nodes.size(); i++)
+	{
+		cout << nodes.at(i)->getId() << " "; //first print the ID of the row
+		for (unsigned int j = 0; j < nodes.size(); j++)
+			cout << matrix[i][j];
+		cout << endl; 
+	}
 
 
 
@@ -668,9 +687,9 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
     if(!tempEdges.empty() || !edges.empty()) {
 
 
-        for (int i = 0; i < nodes.size(); i++) {
+        for (unsigned int i = 0; i < nodes.size(); i++) {
             bool needTransfer = false;
-            for (int j = 0; j < tempNodes.size(); j++) {
+            for (unsigned int j = 0; j < tempNodes.size(); j++) {
                 if (nodes[i]->getId() != tempNodes[j]->getId() ||
                     nodes[i]->getdegree() != tempNodes[j]->getdegree()) //<---- broken
                     needTransfer = true;
@@ -690,10 +709,10 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
         }
     }
 	//add tempNodes2 to tempNotes
-	for (int i = 0; i < tempNodes2.size(); i++)
+	for (unsigned int i = 0; i < tempNodes2.size(); i++)
 		tempNodes.push_back(tempNodes2[i]);
 
-    for (int i = 0; i < tempEdges2.size(); i++)
+    for (unsigned int i = 0; i < tempEdges2.size(); i++)
 		tempEdges.push_back(tempEdges2[i]);
 
     std::sort(tempNodes.begin(), tempNodes.end(), CompareNodes());
