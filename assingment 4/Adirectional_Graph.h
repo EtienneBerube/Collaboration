@@ -76,7 +76,6 @@ private:
     int getIndexEdgeStartWith(int id) const;
     bool searchNode(int id);
     std::string stackToString(std::stack<Edge *> &stack);
-    bool hasBeenVisited(int id, std::vector<int>& vector) const;
 
 
 };
