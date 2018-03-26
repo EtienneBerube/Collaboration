@@ -73,10 +73,12 @@ int main() {
 	//test adjacency matrix
 	g1.display();
 
-	g1.removeEdge(e1);
+	g1.removeEdge(e1); //remove e1
+	g1.removeNode(n7); //remove n7
 	g1.display();
 
-	g1.removeMultipleEdges(&e3, 1); //remove e3 and the following edge
+	g1.removeMultipleEdges(&e3, 2); //remove e3 and the following edge
+	g1.display();
 
 	return 0;
 }
