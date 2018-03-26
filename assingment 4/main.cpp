@@ -65,7 +65,11 @@ int main() {
 	g1.display();
 
 	g1.removeEdge(e1);
-//	g1.display();
+	g1.display();
+
+	g1.removeMultipleEdges(&e3, 1); //remove e3 and the following one
+	g1.display();
+
 
 //	g1.removeMultipleEdges(&e3, 1); //remove e3 and the following one
 	//g1.display();
