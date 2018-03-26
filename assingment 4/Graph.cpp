@@ -15,12 +15,7 @@ Graph::Graph(std::vector<Node *> &n, std::vector<Edge *> &e) {
 }
 
 
-Graph::~Graph() {
-    for(std::vector<Node *>::iterator it = nodes.begin(); it != nodes.end();++it)
-        delete *it;
-    for(std::vector<Edge *>::iterator it = edges.begin(); it != edges.end();++it)
-        delete *it;
-}
+Graph::~Graph() {}
 
 std::vector<Edge *> Graph::getEdges() const{
     return edges;

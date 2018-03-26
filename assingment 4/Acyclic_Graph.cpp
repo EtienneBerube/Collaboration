@@ -223,6 +223,7 @@ void Acyclic_Graph::display() const {
 
         int indexRow = getRefrenceFromID(ref, nodes.size(), from);
         int indexCol = getRefrenceFromID(ref, nodes.size(), to);
+
 		matrix[indexRow][indexCol] = 1;
 	}
 
@@ -235,12 +236,15 @@ void Acyclic_Graph::display() const {
         }
 		cout << endl;
 	}
+<<<<<<< HEAD
     /*
     for(int i = 0; i < nodes.size();++i)
         delete[] matrix[i];
 
     delete[] ref;
 
+=======
+>>>>>>> f9b550b70a362bf190cb863315c8252a070738f2
 	return;
      */
 }
@@ -530,15 +534,7 @@ void Acyclic_Graph::printGraphNodes(){
 
 
 //Destructor
-Acyclic_Graph::~Acyclic_Graph() {
-
-    /*
-    for(int i = 0; i < nodes.size(); ++i)
-        delete nodes[i];
-    for(int i =0; i < edges.size(); ++i)
-        delete edges[i];
-        */
-}
+Acyclic_Graph::~Acyclic_Graph() {}
 
 //Transfers a stack to a string representation of it
 std::string Acyclic_Graph::stackToString(std::stack<Edge *> &stack) {

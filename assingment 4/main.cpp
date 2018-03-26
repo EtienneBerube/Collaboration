@@ -64,8 +64,10 @@ int main() {
 	
 	g1.display();
 
+
     g1.removeNode(n7);
     g1.display();
+
 
 	return 0;
 }
