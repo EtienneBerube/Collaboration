@@ -191,10 +191,13 @@ void Acyclic_Graph::display() const {
 	//zeros will then be changed to a one if the respective verticies are adjacent or not
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
-		for (unsigned int j = 0; j <= nodes.size(); j++)
-			matrix[i][j] = 0;
+		for (unsigned int j = 0; j < nodes.size(); j++) {
+
+            matrix[i][j] = 0;
+        }
+        std::cout<<endl;
 	}
-	
+
 	//first line will be a whitespace followed by the ID's of the numbers
 	std::cout << "  ";
 
@@ -210,17 +213,26 @@ void Acyclic_Graph::display() const {
     for(int i = 0; i <= nodes.size();++i){
         cout <<"-";
     }
+    cout<<"post ref"<<endl;
+    for (unsigned int i = 0; i < nodes.size(); i++)
+    {
+        for (unsigned int j = 0; j < nodes.size(); j++) {
+            cout <<matrix[i][j]<<" ";
+
+        }
+        std::cout<<endl;
+    }
     std::cout<<std::endl;
 
 	//Configure
-	for (unsigned int i = 1; i <= edges.size(); i++)
+	for (unsigned int i = 0; i < edges.size(); i++)
 	{
-		int from = edges[i-1]->getStartNode();
-        int to = edges[i-1]->getEndNode();
+		int from = edges[i]->getStartNode();
+        int to = edges[i]->getEndNode();
 
         int indexRow = getRefrenceFromID(ref, nodes.size(), from);
-        int indexCol = getRefrenceFromID(ref, nodes.size(), to)+1;
-
+        int indexCol = getRefrenceFromID(ref, nodes.size(), to);
+        cout<<from<<"->"<<to<<" vs "<<indexRow<<"->"<<indexCol<<endl;
 		matrix[indexRow][indexCol] = 1;
 	}
 
@@ -228,9 +240,10 @@ void Acyclic_Graph::display() const {
     for (unsigned int i = 0; i < nodes.size()+1; i++)
 	{
 		cout << ref[i] << "|"; //first print the ID of the row
-		for (unsigned int j = 1; j <= nodes.size(); j++) {
+		for (unsigned int j = 0; j < nodes.size(); j++) {
+            cout<<i<<":"<<j<<"=";
             int temp = matrix[i][j];
-            cout << matrix[i][j];
+            cout << matrix[i][j]<<" ";
         }
 		cout << endl;
 	}
