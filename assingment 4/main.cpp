@@ -39,13 +39,10 @@ int main() {
     g1.printGraphNodes();
     g1.printGraphEdges();
 
-
     g1.display(n4);
     std::cout<<std::endl;
     g1.display(e4);
     std::cout<<"\nRepresentation of this graph:\n"<<g1<<std::endl;
-
-
 
     g2 = g1;
     std::cout<<"Equal?(g1 vs g2): "<< (g1==g2) <<std::endl;
