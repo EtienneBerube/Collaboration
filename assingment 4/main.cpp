@@ -62,7 +62,10 @@ int main() {
     g3.printGraphNodes();
     g3.printGraphEdges();
 	
-	//g1.display();
+	g1.display();
+
+    g1.removeNode(n7);
+    g1.display();
 
 	return 0;
 }
