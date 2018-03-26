@@ -209,8 +209,8 @@ void ADirectional_Graph::display() const {
 		int from = edges[i-1]->getStartNode();
         int to = edges[i-1]->getEndNode();
 
-        int indexRow = getRefrenceFromID(matrix[0], nodes.size(), from) + 1;
-        int indexCol = getRefrenceFromID(matrix[0], nodes.size(), to);
+        int indexRow = getRefrenceFromID(matrix[0], nodes.size(), from);
+        int indexCol = getRefrenceFromID(matrix[0], nodes.size(), to)-1;
 
         std::cout<<from<<"->"<<to<<" vs "<<indexRow<<"->"<<indexCol<<std::endl;
 
