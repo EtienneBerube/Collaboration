@@ -203,16 +203,18 @@ void ADirectional_Graph::display() const {
 	}
 	cout << endl;
 	
-	//print the rest of the matrix
-	for (unsigned int i = 0; i < edges.size(); i++)						//ideas: combine to and from into one loop?
+	//Configure
+	for (unsigned int i = 1; i <= edges.size(); i++)
 	{
-		int from = edges[i]->getStartNode();
-        int to = edges[i]->getEndNode();
+		int from = edges[i-1]->getStartNode();
+        int to = edges[i-1]->getEndNode();
 
-        int indexRow = 0;
-        int indexCol = 0;
+        int indexRow = getRefrenceFromID(matrix[0], nodes.size(), from) + 1;
+        int indexCol = getRefrenceFromID(matrix[0], nodes.size(), to);
 
-		matrix[getRefrenceFromID(matrix[0], nodes.size(), from) + 1][getRefrenceFromID(matrix[0], nodes.size(), to)] = 1;
+        std::cout<<from<<"->"<<to<<" vs "<<indexRow<<"->"<<indexCol<<std::endl;
+
+		matrix[indexRow][indexCol] = 1;
 
 
 		//scan starting location and set indexCol if a match is found
@@ -246,11 +248,11 @@ void ADirectional_Graph::display() const {
 	}
 
 	//print the contents of the matrix
-	for (unsigned int i = 0; i < nodes.size(); i++)
+	for (unsigned int i = 0; i <= nodes.size(); i++)
 	{
-		cout << nodes.at(i)->getId() << " "; //first print the ID of the row
+		cout << matrix[0][i] << " "; //first print the ID of the row
 		for (unsigned int j = 0; j < nodes.size(); j++)
-			cout << matrix[i][j];
+			cout << matrix[i+1][j];
 		cout << endl; 
 	}
 
