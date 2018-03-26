@@ -212,7 +212,7 @@ void Acyclic_Graph::display() const {
     for(int i = 0; i <= nodes.size();++i){
         cout <<"-";
     }
-    
+
     std::cout<<std::endl;
 
 	//Configure
@@ -238,7 +238,7 @@ void Acyclic_Graph::display() const {
 	}
 
     for(int i = 0; i < nodes.size();++i)
-        delete [] matrix[i];
+        delete[] matrix[i];
 
     delete[] ref;
 
