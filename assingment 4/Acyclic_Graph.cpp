@@ -203,9 +203,9 @@ void Acyclic_Graph::display() const {
 		matrix[0][i] = nodes[i]->getId();
 		cout << matrix[0][i];
 	}
-    std::cout<<std::endl;
+    std::cout<<std::endl << " ";
     for(int i = 0; i < nodes.size();++i){
-        cout <<"_";
+        cout <<"-";
     }
     std::cout<<std::endl;
 
