@@ -217,6 +217,7 @@ void ADirectional_Graph::display() const {
         int indexRow = 0;
         int indexCol = 0;
 
+		//scan starting location and set indexCol if a match is found
         for(unsigned int j = 0; j < nodes.size(); j++)
 		{
 			if (matrix[i][j] == to)
@@ -226,6 +227,7 @@ void ADirectional_Graph::display() const {
 			}
         }
 
+		//scan end location and set indexRow if a match is found
         for(unsigned int j = 0; j < nodes.size(); j++)
 		{
             if(matrix[j][i] == from)
@@ -254,6 +256,8 @@ void ADirectional_Graph::display() const {
 			cout << matrix2[i][j];
 		cout << endl;
 	}
+
+	return;
 }
 //Prints all possible paths associated with this graph (paths may be of length 1 to the longest path of the graph)
 std::string ADirectional_Graph::toString()  {
