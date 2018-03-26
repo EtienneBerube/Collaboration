@@ -73,7 +73,6 @@ bool Acyclic_Graph::removeNode(Node &v) {
                     removeEdge(*e);
                 }
             }
-            delete nodes[i];
             nodes.erase(nodes.begin() + i);
             return true;
         }
@@ -114,7 +113,6 @@ bool Acyclic_Graph::removeEdge(Edge &e) {
             if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId) 
 			{
                 nodes[getIndexNode(e.getStartNode())]->decrementDegree();
-                delete edges.at(i);
                 edges.erase(edges.begin() + i);
 
             }
@@ -125,10 +123,9 @@ bool Acyclic_Graph::removeEdge(Edge &e) {
 
 //Removes multiple edges from the graph
 bool Acyclic_Graph::removeMultipleEdges(Edge *e, int length) {
-    if (length > edges.size()) {
+    if (length < edges.size()) {
         for (int i = 0; i < length; i++) //remove all edges from passed edge to length of edges
             removeEdge(e[i]);
-        delete[] e;
         return true;
     }else{
         std::cout<<"You cannot remove more edges than the actual graph itself..."<<std::endl;
