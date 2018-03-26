@@ -178,12 +178,17 @@ void ADirectional_Graph::display() const {
         matrix[i] = new int(nodes.size());
 
 
+	//create test matrix TODO: delete this shit
+	int matrix2[7][7];
+
     //Initialize the contents of the matriz to zero
 	//zeros will then be changed to a one if the respective verticies are adjacent or not
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
-		for (unsigned int j = 0; j < nodes.size(); j++)
+		for (unsigned int j = 0; j < nodes.size(); j++) {
 			matrix[i][j] = 0;
+			matrix2[i][j] = 0;
+		}
 	}
 
 	
@@ -204,7 +209,7 @@ void ADirectional_Graph::display() const {
 	cout << endl;
 	
 	//print the rest of the matrix
-	for (unsigned int i = 0; i < edges.size(); i++)
+	for (unsigned int i = 0; i < edges.size(); i++)						//ideas: combine to and from into one loop?
 	{
 		int from = edges[i]->getStartNode();
         int to = edges[i]->getEndNode();
@@ -214,8 +219,11 @@ void ADirectional_Graph::display() const {
 
         for(unsigned int j = 0; j < nodes.size(); j++)
 		{
-            if(matrix[i][j] == to)
-                indexCol = to;
+			if (matrix[i][j] == to)
+			{
+				indexCol = to;
+				break;
+			}
         }
 
         for(unsigned int j = 0; j < nodes.size(); j++)
@@ -223,8 +231,9 @@ void ADirectional_Graph::display() const {
             if(matrix[j][i] == from)
                 indexRow = from;
         }
-		if(!indexRow && !indexCol)
+		//if(!indexRow && !indexCol)
 			matrix[indexRow][indexCol] = 1;
+			matrix2[indexRow][indexCol] = 1; //TODO: Delete
 
 
 	}
@@ -236,6 +245,14 @@ void ADirectional_Graph::display() const {
 		for (unsigned int j = 0; j < nodes.size(); j++)
 			cout << matrix[i][j];
 		cout << endl; 
+	}
+	//TODO: delete this nested loop
+	for (unsigned int i = 0; i < nodes.size(); i++)
+	{
+		cout << nodes.at(i)->getId() << " "; //first print the ID of the row
+		for (unsigned int j = 0; j < nodes.size(); j++)
+			cout << matrix2[i][j];
+		cout << endl;
 	}
 }
 //Prints all possible paths associated with this graph (paths may be of length 1 to the longest path of the graph)
