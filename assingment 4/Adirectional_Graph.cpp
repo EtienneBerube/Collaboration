@@ -116,15 +116,16 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
 }
 
 //Removes multiple edges from the graph
-//TODO: add a check to make sure length <= size of edges vector?
 bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
-
-    for (int i = 0; i < length; i++) //remove all edges from passed edge to length of edges
-        removeEdge(e[i]);
-    delete[] e;
-
-
-    return true;
+    if (length > edges.size()) {
+        for (int i = 0; i < length; i++) //remove all edges from passed edge to length of edges
+            removeEdge(e[i]);
+        delete[] e;
+        return true;
+    }else{
+        std::cout<<"You cannot remove more edges than the actual graph itself..."<<std::endl;
+        return false;
+    }
 }
 
 //Returns true if the graph has the specified node
@@ -312,7 +313,6 @@ std::string ADirectional_Graph::toString()  {
 }
 
 //Deletes every node and edges from the graph
-//TODO: add a throw?
 bool ADirectional_Graph::clean() {
     try {
 		//delete nodes
