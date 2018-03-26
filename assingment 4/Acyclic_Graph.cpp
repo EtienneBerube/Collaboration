@@ -523,8 +523,8 @@ void Acyclic_Graph::printGraphEdges(){
 //Prints all the nodes and their attributes
 void Acyclic_Graph::printGraphNodes(){
     std::cout<<"ID: Degree out"<<std::endl;
-    for(Node *n : nodes)
-        std::cout<<n->getId()<<": " << n->getdegree()<<std::endl;
+    for(int i = 0; i < nodes.size(); ++i)
+        std::cout<<nodes[i]->getId()<<": " << nodes[i]->getdegree()<<std::endl;
     std::cout<<std::endl;
 }
 
