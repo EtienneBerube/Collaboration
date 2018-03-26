@@ -182,7 +182,7 @@ void Acyclic_Graph::display() const {
 	int** matrix = new int*[nodes.size()];
 
     for (unsigned int i = 0; i < nodes.size(); i++)
-        matrix[i] = new int(nodes.size());
+        matrix[i] = new int[nodes.size()];
 
     //Initialize the contents of the matriz to zero
 	//zeros will then be changed to a one if the respective verticies are adjacent or not
