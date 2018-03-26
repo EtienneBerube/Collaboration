@@ -182,7 +182,7 @@ void Acyclic_Graph::display(Node &e) const {
 //Adjencency Matrix
 void Acyclic_Graph::display() const {
 
-	int** matrix = new int*[nodes.size()];
+	int** matrix = new int*[nodes.size()+1];
 	for (unsigned int i = 0; i < nodes.size(); i++)
         matrix[i] = new int(nodes.size());
 
@@ -222,12 +222,12 @@ void Acyclic_Graph::display() const {
 	}
 
 	//print the contents of the matrix
-	for (unsigned int i = 0; i <= nodes.size(); i++)
+    for (unsigned int i = 1, k=0; i < nodes.size(); i++, ++k)
 	{
-		cout << matrix[0][i] << "|"; //first print the ID of the row
+		cout << matrix[0][k] << "|"; //first print the ID of the row
 		for (unsigned int j = 1; j < nodes.size(); j++)
-			cout << matrix[i+1][j];
-		cout << endl; 
+			cout << matrix[i][j];
+		cout << endl;
 	}
 
 	return;
