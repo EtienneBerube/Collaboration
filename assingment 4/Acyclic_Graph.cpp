@@ -531,10 +531,10 @@ void Acyclic_Graph::printGraphNodes(){
 
 //Destructor
 Acyclic_Graph::~Acyclic_Graph() {
-    for(Node* n: nodes)
-        delete n;
-    for(Edge* e: edges)
-        delete e;
+    for(int i = 0; i < nodes.size(); ++i)
+        delete nodes[i];
+    for(int i =0; i < edges.size(); ++i)
+        delete edges[i];
 }
 
 //Transfers a stack to a string representation of it
