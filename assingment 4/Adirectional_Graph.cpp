@@ -177,18 +177,12 @@ void ADirectional_Graph::display() const {
 	for (unsigned int i = 0; i < nodes.size(); i++)
         matrix[i] = new int(nodes.size());
 
-
-	//create test matrix TODO: delete this shit
-	int matrix2[7][7];
-
     //Initialize the contents of the matriz to zero
 	//zeros will then be changed to a one if the respective verticies are adjacent or not
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
-		for (unsigned int j = 0; j < nodes.size(); j++) {
+		for (unsigned int j = 0; j < nodes.size(); j++)
 			matrix[i][j] = 0;
-			matrix2[i][j] = 0;
-		}
 	}
 
 	
@@ -217,27 +211,37 @@ void ADirectional_Graph::display() const {
         int indexRow = 0;
         int indexCol = 0;
 
+		matrix[getRefrenceFromID(matrix[0], nodes.size(), from) + 1][getRefrenceFromID(matrix[0], nodes.size(), to)] = 1;
+
+
 		//scan starting location and set indexCol if a match is found
-        for(unsigned int j = 0; j < nodes.size(); j++)
+		/*for (int j = 0; j < nodes.size(); j++)
 		{
-			if (matrix[i][j] == to)
+			if (matrix[i + i][j] == to)
+			{
+				matrix[i + 1][getRefrenceFromID(matrix, nodes.size(), j)]
+			}
+		}*/
+
+
+       /*for(unsigned int j = 0; j < nodes.size(); j++)
+		{
+			if (matrix[i+1][j] == to)
 			{
 				indexCol = to;
 				break;
 			}
-        }
 
-		//scan end location and set indexRow if a match is found
-        for(unsigned int j = 0; j < nodes.size(); j++)
-		{
-            if(matrix[j][i] == from)
-                indexRow = from;
-        }
+			if (matrix[j][i] == from)
+			{
+				indexRow = from;
+				break;
+			}
+        }*/
+
+
 		//if(!indexRow && !indexCol)
-			matrix[indexRow][indexCol] = 1;
-			matrix2[indexRow][indexCol] = 1; //TODO: Delete
-
-
+			//matrix[indexRow][indexCol] = 1;
 	}
 
 	//print the contents of the matrix
@@ -247,14 +251,6 @@ void ADirectional_Graph::display() const {
 		for (unsigned int j = 0; j < nodes.size(); j++)
 			cout << matrix[i][j];
 		cout << endl; 
-	}
-	//TODO: delete this nested loop
-	for (unsigned int i = 0; i < nodes.size(); i++)
-	{
-		cout << nodes.at(i)->getId() << " "; //first print the ID of the row
-		for (unsigned int j = 0; j < nodes.size(); j++)
-			cout << matrix2[i][j];
-		cout << endl;
 	}
 
 	return;
@@ -569,6 +565,17 @@ std::string ADirectional_Graph::stackToString(std::stack<Edge *> &stack) {
     }
     return output+"\n";
 
+}
+
+int ADirectional_Graph::getRefrenceFromID(int * matrix, int size, int ID) const
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (matrix[i] == ID)
+			return i;
+	}
+
+	return -1;
 }
 
 

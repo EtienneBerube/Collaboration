@@ -76,6 +76,7 @@ private:
     int getIndexEdgeStartWith(int id) const;
     bool searchNode(int id);
     std::string stackToString(std::stack<Edge *> &stack);
+	int getRefrenceFromID(int* matrix, int size, int ID) const;
 
 
 };
