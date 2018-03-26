@@ -1,9 +1,11 @@
-//
-// Created by Etienne on 17/03/2018.
-//
+/*
+ * COEN 244 Assignment 4
+ * Etienne Berube: 40052212
+ * Braldey Walsh: 40063018
+ */
 
-#ifndef ASSINGMENT_4_A_DIRECTIONAL_GRAPH_H
-#define ASSINGMENT_4_A_DIRECTIONAL_GRAPH_H
+#ifndef ASSINGMENT_4_A_CYCLIC_GRAPH_H
+#define ASSINGMENT_4_A_CYLCIC_GRAPH_H
 
 
 #include "Graph.h"
@@ -82,4 +84,4 @@ private:
 };
 
 
-#endif //ASSINGMENT_4_A_DIRECTIONAL_GRAPH_H
+#endif //ASSINGMENT_4_A_CYCLIC_GRAPH_H
