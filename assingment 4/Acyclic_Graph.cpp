@@ -73,6 +73,10 @@ bool Acyclic_Graph::removeNode(Node &v) {
                     removeEdge(*e);
                 }
             }
+<<<<<<< HEAD
+=======
+            //delete (nodes[i]);
+>>>>>>> 11053693e7f4f9ea599f2c0dd8f656996bf1844a
             nodes.erase(nodes.begin() + i);
             return true;
         }
@@ -220,7 +224,7 @@ void Acyclic_Graph::display() const {
 
         int indexRow = getRefrenceFromID(ref, nodes.size(), from);
         int indexCol = getRefrenceFromID(ref, nodes.size(), to);
-       // cout<<from<<"->"<<to<<" vs "<<indexRow<<"->"<<indexCol<<endl; //for debugging
+
 		matrix[indexRow][indexCol] = 1;
 	}
 
@@ -233,7 +237,17 @@ void Acyclic_Graph::display() const {
         }
 		cout << endl;
 	}
+<<<<<<< HEAD
+    /*
+    for(int i = 0; i < nodes.size();++i)
+        delete[] matrix[i];
+
+    delete[] ref;
+
+=======
+>>>>>>> f9b550b70a362bf190cb863315c8252a070738f2
 	return;
+     */
 }
 //Prints all possible paths associated with this graph (paths may be of length 1 to the longest path of the graph)
 std::string Acyclic_Graph::toString()  {

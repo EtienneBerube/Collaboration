@@ -64,11 +64,18 @@ int main() {
 	
 	g1.display();
 
+<<<<<<< HEAD
 	g1.removeEdge(e1);
 	g1.display();
 
 	g1.removeMultipleEdges(&e3, 1); //remove e3 and the following one
 	g1.display();
+=======
+
+    g1.removeNode(n7);
+    g1.display();
+
+>>>>>>> 11053693e7f4f9ea599f2c0dd8f656996bf1844a
 
 	return 0;
 }
