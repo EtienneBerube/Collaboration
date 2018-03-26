@@ -195,16 +195,15 @@ void Acyclic_Graph::display() const {
 
             matrix[i][j] = 0;
         }
-        std::cout<<endl;
 	}
 
 	//first line will be a whitespace followed by the ID's of the numbers
 	std::cout << "  ";
 
-    int* ref= new int[nodes.size()];
+    auto* ref= new int[nodes.size()];
 
     //print first row with ID's
-	for (size_t i = 0; i < nodes.size(); i++)
+	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
 		ref[i] = nodes[i]->getId();
 		cout << ref[i];
@@ -237,7 +236,7 @@ void Acyclic_Graph::display() const {
 	}
 
 	//print the contents of the matrix
-    for (unsigned int i = 0; i < nodes.size()+1; i++)
+    for (unsigned int i = 0; i < nodes.size(); i++)
 	{
 		cout << ref[i] << "|"; //first print the ID of the row
 		for (unsigned int j = 0; j < nodes.size(); j++) {
