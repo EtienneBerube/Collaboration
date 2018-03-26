@@ -59,21 +59,7 @@ public:
     virtual std::string toString () = 0;
 //removeEdge all the vertices and edges;
     virtual bool clean() = 0;
-/*
-    Graph& operator++();
 
-    Graph& operator=(const Graph &rhs);
-
-    Graph& operator+(const Graph &rhs);
-
-    bool operator<(const Graph &rhs) const;
-
-    bool operator>(const Graph &rhs) const;
-
-    bool operator==(const Graph &rhs) const;
-
-    bool operator!=(const Graph &rhs) const;
-*/
     std::vector<Edge *> getEdges() const;
 
     std::vector<Node *> getNode() const;

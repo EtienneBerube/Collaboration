@@ -85,7 +85,6 @@ bool ADirectional_Graph::addEdge(Edge &e) {
         e.setWeight(1);
         edges.push_back(&e);
         nodes[getIndexNode(e.getStartNode())]->incrementDegree();
-        //nodes[getIndexNode(e.getEndNode())]->incrementDegree();
         sortEdgeVector();
         return true;
     }else {
@@ -104,7 +103,6 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
         for (unsigned int i = 0; i < edges.size(); i++) {
             if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId) {
                 nodes[getIndexNode(e.getStartNode())]->decrementDegree();
-                //nodes[getIndexNode(e.getEndNode())]->decrementDegree();
                 delete edges.at(i);
                 edges.erase(edges.begin() + i);
 
@@ -226,7 +224,6 @@ void ADirectional_Graph::display() const {
 
 	}
 
-<<<<<<< HEAD
 	//print the contents of the matrix
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
@@ -235,36 +232,6 @@ void ADirectional_Graph::display() const {
 			cout << matrix[i][j];
 		cout << endl; 
 	}
-
-
-
-
-
-	////print a white space in the top left corner of the matrix
-	//std::cout << " ";
-	////start by printing the first row
-	//for (unsigned int i = 0; i < nodes.size(); i++)
-	//	std::cout << nodes.at(i)->getId() ;
-	//cout << endl;
-	////print rest of rows
-	//for (unsigned int i = 0; i < nodes.size(); i++)
-	//{
-	//	//print the number of the row
-	//	std::cout << nodes.at(i)->getId();
-
-	//	//check to see if the current row element is connected to the current collumn
-	//	for (unsigned int j = 0; j < nodes.size(); j++)
-	//	{
-	//		if (edges.at(i)->getEndNode() == edges.at(j)->getStartNode())
-	//			cout << "1";
-	//		else
-	//			cout << "0";
-	//	}
-	//	cout << endl;
-	//}
-
-=======
->>>>>>> 6ed3fafd13019914195d838f1976f648efadfc7c
 }
 //Prints all possible paths associated with this graph (paths may be of length 1 to the longest path of the graph)
 std::string ADirectional_Graph::toString()  {
@@ -394,7 +361,6 @@ void ADirectional_Graph::pathFinder(const Edge* e) const {
         notPath = false;
         pathStack.push(edges[i]);
         currentDegreeStack.push(0);
-        //std::cout<<"********************Starts with: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
         while(!pathFound&&!notPath) {
             if( pathStack.empty() && currentDegreeStack.empty()) {
                 notPath = true;
@@ -467,7 +433,6 @@ void ADirectional_Graph::pathFinder(const Node* n) const {
 
         currentDegreeStack.push(0);
 
-        //std::cout<<"********************Starts with: "<<pathStack.top()->getStartNode()<<"->"<<pathStack.top()->getEndNode()<<std::endl;
         while(!pathFound&&!notPath) {
             if( pathStack.empty() && currentDegreeStack.empty()) {
                 notPath = true;
@@ -720,13 +685,8 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
             tempNodes.push_back(new Node(n->getId(),n->getdegree()));
         }
     }
-<<<<<<< HEAD
 	//add tempNodes2 to tempNotes
-	for (unsigned int i = 0; i < tempNodes2.size(); i++)
-=======
-	//Merges the temporary vectors to get the final one
-	for (int i = 0; i < tempNodes2.size(); i++)
->>>>>>> 6ed3fafd13019914195d838f1976f648efadfc7c
+	for (unsigned int i = 0; i < tempNodes2.size(); i++) //Merges the temporary vectors to get the final one
 		tempNodes.push_back(tempNodes2[i]);
 
     for (unsigned int i = 0; i < tempEdges2.size(); i++)
