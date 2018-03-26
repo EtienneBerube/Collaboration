@@ -212,15 +212,7 @@ void Acyclic_Graph::display() const {
     for(int i = 0; i <= nodes.size();++i){
         cout <<"-";
     }
-    cout<<"post ref"<<endl;
-    for (unsigned int i = 0; i < nodes.size(); i++)
-    {
-        for (unsigned int j = 0; j < nodes.size(); j++) {
-            cout <<matrix[i][j]<<" ";
-
-        }
-        std::cout<<endl;
-    }
+    
     std::cout<<std::endl;
 
 	//Configure
@@ -240,9 +232,7 @@ void Acyclic_Graph::display() const {
 	{
 		cout << ref[i] << "|"; //first print the ID of the row
 		for (unsigned int j = 0; j < nodes.size(); j++) {
-            cout<<i<<":"<<j<<"=";
-            int temp = matrix[i][j];
-            cout << matrix[i][j]<<" ";
+            cout << matrix[i][j];
         }
 		cout << endl;
 	}
