@@ -190,7 +190,7 @@ void Acyclic_Graph::display() const {
 	//zeros will then be changed to a one if the respective verticies are adjacent or not
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
-		for (unsigned int j = 0; j < nodes.size(); j++)
+		for (unsigned int j = 0; j <= nodes.size(); j++)
 			matrix[i][j] = 0;
 	}
 	
@@ -204,7 +204,7 @@ void Acyclic_Graph::display() const {
 		cout << matrix[0][i];
 	}
     std::cout<<std::endl << " ";
-    for(int i = 0; i < nodes.size();++i){
+    for(int i = 0; i <= nodes.size();++i){
         cout <<"-";
     }
     std::cout<<std::endl;
@@ -222,10 +222,10 @@ void Acyclic_Graph::display() const {
 	}
 
 	//print the contents of the matrix
-    for (unsigned int i = 1, k=0; i < nodes.size(); i++, ++k)
+    for (unsigned int i = 1, k=0; i < nodes.size()+1; i++, k++)
 	{
 		cout << matrix[0][k] << "|"; //first print the ID of the row
-		for (unsigned int j = 1; j < nodes.size(); j++)
+		for (unsigned int j = 1; j <= nodes.size(); j++)
 			cout << matrix[i][j];
 		cout << endl;
 	}
