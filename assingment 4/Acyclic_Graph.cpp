@@ -182,7 +182,7 @@ void Acyclic_Graph::display() const {
 	int** matrix = new int*[nodes.size()];
 
     for (unsigned int i = 0; i < nodes.size(); i++)
-        matrix[i] = new int(nodes.size());
+        matrix[i] = new int[nodes.size()];
 
     //Initialize the contents of the matriz to zero
 	//zeros will then be changed to a one if the respective verticies are adjacent or not
@@ -233,6 +233,12 @@ void Acyclic_Graph::display() const {
         }
 		cout << endl;
 	}
+
+    for(unsigned int i = 0; i < nodes.size();++i)
+        delete[] matrix[i];
+
+    delete[] matrix;
+    delete[] ref;
 }
 //Prints all possible paths associated with this graph (paths may be of length 1 to the longest path of the graph)
 std::string Acyclic_Graph::toString()  {
