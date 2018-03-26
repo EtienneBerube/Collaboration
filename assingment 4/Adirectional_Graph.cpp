@@ -99,9 +99,12 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
     int startId = e.getStartNode();
     int endId = e.getEndNode();
 
-    if (searchEdge(e)) {
-        for (unsigned int i = 0; i < edges.size(); i++) {
-            if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId) {
+    if (searchEdge(e))  //if the edge exists, go through the edges vector and remove the appropriate one
+	{
+        for (unsigned int i = 0; i < edges.size(); i++) 
+		{
+            if (edges.at(i)->getStartNode() == startId && edges.at(i)->getEndNode() == endId) 
+			{
                 nodes[getIndexNode(e.getStartNode())]->decrementDegree();
                 delete edges.at(i);
                 edges.erase(edges.begin() + i);
@@ -113,9 +116,10 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
 }
 
 //Removes multiple edges from the graph
+//TODO: add a check to make sure length <= size of edges vector?
 bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
 
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length; i++) //remove all edges from passed edge to length of edges
         removeEdge(e[i]);
     delete[] e;
 
@@ -125,7 +129,7 @@ bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
 
 //Returns true if the graph has the specified node
 bool ADirectional_Graph::searchNode(const Node &v) {
-    for (Node *n : nodes) {
+    for (Node *n : nodes) { //for all nodes, check to see if it exists based on node's ID (which is unique to each node)
         if (n->getId() == v.getId())
             return true;
     }
@@ -134,7 +138,7 @@ bool ADirectional_Graph::searchNode(const Node &v) {
 
 //Returns true if the graph has a node with this id
 bool ADirectional_Graph::searchNode(int id) {
-    for (Node *n : nodes) {
+    for (Node *n : nodes) { //for all nodes, check their id and return a bool based on if it exisits or not
         if (n->getId() == id)
             return true;
     }
@@ -174,7 +178,8 @@ void ADirectional_Graph::display() const {
         matrix[i] = new int(nodes.size());
 
 
-    //TODO INTIALIZE TO ZERO
+    //Initialize the contents of the matriz to zero
+	//zeros will then be changed to a one if the respective verticies are adjacent or not
 	for (unsigned int i = 0; i < nodes.size(); i++)
 	{
 		for (unsigned int j = 0; j < nodes.size(); j++)
@@ -286,18 +291,21 @@ std::string ADirectional_Graph::toString()  {
 }
 
 //Deletes every node and edges from the graph
+//TODO: add a throw?
 bool ADirectional_Graph::clean() {
     try {
+		//delete nodes
         for (unsigned int i = 0; i < nodes.size(); ++i) {
             delete nodes[i];
             nodes.erase(nodes.begin() + i);
         }
-
+		//delete edges
         for (unsigned int i = 0; i < edges.size(); ++i) {
             delete edges[i];
             edges.erase(edges.begin() + i);
         }
     }
+	//catch error if one is thrown
     catch (...) {
         std::cout << "An error has occured when clearing the graph" << std::endl;
         return false;
@@ -309,7 +317,7 @@ bool ADirectional_Graph::clean() {
 //Returns the index of a node in the vector<Node *>
 int ADirectional_Graph::getIndexNode(Node &v) const{
     for (unsigned int i = 0; i < nodes.size(); i++) {
-        if (nodes[i]->getId() == v.getId())
+        if (nodes[i]->getId() == v.getId()) //if theres a match return the ID of the match
             return i;
     }
     return -1;
@@ -318,7 +326,7 @@ int ADirectional_Graph::getIndexNode(Node &v) const{
 //Returns the index of a node in the vector<Node *>
 int ADirectional_Graph::getIndexNode(int id) const{
     for (unsigned int i = 0; i < nodes.size(); i++) {
-        if (nodes[i]->getId() == id)
+        if (nodes[i]->getId() == id) //if theres a match return the ID of the match
             return i;
     }
     return -1;
