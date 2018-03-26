@@ -1,12 +1,12 @@
-#include "Adirectional_Graph.h"
+#include "Acyclic_Graph.h"
 #include "Node.h"
 #include "Edge.h"
 
 int main() {
-    ADirectional_Graph g1;
-    ADirectional_Graph g2;
-    ADirectional_Graph g3;
-    ADirectional_Graph g4;
+    Acyclic_Graph g1;
+    Acyclic_Graph g2;
+    Acyclic_Graph g3;
+    Acyclic_Graph g4;
 
     Node n1(1);
     Node n2(2);
