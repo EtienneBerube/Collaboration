@@ -4,11 +4,19 @@
 
 #include <algorithm>
 #include <stack>
-#include "Adirectional_Graph.h"
+#include "Acyclic_Graph.h"
 #include "Node.h"
 #include "Edge.h"
 #include <sstream>
+#include <iostream>
+#include <ostream>
+
 //using namespace std;
+
+/*
+ * Etienne Berube: 40052212
+ * Braldey Walsh:
+ */
 
 //*****************************COMPARATOR*****************************
 //will be used to sort the edges by their starting node's IDs
@@ -38,7 +46,7 @@ struct CompareNodes
 //*****************************COMPARATOR*****************************
 
 //Adds a node to the graph
-bool ADirectional_Graph::addNode(Node &v) {
+bool Acyclic_Graph::addNode(Node &v) {
 
     if (!searchNode(v)) {
         nodes.push_back(&v);
@@ -51,7 +59,7 @@ bool ADirectional_Graph::addNode(Node &v) {
 }
 
 //Removes a ndoe from the graph
-bool ADirectional_Graph::removeNode(Node &v) {
+bool Acyclic_Graph::removeNode(Node &v) {
     int currentId = v.getId();
 
     if (!searchNode(v))
@@ -74,7 +82,7 @@ bool ADirectional_Graph::removeNode(Node &v) {
 }
 
 //Adds an edge to the graph
-bool ADirectional_Graph::addEdge(Edge &e) {
+bool Acyclic_Graph::addEdge(Edge &e) {
     if(e.getStartNode() > e.getEndNode()){
         std::cout<<"A node with a bigger ID cannot be connected with a node wit ha smaller ID"<<std::endl;
     }else if (!searchEdge(e)) {
@@ -94,7 +102,7 @@ bool ADirectional_Graph::addEdge(Edge &e) {
 }
 
 //Remove an edge from the graph
-bool ADirectional_Graph::removeEdge(Edge &e) {
+bool Acyclic_Graph::removeEdge(Edge &e) {
 
     int startId = e.getStartNode();
     int endId = e.getEndNode();
@@ -116,7 +124,7 @@ bool ADirectional_Graph::removeEdge(Edge &e) {
 }
 
 //Removes multiple edges from the graph
-bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
+bool Acyclic_Graph::removeMultipleEdges(Edge *e, int length) {
     if (length > edges.size()) {
         for (int i = 0; i < length; i++) //remove all edges from passed edge to length of edges
             removeEdge(e[i]);
@@ -129,7 +137,7 @@ bool ADirectional_Graph::removeMultipleEdges(Edge *e, int length) {
 }
 
 //Returns true if the graph has the specified node
-bool ADirectional_Graph::searchNode(const Node &v) {
+bool Acyclic_Graph::searchNode(const Node &v) {
     for (Node *n : nodes) { //for all nodes, check to see if it exists based on node's ID (which is unique to each node)
         if (n->getId() == v.getId())
             return true;
@@ -138,7 +146,7 @@ bool ADirectional_Graph::searchNode(const Node &v) {
 }
 
 //Returns true if the graph has a node with this id
-bool ADirectional_Graph::searchNode(int id) {
+bool Acyclic_Graph::searchNode(int id) {
     for (Node *n : nodes) { //for all nodes, check their id and return a bool based on if it exisits or not
         if (n->getId() == id)
             return true;
@@ -147,7 +155,7 @@ bool ADirectional_Graph::searchNode(int id) {
 }
 
 //Returns true if the graph contains a specific edge
-bool ADirectional_Graph::searchEdge(const Edge &e) {
+bool Acyclic_Graph::searchEdge(const Edge &e) {
     //go through all edges in vector and compare the weight.
     //If they have the same weight, check their start and end ID
     //if all three values are the same, they're identical
@@ -161,18 +169,18 @@ bool ADirectional_Graph::searchEdge(const Edge &e) {
     return false;
 }
 //Displays the first possible path containing this edge
-void ADirectional_Graph::display(Edge &v) const {
+void Acyclic_Graph::display(Edge &v) const {
     pathFinder(&v);
 }
 
 //Displays the first possible path that contains this node
-void ADirectional_Graph::display(Node &e) const {
+void Acyclic_Graph::display(Node &e) const {
     pathFinder(&e);
 
 }
 
 //Adjencency Matrix
-void ADirectional_Graph::display() const {
+void Acyclic_Graph::display() const {
 
 	int** matrix = new int*[nodes.size()];
 	for (unsigned int i = 0; i < nodes.size(); i++)
@@ -185,15 +193,9 @@ void ADirectional_Graph::display() const {
 		for (unsigned int j = 0; j < nodes.size(); j++)
 			matrix[i][j] = 0;
 	}
-
 	
 	//first line will be a whitespace followed by the ID's of the numbers
 	std::cout << "  ";
-	//start by printing the first row
-	/*for (unsigned int i = 0; i < nodes.size(); i++)
-		std::cout << nodes.at(i)->getId() ;
-	cout << endl;
-	*/
 
     //print first row with ID's
 	for (size_t i = 0; i < nodes.size(); i++)
@@ -207,7 +209,6 @@ void ADirectional_Graph::display() const {
     }
     std::cout<<std::endl;
 
-	
 	//Configure
 	for (unsigned int i = 1; i <= edges.size(); i++)
 	{
@@ -217,39 +218,7 @@ void ADirectional_Graph::display() const {
         int indexRow = getRefrenceFromID(matrix[0], nodes.size(), from)+1;
         int indexCol = getRefrenceFromID(matrix[0], nodes.size(), to)+1;
 
-        //std::cout<<from<<"->"<<to<<" vs "<<indexRow<<"->"<<indexCol<<std::endl;
-
 		matrix[indexRow][indexCol] = 1;
-
-
-		//scan starting location and set indexCol if a match is found
-		/*for (int j = 0; j < nodes.size(); j++)
-		{
-			if (matrix[i + i][j] == to)
-			{
-				matrix[i + 1][getRefrenceFromID(matrix, nodes.size(), j)]
-			}
-		}*/
-
-
-       /*for(unsigned int j = 0; j < nodes.size(); j++)
-		{
-			if (matrix[i+1][j] == to)
-			{
-				indexCol = to;
-				break;
-			}
-
-			if (matrix[j][i] == from)
-			{
-				indexRow = from;
-				break;
-			}
-        }*/
-
-
-		//if(!indexRow && !indexCol)
-			//matrix[indexRow][indexCol] = 1;
 	}
 
 	//print the contents of the matrix
@@ -264,7 +233,7 @@ void ADirectional_Graph::display() const {
 	return;
 }
 //Prints all possible paths associated with this graph (paths may be of length 1 to the longest path of the graph)
-std::string ADirectional_Graph::toString()  {
+std::string Acyclic_Graph::toString()  {
     std::string output;
     std::stack<Edge*> pathStack;
     std::stack<int> currentDegreeStack;
@@ -316,7 +285,7 @@ std::string ADirectional_Graph::toString()  {
 }
 
 //Deletes every node and edges from the graph
-bool ADirectional_Graph::clean() {
+bool Acyclic_Graph::clean() {
     try {
 		//delete nodes
         for (unsigned int i = 0; i < nodes.size(); ++i) {
@@ -339,7 +308,7 @@ bool ADirectional_Graph::clean() {
 
 
 //Returns the index of a node in the vector<Node *>
-int ADirectional_Graph::getIndexNode(Node &v) const{
+int Acyclic_Graph::getIndexNode(Node &v) const{
     for (unsigned int i = 0; i < nodes.size(); i++) {
         if (nodes[i]->getId() == v.getId()) //if theres a match return the ID of the match
             return i;
@@ -348,7 +317,7 @@ int ADirectional_Graph::getIndexNode(Node &v) const{
 }
 
 //Returns the index of a node in the vector<Node *>
-int ADirectional_Graph::getIndexNode(int id) const{
+int Acyclic_Graph::getIndexNode(int id) const{
     for (unsigned int i = 0; i < nodes.size(); i++) {
         if (nodes[i]->getId() == id) //if theres a match return the ID of the match
             return i;
@@ -356,7 +325,7 @@ int ADirectional_Graph::getIndexNode(int id) const{
     return -1;
 }
 //Returns the index of an edge in the vector<Edge *>
-int ADirectional_Graph::getIndexEgde(Edge &e) const {
+int Acyclic_Graph::getIndexEgde(Edge &e) const {
     for (unsigned int i = 0; i < nodes.size(); i++) {
         if (edges[i]->getStartNode() == e.getStartNode() && edges[i]->getEndNode() == e.getEndNode())
             return i;
@@ -364,7 +333,7 @@ int ADirectional_Graph::getIndexEgde(Edge &e) const {
     return -1;;
 }
 //Returns the index of an edge in the vector<Edge *>
-int ADirectional_Graph::getIndexEgde(int id) const{ //Might Delete
+int Acyclic_Graph::getIndexEgde(int id) const{ //Might Delete
     for (unsigned int i = 0; i < edges.size(); i++) {
         if (edges[i]->getStartNode() == id && edges[i]->getEndNode() == id)
             return i;
@@ -372,7 +341,7 @@ int ADirectional_Graph::getIndexEgde(int id) const{ //Might Delete
     return -1;
 }
 //Gets the index of the first edge that has the corresponding id for its starting edge
-int ADirectional_Graph::getIndexEdgeStartWith(int id) const{
+int Acyclic_Graph::getIndexEdgeStartWith(int id) const{
     for (unsigned int i = 0; i < edges.size(); i++) {
         if (edges[i]->getStartNode() == id)
             return i;
@@ -381,7 +350,7 @@ int ADirectional_Graph::getIndexEdgeStartWith(int id) const{
 }
 
 //Finds the path that contains such an edge
-void ADirectional_Graph::pathFinder(const Edge* e) const {
+void Acyclic_Graph::pathFinder(const Edge* e) const {
     std::stack<Edge*> pathStack;
     std::stack<int> currentDegreeStack;
 
@@ -444,7 +413,7 @@ void ADirectional_Graph::pathFinder(const Edge* e) const {
 
 //Finds the path that contains such a Node
 //Refer to the previous function for documentation (pathFinder(Edge* e))
-void ADirectional_Graph::pathFinder(const Node* n) const {
+void Acyclic_Graph::pathFinder(const Node* n) const {
     std::stack<Edge*> pathStack;
     std::stack<int> currentDegreeStack;
     std::vector<int> visitedNodes;
@@ -521,17 +490,17 @@ void ADirectional_Graph::pathFinder(const Node* n) const {
 
 
 //Sorts all the Nodes within the vector
-void ADirectional_Graph::sortNodeVector() {
+void Acyclic_Graph::sortNodeVector() {
     std::sort(nodes.begin(), nodes.end(), CompareNodes());
 }
 
 //Sorts all the edges within the vector
-void ADirectional_Graph::sortEdgeVector() {
+void Acyclic_Graph::sortEdgeVector() {
     std::sort(edges.begin(),edges.end(),CompareEdges());
 }
 
 //Prints all the edges and their weights
-void ADirectional_Graph::printGraphEdges(){
+void Acyclic_Graph::printGraphEdges(){
     std::cout<<"from -> to : weight"<<std::endl;
     for(Edge *e: edges){
         std::cout<<e->getStartNode()<<"->"<<e->getEndNode()<<":" << e->getWeight() <<std::endl;
@@ -540,7 +509,7 @@ void ADirectional_Graph::printGraphEdges(){
 }
 
 //Prints all the nodes and their attributes
-void ADirectional_Graph::printGraphNodes(){
+void Acyclic_Graph::printGraphNodes(){
     std::cout<<"ID: Degree out"<<std::endl;
     for(Node *n : nodes)
         std::cout<<n->getId()<<": " << n->getdegree()<<std::endl;
@@ -549,7 +518,7 @@ void ADirectional_Graph::printGraphNodes(){
 
 
 //Destructor
-ADirectional_Graph::~ADirectional_Graph() {
+Acyclic_Graph::~Acyclic_Graph() {
     for(Node* n: nodes)
         delete n;
     for(Edge* e: edges)
@@ -557,7 +526,7 @@ ADirectional_Graph::~ADirectional_Graph() {
 }
 
 //Transfers a stack to a string representation of it
-std::string ADirectional_Graph::stackToString(std::stack<Edge *> &stack) {
+std::string Acyclic_Graph::stackToString(std::stack<Edge *> &stack) {
     std::vector<Edge*> buffer;
     std::string output;
     while(!stack.empty()){
@@ -574,7 +543,7 @@ std::string ADirectional_Graph::stackToString(std::stack<Edge *> &stack) {
 
 }
 
-int ADirectional_Graph::getRefrenceFromID(int * matrix, int size, int ID) const
+int Acyclic_Graph::getRefrenceFromID(int * matrix, int size, int ID) const
 {
 	for (int i = 0; i < size; i++)
 	{
@@ -586,21 +555,21 @@ int ADirectional_Graph::getRefrenceFromID(int * matrix, int size, int ID) const
 }
 
 
-ADirectional_Graph::ADirectional_Graph() {
+Acyclic_Graph::Acyclic_Graph() {
 
 }
 
-ADirectional_Graph::ADirectional_Graph(std::vector<Node *> &n, std::vector<Edge *> &e) : Graph(n,e){
+Acyclic_Graph::Acyclic_Graph(std::vector<Node *> &n, std::vector<Edge *> &e) : Graph(n,e){
 
 }
 
 //**********************************OPERATOR OVERLOADING************************************************
-std::ostream &operator<<(std::ostream &os, ADirectional_Graph &graph) {
+std::ostream &operator<<(std::ostream &os, Acyclic_Graph &graph) {
     os << graph.toString();
     return os;
 }
 //******************************************************************************************************
-bool ADirectional_Graph::operator==(const ADirectional_Graph &rhs) const {
+bool Acyclic_Graph::operator==(const Acyclic_Graph &rhs) const {
     if(edges.size() != rhs.getEdges().size() || nodes.size() != rhs.getNode().size())
         return false;
 
@@ -620,11 +589,11 @@ bool ADirectional_Graph::operator==(const ADirectional_Graph &rhs) const {
     return true;
 }
 
-bool ADirectional_Graph::operator!=(const ADirectional_Graph &rhs) const {
+bool Acyclic_Graph::operator!=(const Acyclic_Graph &rhs) const {
     return !(rhs == *this);
 }
 
-bool ADirectional_Graph::operator<(const ADirectional_Graph &rhs) const {
+bool Acyclic_Graph::operator<(const Acyclic_Graph &rhs) const {
     int weight1 =0;
     int weight2 =0;
 
@@ -640,18 +609,18 @@ bool ADirectional_Graph::operator<(const ADirectional_Graph &rhs) const {
 
 }
 
-bool ADirectional_Graph::operator>(const ADirectional_Graph &rhs) const {
+bool Acyclic_Graph::operator>(const Acyclic_Graph &rhs) const {
     return rhs < *this;
 }
 
 
-ADirectional_Graph &ADirectional_Graph::operator++() {
+Acyclic_Graph &Acyclic_Graph::operator++() {
     for(Edge* e: edges)
         e->incrementWeight();
     return *this;
 }
 
-ADirectional_Graph &ADirectional_Graph::operator=(const ADirectional_Graph &rhs) {
+Acyclic_Graph &Acyclic_Graph::operator=(const Acyclic_Graph &rhs) {
     for(Edge* e: rhs.getEdges()){
         edges.push_back(new Edge(e->getStartNode(), e->getEndNode(), e->getWeight()));
     }
@@ -664,7 +633,7 @@ ADirectional_Graph &ADirectional_Graph::operator=(const ADirectional_Graph &rhs)
 }
 
 
-ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) {
+Acyclic_Graph Acyclic_Graph::operator+(const Acyclic_Graph &rhs) {
     std::vector<Node*> tempNodes;
     std::vector<Edge*> tempEdges;
 	std::vector<Node*> tempNodes2;
@@ -741,7 +710,7 @@ ADirectional_Graph ADirectional_Graph::operator+(const ADirectional_Graph &rhs) 
     std::sort(tempEdges.begin(), tempEdges.end(), CompareEdges());
 
 
-    return ADirectional_Graph(tempNodes,tempEdges);
+    return Acyclic_Graph(tempNodes,tempEdges);
 }
 
 

@@ -10,12 +10,12 @@
 #include <stack>
 #include <ostream>
 
-class ADirectional_Graph: public Graph {
+class Acyclic_Graph: public Graph {
 public:
-    ADirectional_Graph();
-    ADirectional_Graph(std::vector<Node *>&, std::vector<Edge*>&);
+    Acyclic_Graph();
+    Acyclic_Graph(std::vector<Node *>&, std::vector<Edge*>&);
 
-    ~ADirectional_Graph();
+    ~Acyclic_Graph();
     bool addNode(Node &v);
 
     bool removeNode(Node &v);
@@ -49,21 +49,21 @@ public:
 
     void printGraphNodes();
 
-    friend std::ostream &operator<<(std::ostream &os, ADirectional_Graph &graph);
+    friend std::ostream &operator<<(std::ostream &os, Acyclic_Graph &graph);
 
-    ADirectional_Graph& operator++();
+    Acyclic_Graph& operator++();
 
-    ADirectional_Graph& operator=(const ADirectional_Graph &rhs);
+    Acyclic_Graph& operator=(const Acyclic_Graph &rhs);
 
-    ADirectional_Graph operator+(const ADirectional_Graph &rhs);
+    Acyclic_Graph operator+(const Acyclic_Graph &rhs);
 
-    bool operator<(const ADirectional_Graph &rhs) const;
+    bool operator<(const Acyclic_Graph &rhs) const;
 
-    bool operator>(const ADirectional_Graph &rhs) const;
+    bool operator>(const Acyclic_Graph &rhs) const;
 
-    bool operator==(const ADirectional_Graph &rhs) const;
+    bool operator==(const Acyclic_Graph &rhs) const;
 
-    bool operator!=(const ADirectional_Graph &rhs) const;
+    bool operator!=(const Acyclic_Graph &rhs) const;
 
 
 private:
