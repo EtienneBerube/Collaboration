@@ -1,8 +1,22 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "item.h"
 
 using namespace std;
+
+
+//*****************************COMPARATORS******************************
+
+//https://stackoverflow.com/questions/26444216/is-it-possible-to-use-stdsort-with-a-sort-function-that-takes-extra-arguments?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+
+struct CompareEdges
+{
+    bool operator()( const Item* i1, const Item* i2 ) const {
+        //TODO finish
+    }
+};
+//*****************************COMPARATORS******************************
 
 int main(int argc, char* argv[]) {
     string field;
