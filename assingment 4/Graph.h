@@ -1,6 +1,8 @@
-//
-// Created by Etienne on 17/03/2018.
-//
+/*
+ * COEN 244 Assignment 4
+ * Etienne Berube: 40052212
+ * Braldey Walsh: 40063018
+ */
 
 #ifndef ASSINGMENT_4_GRAPH_H
 #define ASSINGMENT_4_GRAPH_H

@@ -1,3 +1,9 @@
+/*
+ * COEN 244 Assignment 4
+ * Etienne Berube: 40052212
+ * Braldey Walsh: 40063018
+ */
+
 #include "Acyclic_Graph.h"
 #include "Node.h"
 #include "Edge.h"
@@ -71,13 +77,16 @@ int main() {
     g3.printGraphEdges();
 	
 	//test adjacency matrix
+	cout << endl << "Print adjacency matrix:" <<  endl;
 	g1.display();
 
 	g1.removeEdge(e1); //remove e1
 	g1.removeNode(n7); //remove n7
+	cout << endl << endl << "Print matrix again after removing a node and an edge:" << endl;
 	g1.display();
 
 	g1.removeMultipleEdges(&e3, 2); //remove e3 and the following edge
+	cout << endl << endl << "Final print of matrix after having removed another node calling the 'removeMultipleEdges' function:" << endl;
 	g1.display();
 
 	return 0;

@@ -1,6 +1,8 @@
-//
-// Created by Etienne on 17/03/2018.
-//
+/*
+ * COEN 244 Assignment 4
+ * Etienne Berube: 40052212
+ * Braldey Walsh: 40063018
+ */
 
 #include <algorithm>
 #include <stack>
@@ -13,10 +15,7 @@
 
 //using namespace std;
 
-/*
- * Etienne Berube: 40052212
- * Braldey Walsh:
- */
+
 
 //*****************************COMPARATOR*****************************
 //will be used to sort the edges by their starting node's IDs
