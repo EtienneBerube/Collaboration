@@ -13,7 +13,7 @@ using namespace std;
 
 struct CompareEdges
 {
-    bool operator()( const Item* i1, const Item* i2 ) const {
+    bool operator()( const Item* i1, const Item* i2, char checker ) const {
         //TODO finish
     }
 };
@@ -21,7 +21,7 @@ struct CompareEdges
 
 int main(int argc, char* argv[]) {
     list items;
-    
+
     string field;
     string inputFile;
     string outputFile;
