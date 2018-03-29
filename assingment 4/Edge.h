@@ -31,8 +31,6 @@ class Edge
     friend std::ostream &operator<<(std::ostream &os, const Edge &edge);
 
 
-
-
 protected:
 		int startNode, endNode; //integer ID values of start and end nodes
 		int weight;//weight of the edge
