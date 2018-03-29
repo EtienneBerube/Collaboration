@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "item.h"
+#include <list>
 
 using namespace std;
 
@@ -19,6 +20,8 @@ struct CompareEdges
 //*****************************COMPARATORS******************************
 
 int main(int argc, char* argv[]) {
+    list items;
+    
     string field;
     string inputFile;
     string outputFile;
