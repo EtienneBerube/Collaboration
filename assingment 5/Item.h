@@ -8,28 +8,22 @@
 #include <string>
 
 
-
-
-
 using std::string;
 
 class Item {
-private:
-    string id;
-    string type;
-    string name;
-    double ppu;
-
-    //Enums
-    Batter batters;
-    Topping topping;
-
 public:
     Item() = default;
 
     ~Item() = default;
 
     Item(const Item& item);
+
+    //Might change to map
+
+    enum Batter{Regular=1001, Chocolat = 1002, Blueberry = 1003, DevilsFood = 1004};
+
+    enum Topping{None=5001, Glazed=5002, Sugar=5005, PowderedSugar = 5007,
+        ChocolatWithSprinkles=5006, ChocolatTopping = 5003, Maple = 5004};
 
     const string &getId() const;
 
@@ -63,10 +57,15 @@ public:
 
     bool operator>=(const Item &rhs) const;
 
-    enum Batter{Regular=1001, Chocolat = 1002, Blueberry = 1003, DevilsFood = 1004};
+private:
+    string id;
+    string type;
+    string name;
+    double ppu;
 
-    enum Topping{None=5001, Glazed=5002, Sugar=5005, PowderedSugar = 5007,
-        ChocolatWithSprinkles=5006, ChocolatTopping = 5003, Maple = 5004};
+    //Enums
+    Batter batters;
+    Topping topping;
 };
 
 

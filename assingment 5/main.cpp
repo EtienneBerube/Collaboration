@@ -3,6 +3,12 @@
 #include <vector>
 #include "item.h"
 #include <list>
+//https://github.com/nlohmann/json/blob/develop/README.md
+#include <nlohmann/json.hpp>
+
+// for convenience
+
+using json = nlohmann::json;
 
 using namespace std;
 
@@ -20,7 +26,7 @@ struct CompareEdges
 //*****************************COMPARATORS******************************
 
 int main(int argc, char* argv[]) {
-    list items;
+    list<Item*> items;
 
     string field;
     string inputFile;
