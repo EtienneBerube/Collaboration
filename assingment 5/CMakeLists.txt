@@ -6,9 +6,6 @@ set(SOURCE CMAKE_SOURCE_DIR)
 
 #[[include_directories(${PROJECT_SOURCE_DIR})   <------ works as well]]
 
-SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/nlohmann)
-include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/nlohmann)
-
 set(SOURCE_FILES main.cpp sample Item.cpp Item.h)
 add_executable(assingment_5 ${SOURCE_FILES})
 
