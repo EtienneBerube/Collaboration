@@ -28,7 +28,27 @@
           { "id": "5003", "type": "Chocolate" },
           { "id": "5004", "type": "Maple" }
         ]
-      }
+      },
+      {
+               "id": "0002",
+               "type": "twist",
+               "name": "Twist",
+               "ppu": 0.35,
+               "batters":
+               {
+                 "batter":
+                 [
+                   { "id": "1005", "type": "Vanilla" },
+                   { "id": "1006", "type": "Almond" }
+                   }
+                 ]
+               },
+               "topping":
+               [
+                 { "id": "5001", "type": "None" },
+                 { "id": "5002", "type": "Glazed" }
+               ]
+             }
     ]
   }
 }
