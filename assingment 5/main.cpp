@@ -28,7 +28,7 @@ struct CompareEdges
 //*****************************COMPARATORS******************************
 
 int main(int argc, char* argv[]) {
-    list<Item*> items;
+    vector<Item*> items;
 
     string field;
     string inputFile;
@@ -57,9 +57,9 @@ int main(int argc, char* argv[]) {
 
     for(auto& ref : json1.items()){
        json temp = ref;
-
+        items.push_back(new Item());
         for(auto& x : temp.items()){
-
+            items.back()->setId(temp.);
         }
 
     }
