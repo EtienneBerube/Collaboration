@@ -53,6 +53,19 @@ int main(int argc, char* argv[]) {
 
     input >> json1;
 
-    vector<items>
+
+
+    for(auto& ref : json1.items()){
+       json temp = ref;
+
+        for(auto& x : temp.items()){
+
+        }
+
+    }
+
+
+
+
     return 0;
 }

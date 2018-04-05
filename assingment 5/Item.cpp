@@ -90,5 +90,21 @@ bool Item::operator>=(const Item &rhs) const {
 }
 
 Item::Item(const Item &item) {
+    //TODO
+}
 
+void Item::addBatter(int id, std::string batter) {
+    batters.insert(std::pair<int,std::string>(id,batter));
+}
+
+void Item::addTopping(int id, std::string topping) {
+    batters.insert(std::pair<int,std::string>(id,topping));
+}
+
+const std::map<int, std::string> &Item::getBatters() {
+    return batters;
+}
+
+const std::map<int, std::string> &Item::getToppings() {
+    return topping;
 }

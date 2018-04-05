@@ -6,6 +6,7 @@
 #define ASSINGMENT_5_ITEM_H
 
 #include <string>
+#include <map>
 
 
 using std::string;
@@ -16,14 +17,7 @@ public:
 
     ~Item() = default;
 
-    Item(const Item& item);
-
-    //Might change to map
-
-    enum Batter{Regular=1001, Chocolat = 1002, Blueberry = 1003, DevilsFood = 1004};
-
-    enum Topping{None=5001, Glazed=5002, Sugar=5005, PowderedSugar = 5007,
-        ChocolatWithSprinkles=5006, ChocolatTopping = 5003, Maple = 5004};
+    Item(const Item& i);
 
     const string &getId() const;
 
@@ -41,13 +35,13 @@ public:
 
     void setPpu(double ppu);
 
-    Batter getBatters() const;
+    void addBatter(int id ,std::string batter );
 
-    void setBatters(Batter batters);
+    void addTopping(int id, std::string topping);
 
-    Topping getTopping() const;
+    const std::map<int,std::string>& getBatters();
 
-    void setTopping(Topping topping);
+    const std::map<int,std::string>& getToppings();
 
     bool operator<(const Item &rhs) const;
 
@@ -64,8 +58,8 @@ private:
     double ppu;
 
     //Enums
-    Batter batters;
-    Topping topping;
+    std::map<int ,std::string> batters;
+    std::map<int ,std::string> topping;
 };
 
 
