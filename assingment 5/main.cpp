@@ -88,19 +88,18 @@ int main(int argc, char *argv[]) {
         temp->setType(item["type"]);
 
         // check if item["batters"]["batter"] exists
-        if (item.find("batters") != item.end() &&
-            item["batters"].find("batter") != item["batters"].end()) {
+        if (item.find("batters") != item.end() && item["batters"].find("batter") != item["batters"].end()) {
             for (const auto &batter : item["batters"]["batter"]) {
-                temp->addBatter(batter["id"], batter["type"]);
-                //std::cout << batter["id"] << ", " << batter["type"] << std::endl; <--- debugging
+                string temp_int = batter["id"];
+                temp->addBatter(stoi(temp_int), batter["type"]);
             }
         }
 
         // check if item["topping"] exists
         if (item.find("topping") != item.end()) {
             for (const auto &topping : item["topping"]) {
-                temp->addTopping(topping["id"], topping["type"]);
-                //std::cout << topping["id"] << ", " << topping["type"] << std::endl;
+                string temp_int =topping["id"];
+                temp->addTopping(stoi(temp_int), topping["type"]);
             }
         }
         items.push_back(temp);
@@ -117,13 +116,15 @@ int main(int argc, char *argv[]) {
 
 void printList(std::vector<Item *> items) {
     for (Item *i: items) {
-        std::cout << i->getName() << ":\nBatters:" << std::endl;
-        for (map<int, string>::iterator it = i->getBatters().begin(); it != i->getBatters().end(); i++) {
-            cout << it->second;
+        std::cout<<"\n*******************************"<<endl;
+        std::cout<< i->getName() <<endl;
+        std::cout <<"\nBatters:" << std::endl;
+        for (map<int, string>::iterator it = i->getBatters().begin(); it != i->getBatters().end(); it++) {
+            cout << it->second<<endl;
         }
-        std::cout << "Toppings: " << std::endl;
-        for (map<int, string>::iterator it = i->getToppings().begin(); it != i->getToppings().end(); i++) {
-            cout << it->second;
+        std::cout << "\nToppings: " << std::endl;
+        for (map<int, string>::iterator it = i->getToppings().begin(); it != i->getToppings().end(); it++) {
+            cout << it->second<<endl;
         }
     }
 }
