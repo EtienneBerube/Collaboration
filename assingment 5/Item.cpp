@@ -36,20 +36,20 @@ void Item::setPpu(double ppu) {
     Item::ppu = ppu;
 }
 
-Item::Batter Item::getBatters() const {
+void Item::addBatter(int id ,std::string batter ){
+    this->batters.insert(std::pair<int,std::string>(id,batter));
+}
+
+void Item::addTopping(int id, std::string topping){
+    this->topping.insert(std::pair<int,std::string>(id,topping));
+}
+
+const std::map<int,std::string>& Item::getBatters(){
     return batters;
 }
 
-void Item::setBatters(Item::Batter batters) {
-    Item::batters = batters;
-}
-
-Item::Topping Item::getTopping() const {
+const std::map<int,std::string>& Item::getToppings(){
     return topping;
-}
-
-void Item::setTopping(Item::Topping topping) {
-    Item::topping = topping;
 }
 
 bool Item::operator<(const Item &rhs) const {
@@ -90,21 +90,11 @@ bool Item::operator>=(const Item &rhs) const {
 }
 
 Item::Item(const Item &item) {
-    //TODO
+    this->id=item.id;
+    this->name=item.name;
+    this->type=item.type;
+    this->ppu=item.ppu;
+    this->batters=item.batters;
+    this->topping=item.topping;
 }
 
-void Item::addBatter(int id, std::string batter) {
-    batters.insert(std::pair<int,std::string>(id,batter));
-}
-
-void Item::addTopping(int id, std::string topping) {
-    batters.insert(std::pair<int,std::string>(id,topping));
-}
-
-const std::map<int, std::string> &Item::getBatters() {
-    return batters;
-}
-
-const std::map<int, std::string> &Item::getToppings() {
-    return topping;
-}
