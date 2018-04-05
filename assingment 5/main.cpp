@@ -3,8 +3,10 @@
 #include <vector>
 #include "item.h"
 #include <list>
+#include <map>
 //https://github.com/nlohmann/json/blob/develop/README.md
 #include <nlohmann/json.hpp>
+#include <fstream>
 
 // for convenience
 
@@ -32,6 +34,8 @@ int main(int argc, char* argv[]) {
     string inputFile;
     string outputFile;
 
+
+
     if (argc < 4 || argc >4) {
         cout<<"Bad number of arguments. Expected 3, got "<<argc<<endl;
         return 1;
@@ -43,6 +47,12 @@ int main(int argc, char* argv[]) {
 
     cout<<"1: "<<field<<" 2: "<<inputFile << " 3: "<<outputFile<<endl;
 
-    std::cout << "Hello, World!" << std::endl;
+    ifstream input("sample.json");
+
+    json json1;
+
+    input >> json1;
+
+    vector<items>
     return 0;
 }
