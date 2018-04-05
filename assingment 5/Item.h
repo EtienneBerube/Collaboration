@@ -39,9 +39,9 @@ public:
 
     void addTopping(int id, std::string topping);
 
-    const std::map<int,std::string>& getBatters();
+    std::map<int,std::string>& getBatters();
 
-    const std::map<int,std::string>& getToppings();
+    std::map<int,std::string>& getToppings();
 
     bool operator<(const Item &rhs) const;
 
@@ -57,7 +57,6 @@ private:
     string name;
     double ppu;
 
-    //Enums
     std::map<int ,std::string> batters;
     std::map<int ,std::string> topping;
 };

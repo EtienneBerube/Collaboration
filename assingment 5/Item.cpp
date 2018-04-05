@@ -44,11 +44,11 @@ void Item::addTopping(int id, std::string topping){
     this->topping.insert(std::pair<int,std::string>(id,topping));
 }
 
-const std::map<int,std::string>& Item::getBatters(){
+std::map<int,std::string>& Item::getBatters(){
     return batters;
 }
 
-const std::map<int,std::string>& Item::getToppings(){
+std::map<int,std::string>& Item::getToppings(){
     return topping;
 }
 
