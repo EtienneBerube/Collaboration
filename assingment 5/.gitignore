@@ -32,7 +32,7 @@
 *.app
 
 #Custom
-*.xml
+workspace.xml
 .idea/
 cmake-build-debug/
 
