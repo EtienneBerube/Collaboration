@@ -179,13 +179,12 @@ void MainWindow::compute()
             tab.show();
             hide();
 
+
     }else{
         ui->label->setText("Missing arguments");
     }
 
-    Table *tab = new Table();
-    tab->show();
-    hide();
+
 
 }
 
