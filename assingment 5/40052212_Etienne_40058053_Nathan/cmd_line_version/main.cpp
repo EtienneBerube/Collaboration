@@ -198,14 +198,16 @@ void singleItemCreator(std::vector<Item *> &items, std::vector<SingleItem *> &co
 
 void printList(std::vector<SingleItem *> items,ofstream &output) {
 
-    output<<"Id";
-    output<<"\t\t";
-    output<<"Name";
-    output<<"\t";
-    output<<"Batters";
-    output<<"\t\t\t";
-    output<<"Toppings";
-    output<<"\n";
+    output<<left;
+    output<<setw(8);
+    output<<("ID");
+    output<<setw(8);
+    output<<("Name");
+    output<<setw(15);
+    output<<("Batters");
+    output<<setw(8);
+    output<<("Toppings");
+    output<<endl;
 
     for (SingleItem *i: items) {
         output<<left;

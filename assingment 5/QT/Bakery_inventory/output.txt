@@ -1,0 +1,33 @@
+Id		Name	Batters			Toppings
+0001    Cake    Regular        Glazed  
+0001    Cake    Devil's Food   Powdered Sugar
+0001    Cake    Devil's Food   Chocolate with Sprinkles
+0001    Cake    Devil's Food   Sugar   
+0001    Cake    Devil's Food   Maple   
+0001    Cake    Devil's Food   Chocolate
+0001    Cake    Devil's Food   Glazed  
+0001    Cake    Devil's Food   None    
+0001    Cake    Blueberry      Powdered Sugar
+0001    Cake    Blueberry      Chocolate with Sprinkles
+0001    Cake    Blueberry      Sugar   
+0001    Cake    Blueberry      Maple   
+0001    Cake    Blueberry      Chocolate
+0001    Cake    Blueberry      Glazed  
+0001    Cake    Chocolate      Powdered Sugar
+0001    Cake    Regular        None    
+0001    Cake    Regular        Chocolate
+0001    Cake    Regular        Maple   
+0001    Cake    Regular        Sugar   
+0001    Cake    Regular        Chocolate with Sprinkles
+0001    Cake    Regular        Powdered Sugar
+0001    Cake    Chocolate      None    
+0001    Cake    Chocolate      Glazed  
+0001    Cake    Chocolate      Chocolate
+0001    Cake    Chocolate      Maple   
+0001    Cake    Chocolate      Sugar   
+0001    Cake    Chocolate      Chocolate with Sprinkles
+0001    Cake    Blueberry      None    
+0002    Twist   Vanilla        None    
+0002    Twist   Vanilla        Glazed  
+0002    Twist   Almond         None    
+0002    Twist   Almond         Glazed  
